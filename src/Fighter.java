@@ -3,7 +3,7 @@
  * @author Christian Kletzander
  *
  */
-public class Fighter extends Guardian {
+public class Fighter extends Guard {
 
 	public Fighter(int serialNum) {
 		super(serialNum);

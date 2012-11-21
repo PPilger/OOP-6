@@ -3,9 +3,9 @@
  * @author Christian Kletzander
  *
  */
-public class ObjectGuardian extends Guardian {
+public class ObjectGuard extends Guard {
 
-	public ObjectGuardian(int serialNum) {
+	public ObjectGuard(int serialNum) {
 		super(serialNum);
 		// TODO Auto-generated constructor stub
 	}

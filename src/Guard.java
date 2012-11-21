@@ -1,7 +1,7 @@
 
-public abstract class Guardian extends Android {
+public abstract class Guard extends Android {
 	
-	public Guardian(int serialNum) {
+	public Guard(int serialNum) {
 		super(serialNum);
 	}
 
@@ -11,7 +11,7 @@ public abstract class Guardian extends Android {
 	}
 	
 	@Override
-	public ValidationCode validMainType(Guardian other) {
+	public ValidationCode validMainType(Guard other) {
 		return new Valid();
 	}
 }

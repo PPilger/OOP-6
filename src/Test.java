@@ -24,11 +24,11 @@ public class Test {
 		h12.setSkin(new TouchSensitiveSkin());
 		System.out.println(al.insert(h12));
 
-		g8 = new Guardian(8) {};
+		g8 = new Guard(8) {};
 		g8.setSkin(new SolidSkin());
 		System.out.println(al.insert(g8));
 		
-		g8 = new Guardian(8) {};
+		g8 = new Guard(8) {};
 		g8.setSkin(new TouchSensitiveSkin());
 		System.out.println(al.insert(g8));
 		

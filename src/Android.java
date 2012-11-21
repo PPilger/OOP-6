@@ -31,7 +31,7 @@ public abstract class Android implements Validable {
 		return new Error("Falscher Typ");
 	}
 
-	public ValidationCode validMainType(Guardian other) {
+	public ValidationCode validMainType(Guard other) {
 		return new Error("Falscher Typ");
 	}
 
@@ -45,6 +45,10 @@ public abstract class Android implements Validable {
 
 	public ValidationCode validSkin(ArmoredSkin skin) {
 		return new Valid();
+	}
+	
+	public ValidationCode validSoftware(Software s) {
+		return new Error("Invalid Software");
 	}
 
 	public int getSerialNum() {
