@@ -6,22 +6,22 @@ public abstract class HeavyWorker extends Android {
 	}
 
 	@Override
-	public ValidationCode validateAndroid(Android other) {
-		return other.validAttribute(this);
+	public ValidationCode validateReplacement(Android other) {
+		return other.validMainType(this);
 	}
 
 	@Override
-	public ValidationCode validAttribute(Servant other) {
-		return new Error("nicht vom Typ Bediener");
+	public ValidationCode validMainType(Servant other) {
+		return new Error("Falscher Haupttyp");
 	}
 
 	@Override
-	public ValidationCode validAttribute(Guardian other) {
-		return new Error("nicht vom Typ Beschuetzer");
+	public ValidationCode validMainType(Guardian other) {
+		return new Error("Falscher Haupttyp");
 	}
 	
 	@Override
-	public ValidationCode validAttribute(ArmoredSkin skin) {
+	public ValidationCode validSkin(ArmoredSkin skin) {
 		return new Error("Schwerarbeiter kann keinen gepanzerten Skin haben.");
 	}
 }

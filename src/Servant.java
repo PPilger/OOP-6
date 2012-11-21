@@ -6,27 +6,27 @@ public abstract class Servant extends Android {
 	}
 
 	@Override
-	public ValidationCode validateAndroid(Android other) {
-		return other.validAttribute(this);
+	public ValidationCode validateReplacement(Android other) {
+		return other.validMainType(this);
 	}
 	
 	@Override
-	public ValidationCode validAttribute(HeavyWorker other) {
-		return new Error("nicht vom Typ Schwerarbeiter");
+	public ValidationCode validMainType(HeavyWorker other) {
+		return new Error("Falscher Haupttyp");
 	}
 
 	@Override
-	public ValidationCode validAttribute(Guardian other) {
-		return new Error("nicht vom Typ Beschuetzer");
+	public ValidationCode validMainType(Guardian other) {
+		return new Error("Falscher Haupttyp");
 	}
 	
 	@Override
-	public ValidationCode validAttribute(SolidSkin skin) {
+	public ValidationCode validSkin(SolidSkin skin) {
 		return new Error("Bediener kann keinen hochfesten Skin haben.");
 	}
 	
 	@Override
-	public ValidationCode validAttribute(ArmoredSkin skin) {
+	public ValidationCode validSkin(ArmoredSkin skin) {
 		return new Error("Bediener kann keinen gepanzerten Skin haben.");
 	}
 }

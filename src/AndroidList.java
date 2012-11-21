@@ -10,8 +10,6 @@ public class AndroidList {
 		Android existing = map.get(serialNum);
 		ValidationCode vc;
 		
-
-		
 		if(existing == null) {
 			vc = newAndroid.validate();
 		} else {

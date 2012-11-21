@@ -6,17 +6,17 @@ public abstract class Guardian extends Android {
 	}
 
 	@Override
-	public ValidationCode validateAndroid(Android other) {
-		return other.validAttribute(this);
+	public ValidationCode validateReplacement(Android other) {
+		return other.validMainType(this);
 	}
 
 	@Override
-	public ValidationCode validAttribute(Servant other) {
-		return new Error("nicht vom Typ Bediener");
+	public ValidationCode validMainType(Servant other) {
+		return new Error("Falscher Haupttyp");
 	}
 
 	@Override
-	public ValidationCode validAttribute(HeavyWorker other) {
-		return new Error("nicht vom Typ Schwerarbeiter");
+	public ValidationCode validMainType(HeavyWorker other) {
+		return new Error("Falscher Haupttyp");
 	}
 }

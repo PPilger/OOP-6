@@ -21,31 +21,31 @@ public abstract class Android implements Validable {
 		return code.validate(this, replaced);
 	}
 
-	public ValidationCode validateAndroid(Android other) {
+	public ValidationCode validateReplacement(Android other) {
 		return new Valid();
 	}
 
-	public ValidationCode validAttribute(Servant other) {
+	public ValidationCode validMainType(Servant other) {
 		return new Valid();
 	}
 
-	public ValidationCode validAttribute(HeavyWorker other) {
+	public ValidationCode validMainType(HeavyWorker other) {
 		return new Valid();
 	}
 
-	public ValidationCode validAttribute(Guardian other) {
+	public ValidationCode validMainType(Guardian other) {
 		return new Valid();
 	}
 
-	public ValidationCode validAttribute(TouchSensitiveSkin skin) {
+	public ValidationCode validSkin(TouchSensitiveSkin skin) {
 		return new Valid();
 	}
 
-	public ValidationCode validAttribute(SolidSkin skin) {
+	public ValidationCode validSkin(SolidSkin skin) {
 		return new Valid();
 	}
 
-	public ValidationCode validAttribute(ArmoredSkin skin) {
+	public ValidationCode validSkin(ArmoredSkin skin) {
 		return new Valid();
 	}
 
