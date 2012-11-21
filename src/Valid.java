@@ -3,7 +3,7 @@ public class Valid implements ValidationCode {
 
 	@Override
 	public ValidationCode validate(Android android, Validable validable) {
-		return validable.validateReplacement(android);
+		return validable.validateAndroid(android);
 	}
 
 	@Override

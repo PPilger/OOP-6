@@ -2,7 +2,7 @@
 public class ArmoredSkin implements Skin {
 
 	@Override
-	public ValidationCode validateReplacement(Android android) {
+	public ValidationCode validateAndroid(Android android) {
 		return android.validSkin(this);
 	}
 }

@@ -21,20 +21,18 @@ public abstract class Android implements Validable {
 		return code.validate(this, replaced);
 	}
 
-	public ValidationCode validateReplacement(Android other) {
-		return new Valid();
-	}
+	public abstract ValidationCode validateAndroid(Android replacing);
 
 	public ValidationCode validMainType(Servant other) {
-		return new Valid();
+		return new Error("Falscher Typ");
 	}
 
 	public ValidationCode validMainType(HeavyWorker other) {
-		return new Valid();
+		return new Error("Falscher Typ");
 	}
 
 	public ValidationCode validMainType(Guardian other) {
-		return new Valid();
+		return new Error("Falscher Typ");
 	}
 
 	public ValidationCode validSkin(TouchSensitiveSkin skin) {

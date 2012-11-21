@@ -6,18 +6,13 @@ public abstract class Servant extends Android {
 	}
 
 	@Override
-	public ValidationCode validateReplacement(Android other) {
+	public ValidationCode validateAndroid(Android other) {
 		return other.validMainType(this);
 	}
 	
 	@Override
-	public ValidationCode validMainType(HeavyWorker other) {
-		return new Error("Falscher Haupttyp");
-	}
-
-	@Override
-	public ValidationCode validMainType(Guardian other) {
-		return new Error("Falscher Haupttyp");
+	public ValidationCode validMainType(Servant other) {
+		return new Valid();
 	}
 	
 	@Override

@@ -1,4 +1,4 @@
 
 public interface Validable {
-	public ValidationCode validateReplacement(Android android);
+	public ValidationCode validateAndroid(Android android);
 }
