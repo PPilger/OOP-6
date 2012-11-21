@@ -1,8 +1,8 @@
 
-public class ArmoredSkin extends Skin {
+public class ArmoredSkin implements Skin {
 
 	@Override
-	public ErrorCode applyTo(Android android) {
-		return android.setSkin(this);
+	public ValidationCode validateAndroid(Android android) {
+		return android.validAttribute(this);
 	}
 }
