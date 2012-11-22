@@ -1,3 +1,8 @@
+/**
+ * 
+ * @author Christian Kletzander
+ *
+ */
 public class Aktor {
 
 	private String name;
