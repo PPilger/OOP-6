@@ -47,9 +47,9 @@ public abstract class Android implements Validable {
 		return new Valid();
 	}
 	
-//	public ValidationCode validSoftware(Assistant.BaseSoftware s) {
-//		return new Error("Invalid Software");
-//	}
+	public ValidationCode validSoftware(Assistant.BaseSoftware s) {
+		return new Error("Invalid Software");
+	}
 	
 	public ValidationCode validSoftware(Bodyguard.BaseSoftware s) {
 		return new Error("Invalid Software");
@@ -67,9 +67,9 @@ public abstract class Android implements Validable {
 		return new Error("Invalid Software");
 	}
 	
-//	public ValidationCode validSoftware(Partner.BaseSoftware s) {
-//		return new Error("Invalid Software");
-//	}
+	public ValidationCode validSoftware(Partner.BaseSoftware s) {
+		return new Error("Invalid Software");
+	}
 	
 	public ValidationCode validSoftware(ServiceTechnician.BaseSoftware s) {
 		return new Error("Invalid Software");
