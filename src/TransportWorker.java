@@ -21,7 +21,7 @@ public class TransportWorker extends HeavyWorker {
 		}
 		
 		@Override
-		public ValidationCode validateAndroid(Android android) {
+		public ValidationCode visit(Android android) {
 			return android.validSoftware(this);
 		}
 		

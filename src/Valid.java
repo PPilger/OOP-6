@@ -2,8 +2,8 @@
 public class Valid implements ValidationCode {
 
 	@Override
-	public ValidationCode validate(Android android, Validable validable) {
-		return validable.validateAndroid(android);
+	public ValidationCode validate(Android android, AndroidVisitor validable) {
+		return validable.visit(android);
 	}
 
 	@Override

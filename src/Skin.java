@@ -1,3 +1,3 @@
 
-public interface Skin extends Validable {
+public interface Skin extends AndroidVisitor {
 }

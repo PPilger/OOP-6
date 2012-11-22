@@ -1,4 +1,4 @@
-public abstract class Android implements Validable {
+public abstract class Android implements AndroidVisitor {
 	private int serialNum;
 	private Kit kit;
 	private Skin skin;
@@ -23,7 +23,7 @@ public abstract class Android implements Validable {
 		return code.validate(this, replaced);
 	}
 
-	public abstract ValidationCode validateAndroid(Android replacing);
+	public abstract ValidationCode visit(Android replacing);
 
 	// Visitor-Pattern Methoden um den Haupttyp zu ueberpruefen (dieser muss
 	// gleich sein wie der eigene)

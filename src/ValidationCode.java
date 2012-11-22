@@ -1,5 +1,5 @@
 
 public interface ValidationCode {
-	public ValidationCode validate(Android android, Validable validable);
+	public ValidationCode validate(Android android, AndroidVisitor validable);
 	public String toString();
 }

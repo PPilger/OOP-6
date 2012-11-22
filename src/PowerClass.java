@@ -1,6 +1,6 @@
 import java.util.TreeMap;
 
-public abstract class PowerClass implements Validable {
+public abstract class PowerClass implements AndroidVisitor, SecurityLevelVisitor {
 	private static TreeMap<Double, PowerClass> powerClasses = new TreeMap<Double, PowerClass>();
 
 	public static PowerClass getPowerClass(double power) {
@@ -13,8 +13,13 @@ public abstract class PowerClass implements Validable {
 		}
 
 		@Override
-		public ValidationCode validateAndroid(Android android) {
+		public ValidationCode visit(Android android) {
 			return android.validPowerClass(this);
+		}
+
+		@Override
+		public ValidationCode visit(SecurityLevel level) {
+			return level.validPowerClass(this);
 		}
 	}
 	
@@ -24,8 +29,13 @@ public abstract class PowerClass implements Validable {
 		}
 		
 		@Override
-		public ValidationCode validateAndroid(Android android) {
+		public ValidationCode visit(Android android) {
 			return android.validPowerClass(this);
+		}
+
+		@Override
+		public ValidationCode visit(SecurityLevel level) {
+			return level.validPowerClass(this);
 		}
 	}
 	
@@ -35,8 +45,13 @@ public abstract class PowerClass implements Validable {
 		}
 		
 		@Override
-		public ValidationCode validateAndroid(Android android) {
+		public ValidationCode visit(Android android) {
 			return android.validPowerClass(this);
+		}
+
+		@Override
+		public ValidationCode visit(SecurityLevel level) {
+			return level.validPowerClass(this);
 		}
 	}
 	
@@ -46,8 +61,13 @@ public abstract class PowerClass implements Validable {
 		}
 		
 		@Override
-		public ValidationCode validateAndroid(Android android) {
+		public ValidationCode visit(Android android) {
 			return android.validPowerClass(this);
+		}
+
+		@Override
+		public ValidationCode visit(SecurityLevel level) {
+			return level.validPowerClass(this);
 		}
 	}
 }

@@ -21,7 +21,7 @@ public class Partner extends Servant
 		}
 		
 		@Override
-		public ValidationCode validateAndroid(Android android) {
+		public ValidationCode visit(Android android) {
 			return android.validSoftware(this);
 		}
 	}

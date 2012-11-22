@@ -31,7 +31,7 @@ public class Fighter extends Guard {
 		}
 
 		@Override
-		public ValidationCode validateAndroid(Android android) {
+		public ValidationCode visit(Android android) {
 			return android.validSoftware(this);
 		}
 		

@@ -1,5 +1,5 @@
 
-public abstract class Software implements Validable {
+public abstract class Software implements AndroidVisitor {
 	private SecurityLevel level;
 	
 	public Software(SecurityLevel level) {
@@ -10,5 +10,5 @@ public abstract class Software implements Validable {
 		return level;
 	}
 	
-	public abstract ValidationCode validateAndroid(Android android);
+	public abstract ValidationCode visit(Android android);
 }

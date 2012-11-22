@@ -2,7 +2,7 @@
 public class SecurityLevel3 extends SecurityLevel{
 
 	@Override
-	public ValidationCode validateAndroid(Android android) {
+	public ValidationCode visit(Android android) {
 		return android.validSecLevel(this);
 	}
 	

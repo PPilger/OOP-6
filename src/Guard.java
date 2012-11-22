@@ -6,7 +6,7 @@ public abstract class Guard extends Android {
 	}
 
 	@Override
-	public ValidationCode validateAndroid(Android other) {
+	public ValidationCode visit(Android other) {
 		return other.validMainType(this);
 	}
 	

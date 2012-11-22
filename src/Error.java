@@ -7,7 +7,7 @@ public class Error implements ValidationCode {
 	}
 
 	@Override
-	public ValidationCode validate(Android android, Validable validable) {
+	public ValidationCode validate(Android android, AndroidVisitor validable) {
 		return this;
 	}
 	

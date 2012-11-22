@@ -2,7 +2,7 @@
 public class TouchSensitiveSkin implements Skin {
 
 	@Override
-	public ValidationCode validateAndroid(Android android) {
+	public ValidationCode visit(Android android) {
 		return android.validSkin(this);
 	}
 }

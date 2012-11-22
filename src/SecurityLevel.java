@@ -1,5 +1,5 @@
 
-public abstract class SecurityLevel implements Validable{
+public abstract class SecurityLevel implements AndroidVisitor {
 	
 	// Visitor-Pattern Methoden um die Leistungsklasse zu ueberpruefen
 	// (Einschraenkungen je nach Typ)
