@@ -17,4 +17,10 @@ public class Partner extends Servant
 		super(serialNum);
 		// TODO Auto-generated constructor stub
 	}
+	
+	@Override
+	public ValidationCode validSoftware(Partner.BaseSoftware s) {
+		// TODO Auto-generated method stub
+		return new Valid();
+	}
 }

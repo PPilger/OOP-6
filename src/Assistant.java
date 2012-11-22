@@ -18,4 +18,10 @@ public class Assistant extends Servant{
 		}
 		
 	}
+	
+	@Override
+	public ValidationCode validSoftware(Assistant.BaseSoftware s) {
+		// TODO Auto-generated method stub
+		return new Valid();
+	}
 }
