@@ -9,6 +9,11 @@ public class Bodyguard extends Guard {
 		super(serialNum);
 	}
 	
+	@Override
+	public ValidationCode validSoftware(Bodyguard.BaseSoftware s) {
+		return new Valid();
+	}
+	
 	public static class BaseSoftware implements Software {
 
 		@Override
