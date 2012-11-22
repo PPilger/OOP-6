@@ -12,6 +12,8 @@ public abstract class Android implements Validable {
 		ValidationCode code = new Valid();
 
 		code = code.validate(this, skin);
+		code = code.validate(this, software);
+		code = code.validate(this, software.getLevel());
 
 		return code;
 	}
@@ -23,22 +25,23 @@ public abstract class Android implements Validable {
 
 	public abstract ValidationCode validateAndroid(Android replacing);
 
-	// Methoden um den Haupttyp zu ueberpruefen (dieser muss gleich sein wie der
-	// eigene)
+	// Visitor-Pattern Methoden um den Haupttyp zu ueberpruefen (dieser muss
+	// gleich sein wie der eigene)
 
 	public ValidationCode validMainType(Servant other) {
-		return new Error("Falscher Typ");
+		return new Error("Invalid Type");
 	}
 
 	public ValidationCode validMainType(HeavyWorker other) {
-		return new Error("Falscher Typ");
+		return new Error("Invalid Type");
 	}
 
 	public ValidationCode validMainType(Guard other) {
-		return new Error("Falscher Typ");
+		return new Error("Invalid Type");
 	}
 
-	// Methoden um den Skin zu ueberpruefen (Einschraenkungen je nach Haupttyp)
+	// Visitor-Pattern Methoden um den Skin zu ueberpruefen (Einschraenkungen je
+	// nach Haupttyp)
 
 	public ValidationCode validSkin(TouchSensitiveSkin skin) {
 		return new Valid();
@@ -51,8 +54,9 @@ public abstract class Android implements Validable {
 	public ValidationCode validSkin(ArmoredSkin skin) {
 		return new Valid();
 	}
-	
-	// Methoden um die Software zu ueberpruefen (diese muss mit der Klasse des Androiden zusammenpassen)
+
+	// Visitor-Pattern Methoden um die Software zu ueberpruefen (diese muss mit
+	// der Klasse des Androiden zusammenpassen)
 
 	public ValidationCode validSoftware(Assistant.BaseSoftware s) {
 		return new Error("Invalid Software");
@@ -85,29 +89,27 @@ public abstract class Android implements Validable {
 	public ValidationCode validSoftware(TransportWorker.BaseSoftware s) {
 		return new Error("Invalid Software");
 	}
-	
-	public ValidationCode validSecLevel(SecurityLevel1 s)
-	{
+
+	// Visitor-Pattern Methoden um das Sicherheitslevel zu ueberpruefen
+	// (Einschraenkungen je nach Typ)
+
+	public ValidationCode validSecLevel(SecurityLevel1 s) {
 		return new Error("Invalid Security Level");
 	}
-	
-	public ValidationCode validSecLevel(SecurityLevel2 s)
-	{
+
+	public ValidationCode validSecLevel(SecurityLevel2 s) {
 		return new Error("Invalid Security Level");
 	}
-	
-	public ValidationCode validSecLevel(SecurityLevel3 s)
-	{
+
+	public ValidationCode validSecLevel(SecurityLevel3 s) {
 		return new Error("Invalid Security Level");
 	}
-	
-	public ValidationCode validSecLevel(SecurityLevel4 s)
-	{
+
+	public ValidationCode validSecLevel(SecurityLevel4 s) {
 		return new Error("Invalid Security Level");
 	}
-	
-	public ValidationCode validSecLevel(SecurityLevel5 s)
-	{
+
+	public ValidationCode validSecLevel(SecurityLevel5 s) {
 		return new Error("Invalid Security Level");
 	}
 

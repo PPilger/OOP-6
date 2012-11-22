@@ -27,13 +27,11 @@ public abstract class Servant extends Android {
 	
 	@Override
 	public ValidationCode validSecLevel(SecurityLevel1 s) {
-		// TODO Auto-generated method stub
 		return new Valid();
 	}
 	
 	@Override
 	public ValidationCode validSecLevel(SecurityLevel2 s) {
-		// TODO Auto-generated method stub
 		return new Valid();
 	}
 }
