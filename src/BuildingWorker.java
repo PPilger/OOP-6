@@ -10,6 +10,11 @@ public class BuildingWorker extends HeavyWorker {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
+	public ValidationCode validSoftware(BuildingWorker.BaseSoftware s) {
+		return new Valid();
+	}
+	
 	public static class BaseSoftware implements Software {
 
 		@Override

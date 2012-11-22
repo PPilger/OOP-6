@@ -10,6 +10,11 @@ public class ObjectGuard extends Guard {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Override
+	public ValidationCode validSoftware(ObjectGuard.BaseSoftware s) {
+		return new Valid();
+	}
+	
 	public static class BaseSoftware implements Software {
 
 		@Override

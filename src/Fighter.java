@@ -9,6 +9,11 @@ public class Fighter extends Guard {
 		super(serialNum);
 		// TODO Auto-generated constructor stub
 	}
+	
+	@Override
+	public ValidationCode validSoftware(Fighter.BaseSoftware s) {
+		return new Valid();
+	}
 
 	public static class BaseSoftware implements Software {
 
