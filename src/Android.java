@@ -85,6 +85,31 @@ public abstract class Android implements Validable {
 	public ValidationCode validSoftware(TransportWorker.BaseSoftware s) {
 		return new Error("Invalid Software");
 	}
+	
+	public ValidationCode validSecLevel(SecurityLevel1 s)
+	{
+		return new Error("Invalid Security Level");
+	}
+	
+	public ValidationCode validSecLevel(SecurityLevel2 s)
+	{
+		return new Error("Invalid Security Level");
+	}
+	
+	public ValidationCode validSecLevel(SecurityLevel3 s)
+	{
+		return new Error("Invalid Security Level");
+	}
+	
+	public ValidationCode validSecLevel(SecurityLevel4 s)
+	{
+		return new Error("Invalid Security Level");
+	}
+	
+	public ValidationCode validSecLevel(SecurityLevel5 s)
+	{
+		return new Error("Invalid Security Level");
+	}
 
 	public int getSerialNum() {
 		return serialNum;
