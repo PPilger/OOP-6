@@ -29,4 +29,14 @@ public abstract class HeavyWorker extends Android {
 	public ValidationCode validSecLevel(SecurityLevel4 s) {
 		return new Valid();
 	}
+	
+	@Override
+	public ValidationCode validSkin(SolidSkin skin) {
+		return new Valid();
+	}
+	
+	@Override
+	public ValidationCode validSkin(TouchSensitiveSkin skin) {
+		return new Valid();
+	}
 }

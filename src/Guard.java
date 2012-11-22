@@ -19,4 +19,9 @@ public abstract class Guard extends Android {
 	public ValidationCode validSecLevel(SecurityLevel4 s) {
 		return new Valid();
 	}
+	
+	@Override
+	public ValidationCode validSkin(ArmoredSkin skin) {
+		return new Valid();
+	}
 }

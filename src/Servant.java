@@ -34,4 +34,9 @@ public abstract class Servant extends Android {
 	public ValidationCode validSecLevel(SecurityLevel2 s) {
 		return new Valid();
 	}
+	
+	@Override
+	public ValidationCode validSkin(TouchSensitiveSkin skin) {
+		return new Valid();
+	}
 }

@@ -44,15 +44,15 @@ public abstract class Android implements Validable {
 	// nach Haupttyp)
 
 	public ValidationCode validSkin(TouchSensitiveSkin skin) {
-		return new Valid();
+		return new Error("Invalid Skin");
 	}
 
 	public ValidationCode validSkin(SolidSkin skin) {
-		return new Valid();
+		return new Error("Invalid Skin");
 	}
 
 	public ValidationCode validSkin(ArmoredSkin skin) {
-		return new Valid();
+		return new Error("Invalid Skin");
 	}
 
 	// Visitor-Pattern Methoden um die Software zu ueberpruefen (diese muss mit
