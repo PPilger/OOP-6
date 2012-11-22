@@ -14,7 +14,7 @@ public class Assistant extends Servant{
 
 		@Override
 		public ValidationCode validateAndroid(Android android) {
-			return null;
+			return android.validSoftware(this);
 		}
 		
 	}

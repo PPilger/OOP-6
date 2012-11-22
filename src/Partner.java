@@ -9,8 +9,7 @@ public class Partner extends Servant
 	{
 		@Override
 		public ValidationCode validateAndroid(Android android) {
-			// TODO Auto-generated method stub
-			return null;
+			return android.validSoftware(this);
 		}
 	}
 	
