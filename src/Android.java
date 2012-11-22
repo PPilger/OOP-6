@@ -47,7 +47,35 @@ public abstract class Android implements Validable {
 		return new Valid();
 	}
 	
-	public ValidationCode validSoftware(Software s) {
+//	public ValidationCode validSoftware(Assistant.BaseSoftware s) {
+//		return new Error("Invalid Software");
+//	}
+	
+	public ValidationCode validSoftware(Bodyguard.BaseSoftware s) {
+		return new Error("Invalid Software");
+	}
+	
+	public ValidationCode validSoftware(BuildingWorker.BaseSoftware s) {
+		return new Error("Invalid Software");
+	}
+	
+	public ValidationCode validSoftware(Fighter.BaseSoftware s) {
+		return new Error("Invalid Software");
+	}
+	
+	public ValidationCode validSoftware(ObjectGuard.BaseSoftware s) {
+		return new Error("Invalid Software");
+	}
+	
+//	public ValidationCode validSoftware(Partner.BaseSoftware s) {
+//		return new Error("Invalid Software");
+//	}
+	
+	public ValidationCode validSoftware(ServiceTechnician.BaseSoftware s) {
+		return new Error("Invalid Software");
+	}
+	
+	public ValidationCode validSoftware(TransportWorker.BaseSoftware s) {
 		return new Error("Invalid Software");
 	}
 
