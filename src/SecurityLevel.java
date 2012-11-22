@@ -1,4 +1,4 @@
 
-public interface SecurityLevel {
+public interface SecurityLevel extends Validable{
 	
 }
