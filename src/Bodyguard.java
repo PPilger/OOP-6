@@ -13,8 +13,7 @@ public class Bodyguard extends Guard {
 
 		@Override
 		public ValidationCode validateAndroid(Android android) {
-			// TODO Auto-generated method stub
-			return null;
+			return android.validSoftware(this);
 		}
 		
 	}
