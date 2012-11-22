@@ -9,8 +9,12 @@ public class Assistant extends Servant{
 		super(serialNum);
 	}
 	
-	public class BaseSoftware implements Software
+	public class BaseSoftware extends Software
 	{
+
+		public BaseSoftware(SecurityLevel level) {
+			super(level);
+		}
 
 		@Override
 		public ValidationCode validateAndroid(Android android) {
@@ -21,7 +25,6 @@ public class Assistant extends Servant{
 	
 	@Override
 	public ValidationCode validSoftware(Assistant.BaseSoftware s) {
-		// TODO Auto-generated method stub
 		return new Valid();
 	}
 }

@@ -23,6 +23,9 @@ public abstract class Android implements Validable {
 
 	public abstract ValidationCode validateAndroid(Android replacing);
 
+	// Methoden um den Haupttyp zu ueberpruefen (dieser muss gleich sein wie der
+	// eigene)
+
 	public ValidationCode validMainType(Servant other) {
 		return new Error("Falscher Typ");
 	}
@@ -34,6 +37,8 @@ public abstract class Android implements Validable {
 	public ValidationCode validMainType(Guard other) {
 		return new Error("Falscher Typ");
 	}
+
+	// Methoden um den Skin zu ueberpruefen (Einschraenkungen je nach Haupttyp)
 
 	public ValidationCode validSkin(TouchSensitiveSkin skin) {
 		return new Valid();
@@ -47,34 +52,36 @@ public abstract class Android implements Validable {
 		return new Valid();
 	}
 	
+	// Methoden um die Software zu ueberpruefen (diese muss mit der Klasse des Androiden zusammenpassen)
+
 	public ValidationCode validSoftware(Assistant.BaseSoftware s) {
 		return new Error("Invalid Software");
 	}
-	
+
 	public ValidationCode validSoftware(Bodyguard.BaseSoftware s) {
 		return new Error("Invalid Software");
 	}
-	
+
 	public ValidationCode validSoftware(BuildingWorker.BaseSoftware s) {
 		return new Error("Invalid Software");
 	}
-	
+
 	public ValidationCode validSoftware(Fighter.BaseSoftware s) {
 		return new Error("Invalid Software");
 	}
-	
+
 	public ValidationCode validSoftware(ObjectGuard.BaseSoftware s) {
 		return new Error("Invalid Software");
 	}
-	
+
 	public ValidationCode validSoftware(Partner.BaseSoftware s) {
 		return new Error("Invalid Software");
 	}
-	
+
 	public ValidationCode validSoftware(ServiceTechnician.BaseSoftware s) {
 		return new Error("Invalid Software");
 	}
-	
+
 	public ValidationCode validSoftware(TransportWorker.BaseSoftware s) {
 		return new Error("Invalid Software");
 	}

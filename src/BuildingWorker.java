@@ -7,7 +7,6 @@ public class BuildingWorker extends HeavyWorker {
 
 	public BuildingWorker(int serialNum) {
 		super(serialNum);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
@@ -15,7 +14,11 @@ public class BuildingWorker extends HeavyWorker {
 		return new Valid();
 	}
 	
-	public static class BaseSoftware implements Software {
+	public static class BaseSoftware extends Software {
+
+		public BaseSoftware(SecurityLevel level) {
+			super(level);
+		}
 
 		@Override
 		public ValidationCode validateAndroid(Android android) {

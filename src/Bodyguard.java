@@ -14,7 +14,11 @@ public class Bodyguard extends Guard {
 		return new Valid();
 	}
 	
-	public static class BaseSoftware implements Software {
+	public static class BaseSoftware extends Software {
+
+		public BaseSoftware(SecurityLevel level) {
+			super(level);
+		}
 
 		@Override
 		public ValidationCode validateAndroid(Android android) {

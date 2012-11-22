@@ -7,16 +7,19 @@ public class ServiceTechnician extends HeavyWorker {
 
 	public ServiceTechnician(int serialNum) {
 		super(serialNum);
-		// TODO Auto-generated constructor stub
 	}
 	
 	@Override
 	public ValidationCode validSoftware(ServiceTechnician.BaseSoftware s) {
 		return new Valid();
 	}
-	
-	public static class BaseSoftware implements Software {
 
+	public static class BaseSoftware extends Software {
+
+		public BaseSoftware(SecurityLevel level) {
+			super(level);
+		}
+		
 		@Override
 		public ValidationCode validateAndroid(Android android) {
 			return android.validSoftware(this);
