@@ -27,4 +27,10 @@ public class Assistant extends Servant{
 	public ValidationCode validSoftware(Assistant.BaseSoftware s) {
 		return new Valid();
 	}
+	
+	@Override
+	public ValidationCode validSecLevel(SecurityLevel2 s) {
+		// TODO Auto-generated method stub
+		return new Error("Invalid Security Level");
+	}
 }

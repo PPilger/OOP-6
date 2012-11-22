@@ -13,7 +13,7 @@ public class Partner extends Servant
 	public ValidationCode validSoftware(Partner.BaseSoftware s) {
 		return new Valid();
 	}
-
+	
 	public static class BaseSoftware extends Software {
 
 		public BaseSoftware(SecurityLevel level) {

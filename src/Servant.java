@@ -24,4 +24,16 @@ public abstract class Servant extends Android {
 	public ValidationCode validSkin(ArmoredSkin skin) {
 		return new Error("Bediener kann keinen gepanzerten Skin haben.");
 	}
+	
+	@Override
+	public ValidationCode validSecLevel(SecurityLevel1 s) {
+		// TODO Auto-generated method stub
+		return new Valid();
+	}
+	
+	@Override
+	public ValidationCode validSecLevel(SecurityLevel2 s) {
+		// TODO Auto-generated method stub
+		return new Valid();
+	}
 }

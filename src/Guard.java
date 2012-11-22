@@ -14,4 +14,9 @@ public abstract class Guard extends Android {
 	public ValidationCode validMainType(Guard other) {
 		return new Valid();
 	}
+	
+	@Override
+	public ValidationCode validSecLevel(SecurityLevel4 s) {
+		return new Valid();
+	}
 }
