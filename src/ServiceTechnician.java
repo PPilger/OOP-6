@@ -9,5 +9,15 @@ public class ServiceTechnician extends HeavyWorker {
 		super(serialNum);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public static class BaseSoftware implements Software {
+
+		@Override
+		public ValidationCode validateAndroid(Android android) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
+	}
 
 }
