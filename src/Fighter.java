@@ -38,4 +38,9 @@ public class Fighter extends Guard {
 		
 	}
 	
+	@Override
+	public ValidationCode validPowerClass(PowerClass.Unlimited s) {
+		return new Valid();
+	}
+	
 }

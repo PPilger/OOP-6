@@ -39,4 +39,9 @@ public abstract class Servant extends Android {
 	public ValidationCode validSkin(TouchSensitiveSkin skin) {
 		return new Valid();
 	}
+	
+	@Override
+	public ValidationCode validPowerClass(PowerClass.LE1 s) {
+		return new Valid();
+	}
 }

@@ -1,5 +1,5 @@
 
-public class SecurityLevel2 implements SecurityLevel{
+public class SecurityLevel2 extends SecurityLevel{
 
 	@Override
 	public ValidationCode validateAndroid(Android android) {
