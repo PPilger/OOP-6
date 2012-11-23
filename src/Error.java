@@ -2,6 +2,11 @@
 public class Error implements ValidationCode {
 	private String message;
 	
+	@Override
+	public Object getNull() {
+		return null;
+	}
+	
 	public Error(String message) {
 		this.message = message;
 	}

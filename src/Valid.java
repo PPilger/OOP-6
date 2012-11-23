@@ -1,6 +1,12 @@
 public class Valid implements ValidationCode {
 
 	@Override
+	public Object getNull() {
+		// TODO Auto-generated method stub
+		return new Object();
+	}
+	
+	@Override
 	public String toString() {
 		return "gueltig";
 	}
