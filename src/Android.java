@@ -19,7 +19,7 @@ public abstract class Android implements AndroidVisitor {
 		
 		code1 = code.visit(this, kit.getPowerClass());
 		code2 = code.visit(software.getLevel(), kit.getPowerClass());
-		code = code1.merge(code2);
+		code = code1.mergeOr(code2);
 
 		return code;
 	}

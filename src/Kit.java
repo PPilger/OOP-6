@@ -27,8 +27,26 @@ public class Kit implements Encoded {
 	}
 
 	@Override
-	public ValidationCode validSerialNum(SerialNumber num) {
-		return num.validate(this.serialNum);
+	public ValidationCode validSerialNum(SerialNumber num) {		
+		
+		ValidationCode code = new Valid();
+		
+		//Aktoren pruefen
+		for(Aktor a : aktorList) {
+		   ValidationCode code2 = a.validSerialNum(num);
+		   code = code.mergeAnd(code2);
+		}
+		
+		//Sensoren pruefen
+		for(Sensor s : sensorList) {
+			ValidationCode code2 = s.validSerialNum(num);
+			code = code.mergeAnd(code2);
+		}
+		
+		//Kit pruefen
+		code = num.validate(serialNum).mergeAnd(code);
+		
+		return code;
 	}
 		
 }
