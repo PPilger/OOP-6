@@ -1,7 +1,31 @@
+import java.util.*;
+
+
+
 public class Test {
 	public static void main(String[] args) {
 		
-		/*AndroidList al = new AndroidList();		
+		AndroidList al = new AndroidList();
+		ArrayList<Aktor> ak = new ArrayList<Aktor>();
+		ak.add(new Aktor("Putzen", 1, 12));
+		ArrayList<Sensor> as = new ArrayList<Sensor>();
+		as.add(new Sensor("Staub", 12));
+		Kit k201 = new Kit(12, ak, as);
+		Android s201 = new Partner(12, k201 , new TouchSensitiveSkin(12) , new Partner.BaseSoftware(new SecurityLevel1(),12));
+		al.insert(s201);
+		System.out.println(al);
+		System.out.println(al.find(12));
+		Android s202 = new Assistant(12, k201 , new TouchSensitiveSkin(12) , new Partner.BaseSoftware(new SecurityLevel1(),12));
+		al.insert(s202);
+		System.out.println(al);
+		System.out.println(al.find(12));
+		Iterator<Android> iti = al.iterator();
+		while(iti.hasNext())
+		{
+			System.out.println(iti.next());
+		}
+		
+		/*
 		Android s12;
 		Android s13;
 		Android h11;

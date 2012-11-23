@@ -41,13 +41,14 @@ public class AndroidLog extends LinkedList<Android> {
 		// set
 		if (peekFirst() == null) {
 			androidID = e.getSerialNum();
-			return super.add(e);
+			super.add(e);
+			return true;
 		} else {
-			// need to be as valid as the first
+			// need to be as valid as the first Android
 			ValidationCode vc = e.validate(peekFirst());
-			// TODO: ersetze das if^^
-			if (vc.toString().equals("gueltig")) {
-				return super.add(e);
+			if (vc != null) {
+				super.add(e);
+				return true;
 			}
 			return false;
 		}
