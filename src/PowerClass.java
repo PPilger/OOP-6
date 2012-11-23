@@ -1,6 +1,7 @@
 import java.util.TreeMap;
 
-public abstract class PowerClass implements AndroidVisitor, SecurityLevelVisitor {
+public abstract class PowerClass implements AndroidVisitor,
+		SecurityLevelVisitor {
 	private static TreeMap<Double, PowerClass> powerClasses = new TreeMap<Double, PowerClass>();
 
 	public static PowerClass getPowerClass(double power) {
@@ -22,12 +23,12 @@ public abstract class PowerClass implements AndroidVisitor, SecurityLevelVisitor
 			return level.validPowerClass(this);
 		}
 	}
-	
-	public static class LE10 extends Unlimited {
+
+	public static class LE10 extends PowerClass {
 		static {
 			powerClasses.put(10.0, new LE10());
 		}
-		
+
 		@Override
 		public ValidationCode visit(Android android) {
 			return android.validPowerClass(this);
@@ -38,12 +39,12 @@ public abstract class PowerClass implements AndroidVisitor, SecurityLevelVisitor
 			return level.validPowerClass(this);
 		}
 	}
-	
-	public static class LE5 extends LE10 {
+
+	public static class LE5 extends PowerClass {
 		static {
 			powerClasses.put(5.0, new LE5());
 		}
-		
+
 		@Override
 		public ValidationCode visit(Android android) {
 			return android.validPowerClass(this);
@@ -54,12 +55,12 @@ public abstract class PowerClass implements AndroidVisitor, SecurityLevelVisitor
 			return level.validPowerClass(this);
 		}
 	}
-	
-	public static class LE1 extends LE5 {
+
+	public static class LE1 extends PowerClass {
 		static {
 			powerClasses.put(1.0, new LE1());
 		}
-		
+
 		@Override
 		public ValidationCode visit(Android android) {
 			return android.validPowerClass(this);
