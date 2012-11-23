@@ -2,12 +2,17 @@
 public class Valid implements ValidationCode {
 
 	@Override
-	public ValidationCode validate(Android android, AndroidVisitor validable) {
-		return validable.visit(android);
+	public <P> ValidationCode validate(P obj, Visitor<P> visitor) {
+		return visitor.visit(obj);
 	}
 
 	@Override
 	public String toString() {
 		return "gueltig";
+	}
+
+	@Override
+	public ValidationCode merge(ValidationCode other) {
+		return this;
 	}
 }

@@ -7,12 +7,17 @@ public class Error implements ValidationCode {
 	}
 
 	@Override
-	public ValidationCode validate(Android android, AndroidVisitor validable) {
+	public <P> ValidationCode validate(P obj, Visitor<P> visitor) {
 		return this;
 	}
 	
 	@Override
 	public String toString() {
 		return message;
+	}
+
+	@Override
+	public ValidationCode merge(ValidationCode other) {
+		return other;
 	}
 }
