@@ -3,7 +3,7 @@
  * @author Christian Kletzander
  *
  */
-public class Sensor {
+public class Sensor implements Encoded {
 
 	private String name;
 	private int serialNum;
@@ -19,6 +19,11 @@ public class Sensor {
 	
 	public int getSerialNum() {
 		return this.serialNum;
+	}
+	
+	@Override
+	public ValidationCode validSerialNum(SerialNumber num) {
+		return num.validate(this.serialNum);
 	}
 	
 }

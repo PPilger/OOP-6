@@ -1,5 +1,5 @@
 
-public abstract class Skin implements AndroidVisitor {
+public abstract class Skin implements AndroidVisitor, Encoded {
 	
 	private int serialNum;
 	
@@ -9,6 +9,11 @@ public abstract class Skin implements AndroidVisitor {
 	
 	public int getSerialNum() {
 		return this.serialNum;
+	}
+	
+	@Override
+	public ValidationCode validSerialNum(SerialNumber num) {
+		return num.validate(this.serialNum);
 	}
 	
 }

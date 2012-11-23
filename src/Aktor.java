@@ -3,7 +3,7 @@
  * @author Christian Kletzander
  *
  */
-public class Aktor {
+public class Aktor implements Encoded{
 
 	private String name;
 	private double kw;
@@ -25,6 +25,11 @@ public class Aktor {
 	
 	public int getSerialNum() {
 		return this.serialNum;
+	}
+
+	@Override
+	public ValidationCode validSerialNum(SerialNumber num) {
+		return num.validate(this.serialNum);
 	}
 	
 }

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Kit {
+public class Kit implements Encoded {
 	
 	private int serialNum;
 	private ArrayList<Aktor> aktorList;
@@ -24,6 +24,11 @@ public class Kit {
 	
 	public int getSerialNum() {
 		return this.serialNum;
+	}
+
+	@Override
+	public ValidationCode validSerialNum(SerialNumber num) {
+		return num.validate(this.serialNum);
 	}
 		
 }

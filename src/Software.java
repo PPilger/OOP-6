@@ -1,5 +1,5 @@
 
-public abstract class Software implements AndroidVisitor {
+public abstract class Software implements AndroidVisitor, Encoded {
 	private SecurityLevel level;
 	private int serialNum;
 	
@@ -14,6 +14,11 @@ public abstract class Software implements AndroidVisitor {
 	
 	public int getSerialNum() {
 		return this.serialNum;
+	}
+	
+	@Override
+	public ValidationCode validSerialNum(SerialNumber num) {
+		return num.validate(this.serialNum);
 	}
 	
 	public abstract ValidationCode visit(Android android);
