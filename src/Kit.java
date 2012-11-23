@@ -2,10 +2,12 @@ import java.util.ArrayList;
 
 public class Kit {
 	
+	private int serialNum;
 	private ArrayList<Aktor> aktorList;
 	private ArrayList<Sensor> sensorList;
 	
-	public Kit() {
+	public Kit(int serialNum) {
+		this.serialNum = serialNum;
 		this.aktorList = new ArrayList<Aktor>();
 		this.sensorList = new ArrayList<Sensor>();
 	}
@@ -20,12 +22,8 @@ public class Kit {
 		return PowerClass.getPowerClass(summe);
 	}
 	
-	public void addAktor(Aktor temp) {
-		this.aktorList.add(temp);
+	public int getSerialNum() {
+		return this.serialNum;
 	}
-	
-	public void addSensor(Sensor temp) {
-		this.sensorList.add(temp);
-	}
-	
+		
 }

@@ -1,5 +1,9 @@
 
-public class SolidSkin implements Skin {
+public class SolidSkin extends Skin {
+
+	public SolidSkin(int serialNum) {
+		super(serialNum);
+	}
 
 	@Override
 	public ValidationCode visit(Android android) {

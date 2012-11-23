@@ -16,8 +16,8 @@ public class ServiceTechnician extends HeavyWorker {
 
 	public static class BaseSoftware extends Software {
 
-		public BaseSoftware(SecurityLevel level) {
-			super(level);
+		public BaseSoftware(SecurityLevel level, int serialNum) {
+			super(level, serialNum);
 		}
 		
 		@Override
