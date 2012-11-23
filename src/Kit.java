@@ -6,10 +6,10 @@ public class Kit implements Encoded {
 	private ArrayList<Aktor> aktorList;
 	private ArrayList<Sensor> sensorList;
 	
-	public Kit(int serialNum) {
+	public Kit(int serialNum, ArrayList<Aktor> aktorList, ArrayList<Sensor> sensorList) {
 		this.serialNum = serialNum;
-		this.aktorList = new ArrayList<Aktor>();
-		this.sensorList = new ArrayList<Sensor>();
+		this.aktorList = aktorList;
+		this.sensorList = sensorList;
 	}
 	
 	public PowerClass getPowerClass() {
@@ -28,6 +28,16 @@ public class Kit implements Encoded {
 
 	@Override
 	public ValidationCode validSerialNum(SerialNumber num) {
+		ValidationCode code = new Valid();
+		
+		for(Aktor a : aktorList) {
+			code = code.merge(a.validSerialNum(num));
+		}
+		
+		for(Sensor s : sensorList) {
+			code = code.merge(s.validSerialNum(num));
+		}
+		
 		return num.validate(this.serialNum);
 	}
 		

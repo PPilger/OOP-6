@@ -128,15 +128,15 @@ public abstract class Android implements AndroidVisitor {
 	}
 
 	public ValidationCode validPowerClass(PowerClass.LE10 s) {
-		return validPowerClass((PowerClass.Unlimited)s);
+		return new Error("Invalid Power Class");
 	}
 
 	public ValidationCode validPowerClass(PowerClass.LE5 s) {
-		return validPowerClass((PowerClass.LE10)s);
+		return new Error("Invalid Power Class");
 	}
 
 	public ValidationCode validPowerClass(PowerClass.LE1 s) {
-		return validPowerClass((PowerClass.LE1)s);
+		return new Error("Invalid Power Class");
 	}
 
 	public int getSerialNum() {
