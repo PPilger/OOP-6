@@ -5,8 +5,8 @@
  */
 public class Bodyguard extends Guard {
 
-	public Bodyguard(int serialNum) {
-		super(serialNum);
+	public Bodyguard(int serialNum, Kit kit, Skin skin, Software software) {
+		super(serialNum, kit, skin, software);
 	}
 	
 	@Override

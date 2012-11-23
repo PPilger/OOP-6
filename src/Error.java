@@ -5,17 +5,6 @@ public class Error implements ValidationCode {
 	public Error(String message) {
 		this.message = message;
 	}
-
-	@Override
-	public ValidationCode visit(Android obj, AndroidVisitor visitor) {
-		return this;
-	}
-
-	@Override
-	public ValidationCode visit(SecurityLevel obj,
-			SecurityLevelVisitor visitor) {
-		return this;
-	}
 	
 	@Override
 	public ValidationCode mergeOr(ValidationCode other) {

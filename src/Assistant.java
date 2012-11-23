@@ -5,8 +5,8 @@
  */
 public class Assistant extends Servant{
 
-	public Assistant(int serialNum) {
-		super(serialNum);
+	public Assistant(int serialNum, Kit kit, Skin skin, Software software) {
+		super(serialNum, kit, skin, software);
 	}
 	
 	public class BaseSoftware extends Software

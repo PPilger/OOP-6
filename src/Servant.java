@@ -1,8 +1,8 @@
 
 public abstract class Servant extends Android {
 	
-	public Servant(int serialNum) {
-		super(serialNum);
+	public Servant(int serialNum, Kit kit, Skin skin, Software software) {
+		super(serialNum, kit, skin, software);
 	}
 
 	@Override

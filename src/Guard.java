@@ -1,8 +1,8 @@
 
 public abstract class Guard extends Android {
 	
-	public Guard(int serialNum) {
-		super(serialNum);
+	public Guard(int serialNum, Kit kit, Skin skin, Software software) {
+		super(serialNum, kit, skin, software);
 	}
 
 	@Override

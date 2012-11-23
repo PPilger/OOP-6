@@ -21,10 +21,6 @@ public class Kit implements Encoded {
 		
 		return PowerClass.getPowerClass(summe);
 	}
-	
-	public int getSerialNum() {
-		return this.serialNum;
-	}
 
 	@Override
 	public ValidationCode validSerialNum(SerialNumber num) {		

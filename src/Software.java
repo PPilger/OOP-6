@@ -11,11 +11,7 @@ public abstract class Software implements AndroidVisitor, Encoded {
 	public SecurityLevel getLevel() {
 		return level;
 	}
-	
-	public int getSerialNum() {
-		return this.serialNum;
-	}
-	
+
 	@Override
 	public ValidationCode validSerialNum(SerialNumber num) {
 		return num.validate(this.serialNum);

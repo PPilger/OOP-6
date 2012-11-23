@@ -5,8 +5,8 @@
  */
 public class Partner extends Servant
 {
-	public Partner(int serialNum) {
-		super(serialNum);
+	public Partner(int serialNum, Kit kit, Skin skin, Software software) {
+		super(serialNum, kit, skin, software);
 	}
 	
 	@Override

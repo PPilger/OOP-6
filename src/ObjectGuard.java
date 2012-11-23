@@ -5,8 +5,8 @@
  */
 public class ObjectGuard extends Guard {
 
-	public ObjectGuard(int serialNum) {
-		super(serialNum);
+	public ObjectGuard(int serialNum, Kit kit, Skin skin, Software software) {
+		super(serialNum, kit, skin, software);
 	}
 	
 	@Override

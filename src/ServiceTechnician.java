@@ -5,8 +5,8 @@
  */
 public class ServiceTechnician extends HeavyWorker {
 
-	public ServiceTechnician(int serialNum) {
-		super(serialNum);
+	public ServiceTechnician(int serialNum, Kit kit, Skin skin, Software software) {
+		super(serialNum, kit, skin, software);
 	}
 	
 	@Override

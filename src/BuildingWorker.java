@@ -5,8 +5,8 @@
  */
 public class BuildingWorker extends HeavyWorker {
 
-	public BuildingWorker(int serialNum) {
-		super(serialNum);
+	public BuildingWorker(int serialNum, Kit kit, Skin skin, Software software) {
+		super(serialNum, kit, skin, software);
 	}
 	
 	@Override

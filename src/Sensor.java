@@ -17,10 +17,6 @@ public class Sensor implements Encoded {
 		return this.name;
 	}
 	
-	public int getSerialNum() {
-		return this.serialNum;
-	}
-	
 	@Override
 	public ValidationCode validSerialNum(SerialNumber num) {
 		return num.validate(this.serialNum);

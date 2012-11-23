@@ -5,8 +5,8 @@
  */
 public class TransportWorker extends HeavyWorker {
 
-	public TransportWorker(int serialNum) {
-		super(serialNum);
+	public TransportWorker(int serialNum, Kit kit, Skin skin, Software software) {
+		super(serialNum, kit, skin, software);
 	}
 	
 	@Override

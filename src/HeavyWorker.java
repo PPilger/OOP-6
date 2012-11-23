@@ -1,8 +1,8 @@
 
 public abstract class HeavyWorker extends Android {
 	
-	public HeavyWorker(int serialNum) {
-		super(serialNum);
+	public HeavyWorker(int serialNum, Kit kit, Skin skin, Software software) {
+		super(serialNum, kit, skin, software);
 	}
 
 	@Override

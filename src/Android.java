@@ -4,29 +4,56 @@ public abstract class Android implements AndroidVisitor {
 	private Skin skin;
 	private Software software;
 
-	public Android(int serialNum) {
+	public Android(int serialNum, Kit kit, Skin skin, Software software) {
 		this.serialNum = serialNum;
+		this.kit = kit;
+		this.skin = skin;
+		this.software = software;
 	}
 
 	public ValidationCode validate() {
-		ValidationCode code = new Valid();
+		SerialNumber num = new SerialNumber(serialNum);
+		ValidationCode result;
 		ValidationCode code1;
 		ValidationCode code2;
 
-		code = code.visit(this, skin);
-		code = code.visit(this, software);
-		code = code.visit(this, software.getLevel());
-		
-		code1 = code.visit(this, kit.getPowerClass());
-		code2 = code.visit(software.getLevel(), kit.getPowerClass());
-		code = code1.mergeOr(code2);
+		// ueberpruefe die Seriennummer aller Komponenten
+		result = kit.validSerialNum(num);
 
-		return code;
+		code1 = skin.validSerialNum(num);
+		result.mergeAnd(code1);
+
+		code1 = software.validSerialNum(num);
+		result.mergeAnd(code1);
+
+		// ueberpruefe die Anforderungen der einzelnen Typen
+		code1 = skin.visit(this);
+		result.mergeAnd(code1);
+
+		code1 = software.visit(this);
+		result.mergeAnd(code1);
+
+		code1 = software.getLevel().visit(this);
+		result.mergeAnd(code1);
+
+		// bei den Leistungsklassen muss der Typ des Androiden oder die
+		// Sicherheitsstufe der Software festlegen, welche Leistungsklasse
+		// zulaessig ist.
+		code1 = kit.getPowerClass().visit(this);
+		code2 = kit.getPowerClass().visit(software.getLevel());
+		code1 = code1.mergeOr(code2);
+		result.mergeAnd(code1);
+
+		return result;
 	}
 
 	public ValidationCode validate(Android replaced) {
-		ValidationCode code = validate();
-		return code.visit(this, replaced);
+		ValidationCode code1 = validate();
+		ValidationCode code2 = replaced.visit(this);
+
+		// der neue Android muss gueltig sein und muss den alten Android
+		// ersetzen duerfen
+		return code1.mergeAnd(code2);
 	}
 
 	public abstract ValidationCode visit(Android replacing);
@@ -122,7 +149,6 @@ public abstract class Android implements AndroidVisitor {
 	// Visitor-Pattern Methoden um die Leistungsklasse zu ueberpruefen
 	// (Einschraenkungen je nach Typ)
 
-
 	public ValidationCode validPowerClass(PowerClass.Unlimited s) {
 		return new Error("Invalid Power Class");
 	}
@@ -150,7 +176,7 @@ public abstract class Android implements AndroidVisitor {
 	public Skin getSkin() {
 		return skin;
 	}
-	
+
 	public Software getSoftware() {
 		return software;
 	}

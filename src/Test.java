@@ -1,7 +1,7 @@
 
 public class Test {
 	public static void main(String[] args) {
-		AndroidList al = new AndroidList();
+		/*AndroidList al = new AndroidList();
 		Android s12;
 		Android s13;
 		Android h11;
@@ -30,7 +30,7 @@ public class Test {
 		
 		g8 = new Guard(8) {};
 		g8.setSkin(new TouchSensitiveSkin());
-		System.out.println(al.insert(g8));
+		System.out.println(al.insert(g8));*/
 		
 	}
 }
