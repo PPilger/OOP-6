@@ -10,10 +10,15 @@ public abstract class Android implements AndroidVisitor {
 
 	public ValidationCode validate() {
 		ValidationCode code = new Valid();
+		ValidationCode code2;
 
 		code = code.validate(this, skin);
 		code = code.validate(this, software);
 		code = code.validate(this, software.getLevel());
+		
+		code2 = code.validate(this, kit.getPowerClass());
+		code = code.validate(software.getLevel(), kit.getPowerClass());
+		code = code.merge(code2);
 
 		return code;
 	}
