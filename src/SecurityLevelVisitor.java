@@ -1,4 +1,4 @@
 
-public interface SecurityLevelVisitor extends Visitor<SecurityLevel> {
+public interface SecurityLevelVisitor {
 	public ValidationCode visit(SecurityLevel level);
 }

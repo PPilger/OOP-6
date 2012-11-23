@@ -1,8 +1,13 @@
-
 public class Valid implements ValidationCode {
 
 	@Override
-	public <P> ValidationCode validate(P obj, Visitor<P> visitor) {
+	public ValidationCode visit(Android obj, AndroidVisitor visitor) {
+		return visitor.visit(obj);
+	}
+
+	@Override
+	public ValidationCode visit(SecurityLevel obj,
+			SecurityLevelVisitor visitor) {
 		return visitor.visit(obj);
 	}
 

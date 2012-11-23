@@ -7,8 +7,19 @@ public class Error implements ValidationCode {
 	}
 
 	@Override
-	public <P> ValidationCode validate(P obj, Visitor<P> visitor) {
+	public ValidationCode visit(Android obj, AndroidVisitor visitor) {
 		return this;
+	}
+
+	@Override
+	public ValidationCode visit(SecurityLevel obj,
+			SecurityLevelVisitor visitor) {
+		return this;
+	}
+	
+	@Override
+	public ValidationCode merge(ValidationCode other) {
+		return other;
 	}
 	
 	@Override
@@ -16,8 +27,4 @@ public class Error implements ValidationCode {
 		return message;
 	}
 
-	@Override
-	public ValidationCode merge(ValidationCode other) {
-		return other;
-	}
 }

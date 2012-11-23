@@ -1,4 +1,4 @@
 
-public interface AndroidVisitor extends Visitor<Android> {
+public interface AndroidVisitor {
 	public ValidationCode visit(Android android);
 }
