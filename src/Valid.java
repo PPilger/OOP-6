@@ -17,7 +17,12 @@ public class Valid implements ValidationCode {
 	}
 
 	@Override
-	public ValidationCode merge(ValidationCode other) {
+	public ValidationCode mergeOr(ValidationCode other) {
 		return this;
+	}
+	
+	@Override
+	public ValidationCode mergeAnd(ValidationCode other) {
+		return other;
 	}
 }

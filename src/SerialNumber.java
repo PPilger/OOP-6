@@ -4,8 +4,9 @@ public class SerialNumber {
 
 	private HashMap<Integer, ValidationCode> map;
 	
-	public SerialNumber() {
+	public SerialNumber(int serialNum) {
 		this.map = new HashMap<Integer, ValidationCode>();
+		map.put(serialNum, new Valid());
 	}
 	
 	public ValidationCode validate(int serialNum) {

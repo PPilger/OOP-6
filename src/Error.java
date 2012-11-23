@@ -18,8 +18,13 @@ public class Error implements ValidationCode {
 	}
 	
 	@Override
-	public ValidationCode merge(ValidationCode other) {
+	public ValidationCode mergeOr(ValidationCode other) {
 		return other;
+	}
+	
+	@Override
+	public ValidationCode mergeAnd(ValidationCode other) {
+		return this;
 	}
 	
 	@Override
