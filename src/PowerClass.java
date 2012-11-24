@@ -3,6 +3,13 @@ import java.util.TreeMap;
 public abstract class PowerClass implements AndroidVisitor,
 		SecurityLevelVisitor {
 	private static TreeMap<Double, PowerClass> powerClasses = new TreeMap<Double, PowerClass>();
+	
+	static{
+		powerClasses.put(Double.POSITIVE_INFINITY, new PowerClass.Unlimited());
+		powerClasses.put(10., new PowerClass.LE10());
+		powerClasses.put(5., new PowerClass.LE5());
+		powerClasses.put(1., new PowerClass.LE1());
+	}
 
 	public static PowerClass getPowerClass(double power) {
 		return powerClasses.ceilingEntry(power).getValue();
