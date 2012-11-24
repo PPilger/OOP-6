@@ -1,15 +1,7 @@
 
-public abstract class Skin implements AndroidVisitor, Encoded {
-	
-	private int serialNum;
+public abstract class Skin extends Encoded implements AndroidVisitor {
 	
 	public Skin(int serialNum) {
-		this.serialNum = serialNum;
+		super(serialNum);
 	}
-	
-	@Override
-	public ValidationCode validSerialNum(SerialNumber num) {
-		return num.validate(this.serialNum);
-	}
-	
 }

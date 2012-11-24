@@ -1,75 +1,96 @@
 import java.util.Iterator;
 import java.util.LinkedHashMap;
-import java.util.Map;
-
+import java.util.LinkedList;
 
 public class AndroidList {
-	private Map<Integer, AndroidLog> map = new LinkedHashMap<Integer, AndroidLog>();
-	
-	private Android foundedAndroid = null;
-	
-	public ValidationCode insert(Android newAndroid) {
-		int serialNum = newAndroid.getSerialNum();
-		AndroidLog existing = map.get(serialNum);
-		ValidationCode vc;
-		
-		//is the given Android currently in the map?
-		if(existing == null) {
-			//No add new log
-			existing = new AndroidLog();
-			vc = existing.addIfValid(newAndroid);
-			map.put(serialNum, existing);
+	private LinkedHashMap<Integer, Entry> map = new LinkedHashMap<Integer, Entry>();
+
+	public ValidationCode insert(final Android newAndroid) {
+		final int serialNum = newAndroid.getSerialNum();
+		final Entry entry = map.get(serialNum);
+		ValidationCode code;
+
+		// is the given Android currently in the map?
+		if (entry == null) {
+			code = newAndroid.validate();
+
+			code.executeIfValid(new ValidationCode.Operation() {
+
+				@Override
+				public void execute() {
+					Entry newEntry = new Entry(newAndroid);
+					map.put(serialNum, newEntry);
+				}
+			});
+
+			map.put(serialNum, entry);
 		} else {
-			//add new Android's configuration to the log 
-			vc = existing.addIfValid(newAndroid);
+			Android oldAndroid = entry.history.getFirst();
+			code = newAndroid.validate(oldAndroid);
+
+			code.executeIfValid(new ValidationCode.Operation() {
+
+				@Override
+				public void execute() {
+					entry.update(newAndroid);
+				}
+			});
 		}
-		
-		/*if(existing == null) {
-			vc = newAndroid.validate();
-		} else {
-			vc = newAndroid.validate(existing);
-		}
-		
-		//TODO: ersetze das if^^
-		if(vc.toString().equals("gueltig")) {
-			map.put(serialNum, newAndroid);
-		}*/
-		
-		return vc;
-		
-		// TODO: ... alle Teile werden mit der Seriennummer des Andoiden codiert um
+
+		return code;
+
+		// TODO: ... alle Teile werden mit der Seriennummer des Andoiden codiert
+		// um
 		// unauthorisierte Manipulationen zu unterbinden. Entsprechend der
 		// Androide-Verordnung sind genaue Aufzeichnungen über die
 		// Anfangskonfiguration und alle Änderungen zu führen.
 	}
-	
-	public String find(int serialNum)
-	{
-		AndroidLog existing = map.get(serialNum);
-		if(existing == null)
-		{
+
+	public String find(int serialNum) {
+		Entry entry = map.get(serialNum);
+
+		if (entry == null) {
 			return null;
 		}
-		this.foundedAndroid = existing.getLast();
-		StringBuilder sb = new StringBuilder();
-		sb.append("Serial Number of Android: ");
-		sb.append(this.foundedAndroid.getSerialNum());
-		sb.append("\nKit: ");
-		sb.append(this.foundedAndroid.getKit().toString());
-		sb.append("\nSkin: ");
-		sb.append(this.foundedAndroid.getSkin().toString());
-		sb.append("\nSoftware: ");
-		sb.append(this.foundedAndroid.getSoftware().toString());
-		return sb.toString();
+
+		return entry.getNewest().toString();
 	}
-	
-	public Iterator<Android> iterator()
-	{
-		if (foundedAndroid == null)
-		{
-			return null;
+
+	public Iterator<Android> iterator() {
+		return new Iterator<Android>() {
+			Iterator<Entry> iter = map.values().iterator();
+
+			@Override
+			public boolean hasNext() {
+				return iter.hasNext();
+			}
+
+			@Override
+			public Android next() {
+				return iter.next().getNewest();
+			}
+
+			@Override
+			public void remove() {
+				iter.remove();
+			}
+
+		};
+	}
+
+	private class Entry {
+		private LinkedList<Android> history = new LinkedList<Android>();
+
+		private Entry(Android newAndroid) {
+			history.addFirst(newAndroid);
 		}
-		return map.get(foundedAndroid.getSerialNum()).iterator();
+
+		private void update(Android newAndroid) {
+			history.addFirst(newAndroid);
+		}
+
+		private Android getNewest() {
+			return history.getFirst();
+		}
 	}
-	
 }

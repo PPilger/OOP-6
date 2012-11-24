@@ -49,11 +49,15 @@ public abstract class Android implements AndroidVisitor {
 
 	public ValidationCode validate(Android replaced) {
 		ValidationCode code1 = validate();
-		ValidationCode code2 = replaced.visit(this);
+
+		// ueberpruefen, ob der neue Android den alten ersetzen darf
+		ValidationCode code2 = visit(replaced);
 
 		// der neue Android muss gueltig sein und muss den alten Android
 		// ersetzen duerfen
-		return code1.mergeAnd(code2);
+		code1 = code1.mergeAnd(code2);
+		
+		return code1;
 	}
 
 	public abstract ValidationCode visit(Android replacing);
@@ -179,5 +183,21 @@ public abstract class Android implements AndroidVisitor {
 
 	public Software getSoftware() {
 		return software;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("Serial Number of Android: ");
+		sb.append(serialNum);
+		sb.append("\nKit: ");
+		sb.append(kit.toString());
+		sb.append("\nSkin: ");
+		sb.append(skin.toString());
+		sb.append("\nSoftware: ");
+		sb.append(software.toString());
+		
+		return sb.toString();
 	}
 }
