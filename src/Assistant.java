@@ -34,6 +34,10 @@ public class Assistant extends Servant {
 		public ValidationCode visit(Android android) {
 			return android.validSoftware(this);
 		}
-
+		
+		@Override
+		public String toString() {
+			return "Assistant";
+		}
 	}
 }
