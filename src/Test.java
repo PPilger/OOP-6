@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Test {
 	public static void main(String[] args) {
-		
+		//hihi
 		AndroidList al = new AndroidList();
 		ArrayList<Aktor> ak = new ArrayList<Aktor>();
 		ak.add(new Aktor(12, "Putzen", 0.5));
