@@ -5,7 +5,8 @@ import java.util.*;
 public class Test {
 	public static void main(String[] args) {
 		//hihi
-		test1();
+		//test1();
+		test2();
 		
 		/*
 		Android s12;
@@ -180,6 +181,86 @@ private static void test1()
 	System.out.println("Zeige bisherige Konfigurationen des Androiden mit ID 22");
 	System.out.println("Kaempfer -> Beschuetzer");
 	showLog(22, al);
+}
+
+//returns Kits of 1kW, 5kW, 10kW, 5000kW with given id
+public static class gKit{
+	
+	
+	public Kit _1kw(int id)
+	{
+		ArrayList<Aktor> a1kw = new ArrayList<Aktor>();
+		a1kw.add(new Aktor(id, "minimal", 1.));
+		ArrayList<Sensor> sl = new ArrayList<Sensor>();
+		sl.add(new Sensor(id, "sample sensor"));
+		return new Kit(id, a1kw, sl);
+	}
+	
+	public Kit _5kw(int id)
+	{
+		ArrayList<Aktor> a5kw = new ArrayList<Aktor>();
+		a5kw.add(new Aktor(id, "mittel", 5.));
+		ArrayList<Sensor> sl = new ArrayList<Sensor>();
+		sl.add(new Sensor(id, "sample sensor"));
+		return new Kit(id, a5kw, sl);
+	}
+	
+	public Kit _10kw(int id)
+	{
+		ArrayList<Aktor> a10kw = new ArrayList<Aktor>();
+		a10kw.add(new Aktor(id, "hoch", 10.));
+		ArrayList<Sensor> sl = new ArrayList<Sensor>();
+		sl.add(new Sensor(id, "sample sensor"));
+		return new Kit(id, a10kw, sl);
+	}
+	
+	public Kit _infkw(int id)
+	{
+		ArrayList<Aktor> ainfkw = new ArrayList<Aktor>();
+		ainfkw.add(new Aktor(id, "unendlich", 5000.));
+		ArrayList<Sensor> sl = new ArrayList<Sensor>();
+		sl.add(new Sensor(id, "sample sensor"));
+		return new Kit(id, ainfkw, sl);
+	}
+}
+
+private static void test2()
+{
+	gKit x = new gKit();
+	AndroidList al = new AndroidList();
+	
+	
+	
+	Android s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel1()));
+	System.out.println(al.insert(s1) + "Vailid Assistant");
+	
+	s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel2()));
+	System.out.println(al.insert(s1) + "Invalid SecLev2");
+	s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel3()));
+	System.out.println(al.insert(s1) + "Invalid SecLev3");
+	s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel4()));
+	System.out.println(al.insert(s1) + "Invalid SecLev4");
+	s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel5()));
+	System.out.println(al.insert(s1) + "Invalid SecLev5");
+	
+	s1 = new Assistant(1, x._5kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel1()));
+	System.out.println(al.insert(s1) + "Invalid 5kW");
+	s1 = new Assistant(1, x._10kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel1()));
+	System.out.println(al.insert(s1) + "Invalid 10kW");
+	s1 = new Assistant(1, x._infkw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel1()));
+	System.out.println(al.insert(s1) + "Invalid infkW");
+	
+	s1 = new Assistant(1, x._1kw(1), new ArmoredSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel1()));
+	System.out.println(al.insert(s1) + "Invalid ArmoredSkin");
+	s1 = new Assistant(1, x._1kw(1), new SolidSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel1()));
+	System.out.println(al.insert(s1) + "Invalid SolidSkin");
+	
+	s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1), new Associate.BaseSoftware(1, new SecurityLevel1()));
+	System.out.println(al.insert(s1) + "Invalid ?");
+	s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1), new Associate.BaseSoftware(1, new SecurityLevel2()));
+	System.out.println(al.insert(s1) + "Invalid ?");
+	s1 = new Associate(1, x._1kw(1), new TouchSensitiveSkin(1), new Associate.BaseSoftware(1, new SecurityLevel2()));
+	System.out.println(al.insert(s1) + "Invalid ?");
 }
 
 private static void showAndroids(String text, AndroidList al)
