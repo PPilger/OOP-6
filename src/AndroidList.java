@@ -4,7 +4,7 @@ import java.util.Map;
 
 
 public class AndroidList {
-	private LinkedHashMap<Integer, AndroidLog> map = new LinkedHashMap<Integer, AndroidLog>();
+	private Map<Integer, AndroidLog> map = new LinkedHashMap<Integer, AndroidLog>();
 	
 	private Android foundedAndroid = null;
 	
