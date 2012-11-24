@@ -32,7 +32,7 @@ public class Bodyguard extends Guard {
 
 		@Override
 		public String toString() {
-			return "Beschuetzer Software";
+			return "Beschuetzer Software " + super.getLevel();
 		}
 	}
 }

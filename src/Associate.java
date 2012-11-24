@@ -31,7 +31,7 @@ public class Associate extends Servant {
 		
 		@Override
 		public String toString() {
-			return "Hilfskraft Software";
+			return "Hilfskraft Software " + super.getLevel();
 		}
 	}
 }

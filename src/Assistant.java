@@ -37,7 +37,7 @@ public class Assistant extends Servant {
 		
 		@Override
 		public String toString() {
-			return "Hilfskraft Software";
+			return "Hilfskraft Software " + super.getLevel();
 
 	}
 	}}

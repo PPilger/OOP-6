@@ -32,7 +32,7 @@ public class TransportWorker extends HeavyWorker {
 		
 		@Override
 		public String toString() {
-			return "Transportarbeiter Software";
+			return "Transportarbeiter Software " + super.getLevel();
 		}
 
 	}

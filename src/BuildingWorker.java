@@ -32,7 +32,7 @@ public class BuildingWorker extends HeavyWorker {
 		
 		@Override
 		public String toString() {
-			return "Bauarbeiter Software";
+			return "Bauarbeiter Software " + super.getLevel();
 		}
 
 	}

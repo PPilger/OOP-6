@@ -62,7 +62,7 @@ public class Fighter extends Guard {
 		
 		@Override
 		public String toString() {
-			return "Kaempfer Software - Achtung gefaehrlich!!!";
+			return "Kaempfer Software " + super.getLevel();
 		}
 	}
 }

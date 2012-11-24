@@ -33,7 +33,7 @@ public class ServiceTechnician extends HeavyWorker {
 		
 		@Override
 		public String toString() {
-			return "Service Techniker Software";
+			return "Service Techniker Software " + super.getLevel();
 		}
 
 	}
