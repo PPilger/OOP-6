@@ -1,10 +1,4 @@
 public class Valid implements ValidationCode {
-
-	@Override
-	public Object getNull() {
-		// TODO Auto-generated method stub
-		return new Object();
-	}
 	
 	@Override
 	public String toString() {
@@ -19,5 +13,11 @@ public class Valid implements ValidationCode {
 	@Override
 	public ValidationCode mergeAnd(ValidationCode other) {
 		return other;
+	}
+
+	@Override
+	public ValidationCode executeIfValid(Operation op) {
+		op.execute();
+		return this;
 	}
 }
