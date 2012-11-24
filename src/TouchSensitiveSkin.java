@@ -1,4 +1,3 @@
-
 public class TouchSensitiveSkin extends Skin {
 
 	public TouchSensitiveSkin(int serialNum) {
@@ -8,5 +7,10 @@ public class TouchSensitiveSkin extends Skin {
 	@Override
 	public ValidationCode visit(Android android) {
 		return android.validSkin(this);
+	}
+
+	@Override
+	public String toString() {
+		return "beruehrungssensitiver Skin";
 	}
 }

@@ -1,4 +1,3 @@
-
 public class SolidSkin extends Skin {
 
 	public SolidSkin(int serialNum) {
@@ -8,5 +7,10 @@ public class SolidSkin extends Skin {
 	@Override
 	public ValidationCode visit(Android android) {
 		return android.validSkin(this);
+	}
+
+	@Override
+	public String toString() {
+		return "hochfester Skin";
 	}
 }
