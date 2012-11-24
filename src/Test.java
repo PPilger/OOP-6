@@ -7,21 +7,29 @@ public class Test {
 		
 		AndroidList al = new AndroidList();
 		ArrayList<Aktor> ak = new ArrayList<Aktor>();
-		ak.add(new Aktor("Putzen", 1, 12));
+		ak.add(new Aktor(12, "Putzen", 0.5));
 		ArrayList<Sensor> as = new ArrayList<Sensor>();
-		as.add(new Sensor("Staub", 12));
+		as.add(new Sensor(12, "Staub"));
 		Kit k201 = new Kit(12, ak, as);
-		Android s201 = new Partner(12, k201 , new TouchSensitiveSkin(12) , new Partner.BaseSoftware(new SecurityLevel1(),12));
+		Android s201 = new Associate(12, k201, new TouchSensitiveSkin(12), new Associate.BaseSoftware(12, new SecurityLevel1()));
 		al.insert(s201);
-		System.out.println(al);
-		System.out.println(al.find(12));
-		Android s202 = new Assistant(12, k201 , new TouchSensitiveSkin(12) , new Partner.BaseSoftware(new SecurityLevel1(),12));
+		ArrayList<Aktor> ak2 = (ArrayList<Aktor>)ak.clone();  ak2.add(new Aktor(12, "Waschen", 0.5));
+		k201 = new Kit(12, ak2, as);
+		Android s202 = new Assistant(12, k201 , new TouchSensitiveSkin(12) , new Associate.BaseSoftware(12, new SecurityLevel1()) );
 		al.insert(s202);
-		System.out.println(al);
-		System.out.println(al.find(12));
+		System.out.println("Iterator");
 		Iterator<Android> iti = al.iterator();
 		while(iti.hasNext())
 		{
+			System.out.println(iti.next());
+		}
+		
+		iti = al.iterator(12);
+		int cnt = 0;
+		while(iti.hasNext())
+		{
+			cnt++;
+			System.out.println("Konfiguration Nr.:" +  cnt);
 			System.out.println(iti.next());
 		}
 		

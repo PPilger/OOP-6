@@ -46,7 +46,7 @@ public class Fighter extends Guard {
 
 	@Override
 	public String getType() {
-		return "Fighter";
+		return "Kaempfer";
 	}
 
 	public static class BaseSoftware extends Software {
@@ -58,6 +58,11 @@ public class Fighter extends Guard {
 		@Override
 		public ValidationCode visit(Android android) {
 			return android.validSoftware(this);
+		}
+		
+		@Override
+		public String toString() {
+			return "Kaempfer Software - Achtung gefaehrlich!!!";
 		}
 	}
 }

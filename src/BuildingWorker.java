@@ -16,7 +16,7 @@ public class BuildingWorker extends HeavyWorker {
 
 	@Override
 	public String getType() {
-		return "BuildingWorker";
+		return "Bauarbeiter";
 	}
 
 	public static class BaseSoftware extends Software {
@@ -28,6 +28,11 @@ public class BuildingWorker extends HeavyWorker {
 		@Override
 		public ValidationCode visit(Android android) {
 			return android.validSoftware(this);
+		}
+		
+		@Override
+		public String toString() {
+			return "Bauarbeiter Software";
 		}
 
 	}
