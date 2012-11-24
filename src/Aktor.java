@@ -18,6 +18,6 @@ public class Aktor extends Encoded {
 	}
 
 	public String toString() {
-		return "Name: " + this.name + " - Leistung: " + this.kw + " [kW]";
+		return this.name + " (" + this.kw + " kW)";
 	}
 }

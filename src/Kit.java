@@ -44,4 +44,16 @@ public class Kit extends Encoded {
 
 		return code;
 	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("Aktoren: ");
+		sb.append(aktorList);
+		sb.append(", Sensoren: ");
+		sb.append(sensorList);
+		
+		return sb.toString();
+	}
 }
