@@ -24,7 +24,7 @@ public class Assistant extends Servant {
 		return "Hilfskraft";
 	}
 
-	public class BaseSoftware extends Software {
+	public static class BaseSoftware extends Software {
 
 		public BaseSoftware(int serialNum, SecurityLevel level) {
 			super(serialNum, level);
@@ -40,4 +40,4 @@ public class Assistant extends Servant {
 			return "Hilfskraft Software";
 
 	}
-}
+	}}
