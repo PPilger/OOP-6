@@ -1,25 +1,32 @@
 import java.util.*;
 
 /**
- * A class which contains the log of an Android's lifespan. Its mandatory to use addIfValid instead of add,
- * other methods which manipulate the List in another mannor than adding elements at the end,
- * are without impact on the list (e.g. removeFirst() returns an element without removing). 
+ * A class which contains the log of an Android's lifespan. Its mandatory to use
+ * addIfValid instead of add, other methods which manipulate the List in another
+ * mannor than adding elements at the end, are without impact on the list (e.g.
+ * removeFirst() returns an element without removing).
+ * 
  * @author Koegler Alexander
- *
+ * 
  */
 public class AndroidLog extends LinkedList<Android> {
 	private static final long serialVersionUID = 1L;
 	private int androidID;
+	private Android addIt = null;
+	private final AndroidLog itsMe = this;
 
 	/**
-	 * Adds an Android's configuration to its log-history
-	 * If AndroidLog is empty it's added as first element,
-	 * else the new Android's configuration is validated with the first configuration of itself.
-	 * @param e new Android/configuration
+	 * Adds an Android's configuration to its log-history If AndroidLog is empty
+	 * it's added as first element, else the new Android's configuration is
+	 * validated with the first configuration of itself.
+	 * 
+	 * @param e
+	 *            new Android/configuration
 	 * @return error() if configuration is not valid, else valid()
 	 */
 	public ValidationCode addIfValid(Android e) {
-		// if this is the first element added to the list, the androidID will be set
+		// if this is the first element added to the list, the androidID will be
+		// set
 		if (peekFirst() == null) {
 			androidID = e.getSerialNum();
 			super.add(e);
@@ -27,31 +34,27 @@ public class AndroidLog extends LinkedList<Android> {
 		} else {
 			// need to be as valid as the first Android
 			ValidationCode vc = e.validate(peekFirst());
-			if (vc != null) {
-				super.add(e);
-				return new Valid();
+
+			// if valid add to list
+			addIt = e;
+			vc.executeIfValid(new AddTo());
+			addIt = null;
+			return vc;
+		}
+	}
+
+	private class AddTo implements ValidationCode.Operation {
+		@Override
+		public void execute() {
+			if (addIt != null) {
+				itsMe.add(addIt);
 			}
-			return new Error("Edited Android is not valid!");
 		}
 	}
 
 	@Override
 	public boolean add(Android e) {
-		// if this is the first element added to the list, the androidID will be
-		// set
-		if (peekFirst() == null) {
-			androidID = e.getSerialNum();
-			super.add(e);
-			return true;
-		} else {
-			// need to be as valid as the first Android
-			ValidationCode vc = e.validate(peekFirst());
-			if (vc != null) {
-				super.add(e);
-				return true;
-			}
-			return false;
-		}
+		return false;
 	}
 
 	// Overwritten following methods, which may not change the log in contrast
