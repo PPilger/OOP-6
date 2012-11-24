@@ -1,11 +1,10 @@
-import java.security.PublicKey;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 
 public class AndroidList {
-	private Map<Integer, AndroidLog> map = new LinkedHashMap<Integer, AndroidLog>();
+	private LinkedHashMap<Integer, AndroidLog> map = new LinkedHashMap<Integer, AndroidLog>();
 	
 	private Android foundedAndroid = null;
 	
