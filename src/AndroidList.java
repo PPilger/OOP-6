@@ -6,7 +6,7 @@ public class AndroidList {
 	private LinkedHashMap<Integer, Entry> map = new LinkedHashMap<Integer, Entry>();
 
 	public ValidationCode insert(final Android newAndroid) {
-		final int serialNum = newAndroid.getSerialNum();
+ 		final int serialNum = newAndroid.getSerialNum();
 		final Entry entry = map.get(serialNum);
 		ValidationCode code;
 

@@ -224,6 +224,32 @@ public static class gKit{
 	}
 }
 
+/**
+ * Error test: change main Android Type
+ * From					To
+ * 
+ * 
+ * Valid test: change main Android Type
+ * From					To
+ * 
+ * 
+ * Error: Wrong Skin
+ * Assistant	ArmoredSkin, SolidSkin
+ * 
+ * Valid: Right Skin
+ * Assistant	TouchSensitive
+ * 
+ * 
+ * Error: Wrong Security Level
+ * Assistant	Level 3,4,5
+ * 
+ * 
+ * Valid: Right Security Level
+ * Associate	Level 1
+ * Assistant	Level 1,2
+ * 
+ * 
+ */
 private static void test2()
 {
 	gKit x = new gKit();
