@@ -44,6 +44,11 @@ public class Fighter extends Guard {
 		return new Valid();
 	}
 
+	@Override
+	public String getType() {
+		return "Fighter";
+	}
+
 	public static class BaseSoftware extends Software {
 
 		public BaseSoftware(int serialNum, SecurityLevel level) {

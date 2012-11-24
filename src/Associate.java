@@ -3,14 +3,19 @@
  * @author Koegler Alexander
  * 
  */
-public class Partner extends Servant {
-	public Partner(int serialNum, Kit kit, Skin skin, Software software) {
+public class Associate extends Servant {
+	public Associate(int serialNum, Kit kit, Skin skin, Software software) {
 		super(serialNum, kit, skin, software);
 	}
 
 	@Override
-	public ValidationCode validSoftware(Partner.BaseSoftware s) {
+	public ValidationCode validSoftware(Associate.BaseSoftware s) {
 		return new Valid();
+	}
+
+	@Override
+	public String getType() {
+		return "Associate";
 	}
 
 	public static class BaseSoftware extends Software {

@@ -18,6 +18,11 @@ public class Assistant extends Servant {
 	public ValidationCode validSecLevel(SecurityLevel2 s) {
 		return new Error("Invalid Security Level");
 	}
+	
+	@Override
+	public String getType() {
+		return "Assistant";
+	}
 
 	public class BaseSoftware extends Software {
 

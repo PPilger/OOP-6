@@ -15,6 +15,11 @@ public class ServiceTechnician extends HeavyWorker {
 		return new Valid();
 	}
 
+	@Override
+	public String getType() {
+		return "ServiceTechnician";
+	}
+
 	public static class BaseSoftware extends Software {
 
 		public BaseSoftware(int serialNum, SecurityLevel level) {

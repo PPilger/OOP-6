@@ -14,6 +14,11 @@ public class ObjectGuard extends Guard {
 		return new Valid();
 	}
 
+	@Override
+	public String getType() {
+		return "ObjectGuard";
+	}
+
 	public static class BaseSoftware extends Software {
 
 		public BaseSoftware(int serialNum, SecurityLevel level) {

@@ -115,7 +115,7 @@ public abstract class Android implements AndroidVisitor {
 		return new Error("Invalid Software");
 	}
 
-	public ValidationCode validSoftware(Partner.BaseSoftware s) {
+	public ValidationCode validSoftware(Associate.BaseSoftware s) {
 		return new Error("Invalid Software");
 	}
 
@@ -185,18 +185,21 @@ public abstract class Android implements AndroidVisitor {
 		return software;
 	}
 	
+	public abstract String getType();
+	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		
-		sb.append("Serial Number of Android: ");
+		sb.append(getType());
+		sb.append(": ");
 		sb.append(serialNum);
 		sb.append("\nKit: ");
-		sb.append(kit.toString());
+		sb.append(kit);
 		sb.append("\nSkin: ");
-		sb.append(skin.toString());
+		sb.append(skin);
 		sb.append("\nSoftware: ");
-		sb.append(software.toString());
+		sb.append(software);
 		
 		return sb.toString();
 	}
