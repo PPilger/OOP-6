@@ -35,7 +35,7 @@ public abstract class Android {
 
 		code1 = software.getLevel().visit(this);
 		result = result.mergeAnd(code1);
-
+		
 		// bei den Leistungsklassen muss der Typ des Androiden oder die
 		// Sicherheitsstufe der Software festlegen, welche Leistungsklasse
 		// zulaessig ist.

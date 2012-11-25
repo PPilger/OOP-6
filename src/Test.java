@@ -5,7 +5,7 @@ import java.util.*;
 public class Test {
 	public static void main(String[] args) {
 		//hihi
-		//test1();
+		test1();
 		test2();
 		
 		/*
@@ -92,7 +92,7 @@ private static void test1()
 	ak.add(new Aktor(12, "Putzen", 0.5));
 	ak.add(new Aktor(12, "Waschen", 0.5));
 	
-	Android s202 = new Assistant(12, new Kit(12, ak, as), new TouchSensitiveSkin(12) , new Assistant.BaseSoftware(12, new SecurityLevel2()));
+	Android s202 = new Assistant(12, new Kit(12, ak, as), new TouchSensitiveSkin(12) , new Assistant.BaseSoftware(12, new SecurityLevel1()));
 	System.out.println(al.insert(s202) + "\tAndroid will be edited and gets Waschen Aktor");
 	
 	s202 = new Assistant(12, new Kit(12, ak, as), new TouchSensitiveSkin(12) , new Assistant.BaseSoftware(12, new SecurityLevel1()));
@@ -261,32 +261,32 @@ private static void test2()
 	System.out.println(al.insert(s1) + "Vailid Assistant");
 	
 	s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel2()));
-	System.out.println(al.insert(s1) + "Invalid SecLev2");
+	System.out.println("Invalid SecLev2\t" + al.insert(s1));
 	s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel3()));
-	System.out.println(al.insert(s1) + "Invalid SecLev3");
+	System.out.println("Invalid SecLev3\t" + al.insert(s1));
 	s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel4()));
-	System.out.println(al.insert(s1) + "Invalid SecLev4");
+	System.out.println("Invalid SecLev4\t" + al.insert(s1));
 	s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel5()));
-	System.out.println(al.insert(s1) + "Invalid SecLev5");
+	System.out.println("Invalid SecLev5\t" + al.insert(s1));
 	
 	s1 = new Assistant(1, x._5kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel1()));
-	System.out.println(al.insert(s1) + "Invalid 5kW");
+	System.out.println("Invalid 5kW\t" + al.insert(s1));
 	s1 = new Assistant(1, x._10kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel1()));
-	System.out.println(al.insert(s1) + "Invalid 10kW");
+	System.out.println("Invalid 10kW\t" + al.insert(s1));
 	s1 = new Assistant(1, x._infkw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel1()));
-	System.out.println(al.insert(s1) + "Invalid infkW");
+	System.out.println("Invalid infkW\t" + al.insert(s1));
 	
 	s1 = new Assistant(1, x._1kw(1), new ArmoredSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel1()));
-	System.out.println(al.insert(s1) + "Invalid ArmoredSkin");
+	System.out.println("Invalid ArmoredSkin\t" + al.insert(s1));
 	s1 = new Assistant(1, x._1kw(1), new SolidSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel1()));
-	System.out.println(al.insert(s1) + "Invalid SolidSkin");
+	System.out.println("Invalid SolidSkin\t" + al.insert(s1));
 	
 	s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1), new Associate.BaseSoftware(1, new SecurityLevel1()));
-	System.out.println(al.insert(s1) + "Invalid ?");
+	System.out.println("Invalid ?\t" + al.insert(s1));
 	s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1), new Associate.BaseSoftware(1, new SecurityLevel2()));
-	System.out.println(al.insert(s1) + "Invalid ?");
+	System.out.println("Invalid ?\t" + al.insert(s1));
 	s1 = new Associate(1, x._1kw(1), new TouchSensitiveSkin(1), new Associate.BaseSoftware(1, new SecurityLevel2()));
-	System.out.println(al.insert(s1) + "Invalid ?");
+	System.out.println("Invalid ?\t" + al.insert(s1));
 }
 
 private static void showAndroids(String text, AndroidList al)

@@ -8,8 +8,11 @@ public class Kit extends Encoded {
 	public Kit(int serialNum, ArrayList<Aktor> aktorList,
 			ArrayList<Sensor> sensorList) {
 		super(serialNum);
-		this.aktorList = aktorList;
-		this.sensorList = sensorList;
+		
+		//new Objects are created and references of parameters are copied
+		//in order to prevent changes within these lists
+		this.aktorList = new ArrayList<Aktor>(aktorList);
+		this.sensorList = new ArrayList<Sensor>(sensorList);
 	}
 
 	public PowerClass getPowerClass() {

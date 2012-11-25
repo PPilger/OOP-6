@@ -17,12 +17,12 @@ public abstract class Servant extends Android {
 	
 	@Override
 	public ValidationCode validSkin(SolidSkin skin) {
-		return new Error("Bediener kann keinen hochfesten Skin haben.");
+		return new Error("Invalid Skin");
 	}
 	
 	@Override
 	public ValidationCode validSkin(ArmoredSkin skin) {
-		return new Error("Bediener kann keinen gepanzerten Skin haben.");
+		return new Error("Invalid Skin");
 	}
 	
 	@Override
