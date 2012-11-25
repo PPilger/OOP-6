@@ -21,9 +21,4 @@ public class SecurityLevel5 extends SecurityLevel{
 	public String toString() {
 		return "Level 5";
 	}
-	
-	@Override
-	public ValidationCode validSecLevel(SecurityLevel5 level) {
-		return new Valid();
-	}
 }

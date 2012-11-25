@@ -12,19 +12,14 @@ public class SecurityLevel1 extends SecurityLevel{
 	public ValidationCode visit(SecurityLevel level) {
 		return level.validSecurityLevel(this);
 	}
-
+	
 	@Override
-	public ValidationCode validSecurityLevel(SecurityLevel1 s) {
+	public ValidationCode validSecurityLevel(SecurityLevel1 level) {
 		return new Valid();
 	}
 
 	@Override
 	public String toString() {
 		return "Level 1";
-	}
-	
-	@Override
-	public ValidationCode validSecLevel(SecurityLevel1 level) {
-		return new Valid();
 	}
 }
