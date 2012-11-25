@@ -27,7 +27,7 @@ public class Error implements ValidationCode {
 	
 	@Override
 	public ValidationCode mergeAnd(ValidationCode other) {
-		return other.mergeOr(this); // visit mergeAnd(Error) of the other validationCode
+		return other.mergeAnd(this); // visit mergeAnd(Error) of the other validationCode
 	}
 	
 	@Override

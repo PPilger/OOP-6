@@ -21,20 +21,20 @@ public abstract class Android implements AndroidVisitor {
 		result = kit.validSerialNum(num);
 
 		code1 = skin.validSerialNum(num);
-		result.mergeAnd(code1);
+		result = result.mergeAnd(code1);
 
 		code1 = software.validSerialNum(num);
-		result.mergeAnd(code1);
+		result = result.mergeAnd(code1);
 
 		// ueberpruefe die Anforderungen der einzelnen Typen
 		code1 = skin.visit(this);
-		result.mergeAnd(code1);
+		result = result.mergeAnd(code1);
 
 		code1 = software.visit(this);
-		result.mergeAnd(code1);
+		result = result.mergeAnd(code1);
 
 		code1 = software.getLevel().visit(this);
-		result.mergeAnd(code1);
+		result = result.mergeAnd(code1);
 
 		// bei den Leistungsklassen muss der Typ des Androiden oder die
 		// Sicherheitsstufe der Software festlegen, welche Leistungsklasse
@@ -42,9 +42,9 @@ public abstract class Android implements AndroidVisitor {
 		code1 = kit.getPowerClass().visit(this);
 		code2 = kit.getPowerClass().visit(software.getLevel());
 		code1 = code1.mergeOr(code2);
-		return result.mergeAnd(code1);
+		result = result.mergeAnd(code1);
 
-		//return result;
+		return result;
 	}
 
 	public ValidationCode validate(Android replaced) {
@@ -56,7 +56,7 @@ public abstract class Android implements AndroidVisitor {
 		// der neue Android muss gueltig sein und muss den alten Android
 		// ersetzen duerfen
 		code1 = code1.mergeAnd(code2);
-		
+
 		return code1;
 	}
 
@@ -184,13 +184,13 @@ public abstract class Android implements AndroidVisitor {
 	public Software getSoftware() {
 		return software;
 	}
-	
+
 	public abstract String getType();
-	
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		
+
 		sb.append(getType());
 		sb.append(": ");
 		sb.append(serialNum);
@@ -200,7 +200,7 @@ public abstract class Android implements AndroidVisitor {
 		sb.append(skin);
 		sb.append("\nSoftware: ");
 		sb.append(software);
-		
+
 		return sb.toString();
 	}
 }
