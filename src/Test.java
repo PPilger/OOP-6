@@ -2,8 +2,8 @@ import java.util.*;
 
 public class Test {
 	public static void main(String[] args) {
-		test3();
-		test1();
+		//test3();
+		//test1();
 		test2();
 	}
 

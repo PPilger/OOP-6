@@ -15,11 +15,6 @@ public class Assistant extends Servant {
 	}
 
 	@Override
-	public ValidationCode validSecLevel(SecurityLevel2 s) {
-		return new Valid();
-	}
-
-	@Override
 	public String getType() {
 		return "Hilfskraft";
 	}

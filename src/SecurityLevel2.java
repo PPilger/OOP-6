@@ -3,8 +3,7 @@ public class SecurityLevel2 extends SecurityLevel{
 
 	@Override
 	public ValidationCode visit(Android android) {
-		ValidationCode code = android.validSecLevel(this);
-		return code = code.mergeAnd(android.getSoftware().getLevel().validSecLevel(this));
+		return android.validSecLevel(this);
 	}
 
 	@Override
