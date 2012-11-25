@@ -16,7 +16,7 @@ public class Bodyguard extends Guard {
 
 	@Override
 	public String getType() {
-		return "Beschuetzer";
+		return "Leibwaechter";
 	}
 
 	public static class BaseSoftware extends Software {
@@ -32,7 +32,7 @@ public class Bodyguard extends Guard {
 
 		@Override
 		public String toString() {
-			return "Beschuetzer Software " + super.getLevel();
+			return "Leibwaechter Software " + super.getLevel();
 		}
 	}
 }

@@ -15,7 +15,7 @@ public class Associate extends Servant {
 
 	@Override
 	public String getType() {
-		return "Hilfskraft";
+		return "Gesellschafter";
 	}
 
 	public static class BaseSoftware extends Software {
@@ -31,7 +31,7 @@ public class Associate extends Servant {
 		
 		@Override
 		public String toString() {
-			return "Hilfskraft Software " + super.getLevel();
+			return "Gesellschafter Software " + super.getLevel();
 		}
 	}
 }
