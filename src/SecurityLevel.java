@@ -21,4 +21,27 @@ public abstract class SecurityLevel implements AndroidVisitor {
 		return new Error("Invalid Power Class");
 	}
 	
+	public ValidationCode validSecLevel(SecurityLevel level) {
+		return new Error("Invalid Security Level");				
+	}
+	
+	public ValidationCode validSecLevel(SecurityLevel1 level) {
+		return new Error("Invalid Security Level");				
+	}
+	
+	public ValidationCode validSecLevel(SecurityLevel2 level) {
+		return new Error("Invalid Security Level");				
+	}
+	
+	public ValidationCode validSecLevel(SecurityLevel3 level) {
+		return new Error("Invalid Security Level");				
+	}
+	
+	public ValidationCode validSecLevel(SecurityLevel4 level) {
+		return new Error("Invalid Security Level");				
+	}
+	
+	public ValidationCode validSecLevel(SecurityLevel5 level) {
+		return new Error("Invalid Security Level");				
+	}	
 }

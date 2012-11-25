@@ -10,4 +10,9 @@ public class SecurityLevel1 extends SecurityLevel{
 	public String toString() {
 		return "Level 1";
 	}
+	
+	@Override
+	public ValidationCode validSecLevel(SecurityLevel1 level) {
+		return new Valid();
+	}
 }

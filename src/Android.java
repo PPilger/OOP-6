@@ -35,7 +35,7 @@ public abstract class Android implements AndroidVisitor {
 
 		code1 = software.getLevel().visit(this);
 		result = result.mergeAnd(code1);
-
+		
 		// bei den Leistungsklassen muss der Typ des Androiden oder die
 		// Sicherheitsstufe der Software festlegen, welche Leistungsklasse
 		// zulaessig ist.
@@ -56,7 +56,12 @@ public abstract class Android implements AndroidVisitor {
 		// der neue Android muss gueltig sein und muss den alten Android
 		// ersetzen duerfen
 		code1 = code1.mergeAnd(code2);
+		
+		//securityLevel muss gleich bleiben fuer alle Androiden
+		code2 = this.getSoftware().getLevel().validSecLevel(replaced.software.getLevel());
 
+		code1 = code1.mergeAnd(code2);
+		
 		return code1;
 	}
 
