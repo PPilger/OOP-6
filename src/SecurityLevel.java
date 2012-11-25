@@ -22,7 +22,7 @@ public abstract class SecurityLevel implements AndroidVisitor {
 	}
 	
 	public ValidationCode validSecLevel(SecurityLevel level) {
-		return new Error("Invalid Security Level");				
+		return new Error("Invalid Security Level");		
 	}
 	
 	public ValidationCode validSecLevel(SecurityLevel1 level) {

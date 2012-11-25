@@ -57,9 +57,6 @@ public abstract class Android implements AndroidVisitor {
 		// ersetzen duerfen
 		code1 = code1.mergeAnd(code2);
 		
-		//securityLevel muss gleich bleiben fuer alle Androiden
-		code2 = this.getSoftware().getLevel().validSecLevel(replaced.software.getLevel());
-
 		code1 = code1.mergeAnd(code2);
 		
 		return code1;

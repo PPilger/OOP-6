@@ -2,7 +2,7 @@ public class Valid implements ValidationCode {
 	
 	@Override
 	public String toString() {
-		return "gueltig";
+		return "[Valid]";
 	}
 
 	@Override
