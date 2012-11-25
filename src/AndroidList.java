@@ -49,7 +49,7 @@ public class AndroidList {
 	}
 
 	//returns an Iterator over the configurations durring an Android's life
-	public Iterator<Android> iterator(int Id)
+	public Iterator<Android> history(int Id)
 	{
 		Entry en = map.get(Id);
 		if (en == null)
