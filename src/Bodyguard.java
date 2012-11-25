@@ -16,7 +16,7 @@ public class Bodyguard extends Guard {
 
 	@Override
 	public String getType() {
-		return "Bodyguard";
+		return "Beschuetzer";
 	}
 
 	public static class BaseSoftware extends Software {
@@ -30,5 +30,9 @@ public class Bodyguard extends Guard {
 			return android.validSoftware(this);
 		}
 
+		@Override
+		public String toString() {
+			return "Beschuetzer Software " + super.getLevel();
+		}
 	}
 }

@@ -6,7 +6,7 @@ public class AndroidList {
 	private LinkedHashMap<Integer, Entry> map = new LinkedHashMap<Integer, Entry>();
 
 	public ValidationCode insert(final Android newAndroid) {
-		final int serialNum = newAndroid.getSerialNum();
+ 		final int serialNum = newAndroid.getSerialNum();
 		final Entry entry = map.get(serialNum);
 		ValidationCode code;
 
@@ -23,7 +23,7 @@ public class AndroidList {
 				}
 			});
 
-			map.put(serialNum, entry);
+			// map.put(serialNum, entry);
 		} else {
 			Android oldAndroid = entry.history.getFirst();
 			code = newAndroid.validate(oldAndroid);
@@ -54,6 +54,33 @@ public class AndroidList {
 		}
 
 		return entry.getNewest().toString();
+	}
+
+	//returns an Iterator over the configurations durring an Android's life
+	public Iterator<Android> iterator(int Id)
+	{
+		Entry en = map.get(Id);
+		if (en == null)
+			return new Iterator<Android>() {
+								
+				@Override
+				public boolean hasNext() {
+					return false;
+				}
+
+				@Override
+				public Android next() {
+					// TODO Auto-generated method stub
+					return null;
+				}
+
+				@Override
+				public void remove() {
+					// TODO Auto-generated method stub
+					
+				}
+			};
+		return en.iterator();
 	}
 
 	public Iterator<Android> iterator() {
@@ -91,6 +118,12 @@ public class AndroidList {
 
 		private Android getNewest() {
 			return history.getFirst();
+		}
+
+		//returns an Iterator over all configurations, starting with the last used
+		public Iterator<Android> iterator() {
+
+			return history.descendingIterator();
 		}
 	}
 }

@@ -16,7 +16,7 @@ public class ObjectGuard extends Guard {
 
 	@Override
 	public String getType() {
-		return "ObjectGuard";
+		return "Objektbewacher";
 	}
 
 	public static class BaseSoftware extends Software {
@@ -28,6 +28,11 @@ public class ObjectGuard extends Guard {
 		@Override
 		public ValidationCode visit(Android android) {
 			return android.validSoftware(this);
+		}
+		
+		@Override
+		public String toString() {
+			return "Objektbewacher Software " + super.getLevel();
 		}
 
 	}

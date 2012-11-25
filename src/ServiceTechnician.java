@@ -17,7 +17,7 @@ public class ServiceTechnician extends HeavyWorker {
 
 	@Override
 	public String getType() {
-		return "ServiceTechnician";
+		return "Service Techniker";
 	}
 
 	public static class BaseSoftware extends Software {
@@ -29,6 +29,11 @@ public class ServiceTechnician extends HeavyWorker {
 		@Override
 		public ValidationCode visit(Android android) {
 			return android.validSoftware(this);
+		}
+		
+		@Override
+		public String toString() {
+			return "Service Techniker Software " + super.getLevel();
 		}
 
 	}

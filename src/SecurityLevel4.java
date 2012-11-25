@@ -20,5 +20,9 @@ public class SecurityLevel4 extends SecurityLevel{
 	public ValidationCode validPowerClass(PowerClass.LE1 s) {
 		return new Valid();
 	}
-
+	
+	@Override
+	public String toString() {
+		return "Level 4";
+	}
 }

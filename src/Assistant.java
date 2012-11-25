@@ -18,13 +18,13 @@ public class Assistant extends Servant {
 	public ValidationCode validSecLevel(SecurityLevel2 s) {
 		return new Error("Invalid Security Level");
 	}
-	
+
 	@Override
 	public String getType() {
-		return "Assistant";
+		return "Hilfskraft";
 	}
 
-	public class BaseSoftware extends Software {
+	public static class BaseSoftware extends Software {
 
 		public BaseSoftware(int serialNum, SecurityLevel level) {
 			super(serialNum, level);
@@ -34,10 +34,10 @@ public class Assistant extends Servant {
 		public ValidationCode visit(Android android) {
 			return android.validSoftware(this);
 		}
-		
+
 		@Override
 		public String toString() {
-			return "Assistant";
+			return "Hilfskraft Software " + super.getLevel();
 		}
 	}
 }

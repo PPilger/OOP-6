@@ -42,9 +42,9 @@ public abstract class Android implements AndroidVisitor {
 		code1 = kit.getPowerClass().visit(this);
 		code2 = kit.getPowerClass().visit(software.getLevel());
 		code1 = code1.mergeOr(code2);
-		result.mergeAnd(code1);
+		return result.mergeAnd(code1);
 
-		return result;
+		//return result;
 	}
 
 	public ValidationCode validate(Android replaced) {

@@ -16,7 +16,7 @@ public class TransportWorker extends HeavyWorker {
 
 	@Override
 	public String getType() {
-		return "TransportWorker";
+		return "Transportarbeiter";
 	}
 
 	public static class BaseSoftware extends Software {
@@ -28,6 +28,11 @@ public class TransportWorker extends HeavyWorker {
 		@Override
 		public ValidationCode visit(Android android) {
 			return android.validSoftware(this);
+		}
+		
+		@Override
+		public String toString() {
+			return "Transportarbeiter Software " + super.getLevel();
 		}
 
 	}
