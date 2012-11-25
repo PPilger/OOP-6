@@ -1,44 +1,10 @@
 import java.util.*;
 
-
-
 public class Test {
 	public static void main(String[] args) {
+		//test3();
 		//test1();
-		//test2();
-		test4();
-		
-		/*
-		Android s12;
-		Android s13;
-		Android h11;
-		Android h12;
-		Android g8;
-		
-		s12 = new Servant(12) {};
-		s12.setSkin(new TouchSensitiveSkin());
-		System.out.println(al.insert(s12));
-
-		s13 = new Servant(13) {};
-		s13.setSkin(new SolidSkin());
-		System.out.println(al.insert(s13));
-
-		h11 = new HeavyWorker(11) {};
-		h11.setSkin(new ArmoredSkin());
-		System.out.println(al.insert(h11));
-
-		h12 = new HeavyWorker(12) {};
-		h12.setSkin(new TouchSensitiveSkin());
-		System.out.println(al.insert(h12));
-
-		g8 = new Guard(8) {};
-		g8.setSkin(new SolidSkin());
-		System.out.println(al.insert(g8));
-		
-		g8 = new Guard(8) {};
-		g8.setSkin(new TouchSensitiveSkin());
-		System.out.println(al.insert(g8));*/
-		
+		test2();
 	}
 
 /**
@@ -289,25 +255,6 @@ private static void test2()
 	System.out.println("Invalid ?\t" + al.insert(s1));
 }
 
-private static void test4() {
-	
-	gKit x = new gKit();
-	AndroidList al = new AndroidList();
-	
-	Android s1 = new Associate(1234, x._1kw(1234), new TouchSensitiveSkin(1234), new Associate.BaseSoftware(1234, new SecurityLevel1()));
-	System.out.println(al.insert(s1) + "Valid Associate");
-	
-	Android s2 = new Assistant(1235, x._1kw(1235), new TouchSensitiveSkin(1235), new Assistant.BaseSoftware(1235, new SecurityLevel2()));
-	System.out.println(al.insert(s2) + "Valid Assistant");
-	
-	Android s3 = new BuildingWorker(1236, x._10kw(1236), new SolidSkin(1236), new BuildingWorker.BaseSoftware(1236, new SecurityLevel3()));
-	System.out.println(al.insert(s3) + "Valid BuildingWorker");
-	
-	
-	
-	
-}
-
 private static void showAndroids(String text, AndroidList al)
 {
 	int cnt = 0;
@@ -325,7 +272,7 @@ private static void showAndroids(String text, AndroidList al)
 private static void showLog(int id, AndroidList al)
 {
 	int cnt = 0;
-	Iterator<Android> iti = al.iterator(id);
+	Iterator<Android> iti = al.history(id);
 	while(iti.hasNext())
 	{
 		cnt++;
@@ -335,4 +282,49 @@ private static void showLog(int id, AndroidList al)
 	}	
 	System.out.println();
 }
+
+private static void test3()
+{
+	gKit x = new gKit();
+	AndroidList al = new AndroidList();
+		
+	Android s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel2()));
+	System.out.println("Valid Assistant max 1kW " + al.insert(s1));
+	
+	s1 = new Assistant(1, x._5kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel2()));
+	System.out.println("Invalid Assistant 5kW " + al.insert(s1));
+	
+	Android s2 = new Associate(2, x._1kw(2), new TouchSensitiveSkin(2), new Assistant.BaseSoftware(2, new SecurityLevel1()));
+	System.out.println("Valid Associate max 1kW " + al.insert(s2));
+	
+	s2 = new Associate(2, x._1kw(2), new TouchSensitiveSkin(2), new Assistant.BaseSoftware(2, new SecurityLevel1()));
+	System.out.println("Invalid Associate 5kW " + al.insert(s2));
+	
+	Android w1 = new ServiceTechnician(3, x._1kw(3), new SolidSkin(3), new ServiceTechnician.BaseSoftware(3, new SecurityLevel3()));
+	System.out.println("Valid ServiceTechnician 1kW " + al.insert(w1));
+	
+	w1 = new ServiceTechnician(3, x._5kw(3), new SolidSkin(3), new ServiceTechnician.BaseSoftware(3, new SecurityLevel3()));
+	System.out.println("Valid ServiceTechnician max 5kW " + al.insert(w1));
+	
+	w1 = new ServiceTechnician(3, x._10kw(3), new SolidSkin(3), new ServiceTechnician.BaseSoftware(3, new SecurityLevel3()));
+	System.out.println("Invalid ServiceTechnician 10kW " + al.insert(w1));
+	
+	
+	Android o1 = new ObjectGuard(4, x._5kw(4), new SolidSkin(4), new ServiceTechnician.BaseSoftware(4, new SecurityLevel4()));
+	System.out.println("Valid ObjectGuard 5kW " + al.insert(o1));
+	
+	o1 = new ObjectGuard(4, x._10kw(4), new SolidSkin(4), new ServiceTechnician.BaseSoftware(4, new SecurityLevel4()));
+	System.out.println("Valid ObjectGuard max 10kW " + al.insert(o1));
+	
+	o1 = new ObjectGuard(4, x._infkw(4), new SolidSkin(4), new ServiceTechnician.BaseSoftware(4, new SecurityLevel4()));
+	System.out.println("Invalid ObjectGuard 5000kW " + al.insert(o1));
+	
+	Android f1 = new Fighter(5, x._5kw(5), new SolidSkin(5), new ServiceTechnician.BaseSoftware(5, new SecurityLevel5()));
+	System.out.println("Valid Fighter 5kW " + al.insert(f1));
+	
+	f1 = new Fighter(5, x._infkw(5), new SolidSkin(5), new ServiceTechnician.BaseSoftware(5, new SecurityLevel5()));
+	System.out.println("Valid Fighter 5000kW " + al.insert(f1));
+	
+}
+
 }

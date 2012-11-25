@@ -12,6 +12,11 @@ public class Associate extends Servant {
 	public ValidationCode validSoftware(Associate.BaseSoftware s) {
 		return new Valid();
 	}
+	
+	@Override
+	public ValidationCode validSecLevel(SecurityLevel2 s) {
+		return new Error("Invalid Security Level");
+	}
 
 	@Override
 	public String getType() {
