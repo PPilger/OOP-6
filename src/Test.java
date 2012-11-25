@@ -4,9 +4,9 @@ import java.util.*;
 
 public class Test {
 	public static void main(String[] args) {
-		//hihi
-		test1();
-		test2();
+		//test1();
+		//test2();
+		test4();
 		
 		/*
 		Android s12;
@@ -287,6 +287,25 @@ private static void test2()
 	System.out.println("Invalid ?\t" + al.insert(s1));
 	s1 = new Associate(1, x._1kw(1), new TouchSensitiveSkin(1), new Associate.BaseSoftware(1, new SecurityLevel2()));
 	System.out.println("Invalid ?\t" + al.insert(s1));
+}
+
+private static void test4() {
+	
+	gKit x = new gKit();
+	AndroidList al = new AndroidList();
+	
+	Android s1 = new Associate(1234, x._1kw(1234), new TouchSensitiveSkin(1234), new Associate.BaseSoftware(1234, new SecurityLevel1()));
+	System.out.println(al.insert(s1) + "Valid Associate");
+	
+	Android s2 = new Assistant(1235, x._1kw(1235), new TouchSensitiveSkin(1235), new Assistant.BaseSoftware(1235, new SecurityLevel2()));
+	System.out.println(al.insert(s2) + "Valid Assistant");
+	
+	Android s3 = new BuildingWorker(1236, x._10kw(1236), new SolidSkin(1236), new BuildingWorker.BaseSoftware(1236, new SecurityLevel3()));
+	System.out.println(al.insert(s3) + "Valid BuildingWorker");
+	
+	
+	
+	
 }
 
 private static void showAndroids(String text, AndroidList al)
