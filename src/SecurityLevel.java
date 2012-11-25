@@ -1,5 +1,32 @@
 
-public abstract class SecurityLevel implements AndroidVisitor {
+public abstract class SecurityLevel {
+	
+	public abstract ValidationCode visit(Android android);
+	
+	public abstract ValidationCode visit(SecurityLevel level);
+
+	// Visitor-Pattern Methoden um das SecurityLevel auf Gleichheit
+	// zu ueberpruefen
+
+	public ValidationCode validSecurityLevel(SecurityLevel1 s) {
+		return new Error("Invalid Security Level");
+	}
+
+	public ValidationCode validSecurityLevel(SecurityLevel2 s) {
+		return new Error("Invalid Security Level");
+	}
+
+	public ValidationCode validSecurityLevel(SecurityLevel3 s) {
+		return new Error("Invalid Security Level");
+	}
+
+	public ValidationCode validSecurityLevel(SecurityLevel4 s) {
+		return new Error("Invalid Security Level");
+	}
+
+	public ValidationCode validSecurityLevel(SecurityLevel5 s) {
+		return new Error("Invalid Security Level");
+	}
 	
 	// Visitor-Pattern Methoden um die Leistungsklasse zu ueberpruefen
 	// (Einschraenkungen je nach Typ)

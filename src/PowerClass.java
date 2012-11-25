@@ -1,8 +1,11 @@
 import java.util.TreeMap;
 
-public abstract class PowerClass implements AndroidVisitor,
-		SecurityLevelVisitor {
+public abstract class PowerClass {
 	private static TreeMap<Double, PowerClass> powerClasses = new TreeMap<Double, PowerClass>();
+
+	public abstract ValidationCode visit(Android android);
+
+	public abstract ValidationCode visit(SecurityLevel level);
 	
 	static{
 		powerClasses.put(Double.POSITIVE_INFINITY, new PowerClass.Unlimited());

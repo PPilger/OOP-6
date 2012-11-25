@@ -1,4 +1,4 @@
-public abstract class Android implements AndroidVisitor {
+public abstract class Android {
 	private int serialNum;
 	private Kit kit;
 	private Skin skin;
@@ -48,16 +48,20 @@ public abstract class Android implements AndroidVisitor {
 	}
 
 	public ValidationCode validate(Android replaced) {
-		ValidationCode code1 = validate();
+		ValidationCode result;
+		ValidationCode code;
+		
+		result = this.validate();
 
-		// ueberpruefen, ob der neue Android den alten ersetzen darf
-		ValidationCode code2 = visit(replaced);
+		// ueberpruefen, ob der Haupttyp nicht veraendert wurde
+		code = this.visit(replaced);
+		result = result.mergeAnd(code);
 
-		// der neue Android muss gueltig sein und muss den alten Android
-		// ersetzen duerfen
-		code1 = code1.mergeAnd(code2);
+		// ueberpruefen, ob die Sicherheitsstufe nicht veraendert wurde
+		code = software.getLevel().visit(replaced.software.getLevel());
+		result = result.mergeAnd(code);
 
-		return code1;
+		return result;
 	}
 
 	public abstract ValidationCode visit(Android replacing);

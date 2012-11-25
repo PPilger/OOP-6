@@ -1,4 +1,4 @@
-public abstract class Software extends Encoded implements AndroidVisitor {
+public abstract class Software extends Encoded {
 	private SecurityLevel level;
 
 	public Software(int serialNum, SecurityLevel level) {

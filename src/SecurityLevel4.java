@@ -5,6 +5,16 @@ public class SecurityLevel4 extends SecurityLevel{
 	public ValidationCode visit(Android android) {
 		return android.validSecLevel(this);
 	}
+
+	@Override
+	public ValidationCode visit(SecurityLevel level) {
+		return level.validSecurityLevel(this);
+	}
+
+	@Override
+	public ValidationCode validSecurityLevel(SecurityLevel4 s) {
+		return new Valid();
+	}
 	
 	@Override
 	public ValidationCode validPowerClass(PowerClass.LE10 s) {
