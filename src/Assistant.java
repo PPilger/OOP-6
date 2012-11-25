@@ -16,7 +16,7 @@ public class Assistant extends Servant {
 
 	@Override
 	public ValidationCode validSecLevel(SecurityLevel2 s) {
-		return new Error("Invalid Security Level");
+		return new Valid();
 	}
 
 	@Override
