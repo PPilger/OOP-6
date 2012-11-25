@@ -22,8 +22,6 @@ public class AndroidList {
 					map.put(serialNum, newEntry);
 				}
 			});
-
-			// map.put(serialNum, entry);
 		} else {
 			Android oldAndroid = entry.history.getFirst();
 			code = newAndroid.validate(oldAndroid);
@@ -38,12 +36,6 @@ public class AndroidList {
 		}
 
 		return code;
-
-		// TODO: ... alle Teile werden mit der Seriennummer des Andoiden codiert
-		// um
-		// unauthorisierte Manipulationen zu unterbinden. Entsprechend der
-		// Androide-Verordnung sind genaue Aufzeichnungen über die
-		// Anfangskonfiguration und alle Änderungen zu führen.
 	}
 
 	public String find(int serialNum) {
