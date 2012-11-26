@@ -1,12 +1,13 @@
 /**
- * Invariant: The content of Valid cannot be changed.
+ * Repraesentiert einen gueltigen ValidationCode (das validierte Objekt ist
+ * valide).
  * 
  * @author Peter Pilgerstorfer
  */
 public class Valid implements ValidationCode {
 
 	/**
-	 * Returns Valid if other is Valid and Error otherwise.
+	 * Liefert Valid wenn other gueltig ist und Error anderenfalls.
 	 */
 	@Override
 	public ValidationCode merge(ValidationCode other) {
@@ -15,7 +16,7 @@ public class Valid implements ValidationCode {
 	}
 
 	/**
-	 * Returns an Error
+	 * Liefert einen Error.
 	 */
 	@Override
 	public ValidationCode merge(Error other) {
@@ -23,7 +24,7 @@ public class Valid implements ValidationCode {
 	}
 
 	/**
-	 * Returns Valid
+	 * Liefert ein Valid Objekt.
 	 */
 	@Override
 	public ValidationCode merge(Valid other) {
@@ -31,7 +32,7 @@ public class Valid implements ValidationCode {
 	}
 
 	/**
-	 * Executes the Operation op.
+	 * Fuehrt die Operation op aus.
 	 */
 	@Override
 	public void executeIfValid(Operation op) {

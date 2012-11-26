@@ -1,36 +1,34 @@
 /**
- * Represents a validation-result.
- * 
- * Invariant: The content of a ValidationCode cannot be changed.
+ * Repraesentiert ein Validierungsergebnis.
  * 
  * @author Peter Pilgerstorfer
  */
 public interface ValidationCode {
-	// Use the Visitor-Pattern to split merge(ValidationCode) into merge(Error)
-	// and merge(Valid).
+	// verwendet das Visitor-Pattern um merge(ValidationCode) auf merge(Error)
+	// und merge(Valid) aufzuteilen.
 
 	/**
-	 * Returns Valid if both ValidationCodes are Valid, and Error otherwise.
+	 * Liefert Valid wenn beide gueltig sind und Error anderenfalls.
 	 */
 	public ValidationCode merge(ValidationCode other);
 
 	/**
-	 * Returns an Error
+	 * Liefert einen Error.
 	 */
 	public ValidationCode merge(Error other);
 
 	/**
-	 * Returns Valid if this is Valid and Error otherwise.
+	 * Liefert Valid wenn beide gueltig sind und Error anderenfalls.
 	 */
 	public ValidationCode merge(Valid other);
 
 	/**
-	 * Executes the Operation op, if this is Valid.
+	 * Fuehrt die Operation op aus, wenn this gueltig ist.
 	 */
 	public void executeIfValid(Operation op);
 
 	/**
-	 * Represents an Operation that can be executed.
+	 * Stellt eine vom ValidationCode ausfuehrbare Operation dar.
 	 * 
 	 * @author Peter Pilgerstorfer
 	 */
