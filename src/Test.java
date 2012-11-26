@@ -3,9 +3,9 @@ import java.util.*;
 public class Test {
 	public static void main(String[] args) {
 		//test3();
-		//test1();
+		test1();
 		//test2();
-		test4();
+		//test4();
 		//test5();
 	}
 
@@ -257,8 +257,10 @@ private static void test2()
 	System.out.println("Invalid ?\t" + al.insert(s1));
 }
 
-/**Jeder Androide muss mit einer berührungssensitiven, hochfesten oder gepanzerten Skin ausgestattet sein.
- * Bediener benötigen unbedingt eine berührungssensitive Skin, und nur Beschützer dürfen eine gepanzerte Skin haben. */
+/**
+ * Jeder Androide muss mit einer beruehrungssensitiven, hochfesten oder gepanzerten Skin ausgestattet sein.
+ * Bediener benötigen unbedingt eine berührungssensitive Skin, und nur Beschützer dürfen eine gepanzerte Skin haben. 
+ * */
 private static void test4() {
 	
 	gKit x = new gKit();
@@ -468,26 +470,26 @@ System.out.print("\n\n\nTeste unzulaessige Software\n");
 	System.out.println("Invalid Software for BodyGuard " + al.insert(s1));
 	
 	//Fighter
-		s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel5()));
-		System.out.println("Invalid Software for Fighter " + al.insert(s1));
-		
-		s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1), new Associate.BaseSoftware(1, new SecurityLevel5()));
-		System.out.println("Invalid Software for Fighter " + al.insert(s1));
-		
-		s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1), new Bodyguard.BaseSoftware(1, new SecurityLevel5()));
-		System.out.println("Invalid Software for Fighter " + al.insert(s1));
-		
-		s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1), new ObjectGuard.BaseSoftware(1, new SecurityLevel5()));
-		System.out.println("Invalid Software for Fighter " + al.insert(s1));
-		
-		s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1), new ServiceTechnician.BaseSoftware(1, new SecurityLevel5()));
-		System.out.println("Invalid Software for Fighter " + al.insert(s1));
-		
-		s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1), new TransportWorker.BaseSoftware(1, new SecurityLevel5()));
-		System.out.println("Invalid Software for Fighter " + al.insert(s1));
-		
-		s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1), new BuildingWorker.BaseSoftware(1, new SecurityLevel5()));
-		System.out.println("Invalid Software for Fighter " + al.insert(s1));
+	s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel5()));
+	System.out.println("Invalid Software for Fighter " + al.insert(s1));
+	
+	s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1), new Associate.BaseSoftware(1, new SecurityLevel5()));
+	System.out.println("Invalid Software for Fighter " + al.insert(s1));
+	
+	s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1), new Bodyguard.BaseSoftware(1, new SecurityLevel5()));
+	System.out.println("Invalid Software for Fighter " + al.insert(s1));
+	
+	s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1), new ObjectGuard.BaseSoftware(1, new SecurityLevel5()));
+	System.out.println("Invalid Software for Fighter " + al.insert(s1));
+	
+	s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1), new ServiceTechnician.BaseSoftware(1, new SecurityLevel5()));
+	System.out.println("Invalid Software for Fighter " + al.insert(s1));
+	
+	s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1), new TransportWorker.BaseSoftware(1, new SecurityLevel5()));
+	System.out.println("Invalid Software for Fighter " + al.insert(s1));
+	
+	s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1), new BuildingWorker.BaseSoftware(1, new SecurityLevel5()));
+	System.out.println("Invalid Software for Fighter " + al.insert(s1));
 	
 	//ObjectGuard
 	s1 = new ObjectGuard(1, x._1kw(1), new TouchSensitiveSkin(1), new Assistant.BaseSoftware(1, new SecurityLevel4()));
