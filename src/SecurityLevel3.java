@@ -17,13 +17,13 @@ public class SecurityLevel3 extends SecurityLevel{
 	}
 	
 	@Override
-	public ValidationCode validPowerClass(PowerClass.LE5 s) {
-		return new Valid();
+	public ValidationCode validPowerClass(PowerClass.Unlimited s) {
+		return new Error("Invalid Power Class");
 	}
 	
 	@Override
-	public ValidationCode validPowerClass(PowerClass.LE1 s) {
-		return new Valid();
+	public ValidationCode validPowerClass(PowerClass.LE10 s) {
+		return new Error("Invalid Power Class");
 	}
 
 	@Override

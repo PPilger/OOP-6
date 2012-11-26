@@ -1,15 +1,12 @@
 public interface ValidationCode {
-	public ValidationCode mergeOr(ValidationCode other);
+	/**
+	 * Returns Valid if both ValidationCodes are Valid, and Error otherwise.
+	 */
+	public ValidationCode merge(ValidationCode other);
 
-	public ValidationCode mergeOr(Error other);
+	public ValidationCode merge(Error other);
 
-	public ValidationCode mergeOr(Valid other);
-
-	public ValidationCode mergeAnd(ValidationCode other);
-
-	public ValidationCode mergeAnd(Error other);
-
-	public ValidationCode mergeAnd(Valid other);
+	public ValidationCode merge(Valid other);
 
 	public ValidationCode executeIfValid(Operation op);
 

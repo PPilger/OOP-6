@@ -10,34 +10,18 @@ public class Error implements ValidationCode {
 	}
 	
 	@Override
-	public ValidationCode mergeOr(ValidationCode other) {
-		return other.mergeOr(this); // visit mergeOr(Error) of the other validationCode
+	public ValidationCode merge(ValidationCode other) {
+		return other.merge(this); // visit merge(Error) of the other validationCode
 	}
 	
 	@Override
-	public ValidationCode mergeOr(Error other) {
+	public ValidationCode merge(Error other) {
 		messages.addAll(other.messages);
 		return this;
 	}
 	
 	@Override
-	public ValidationCode mergeOr(Valid other) {
-		return other;
-	}
-	
-	@Override
-	public ValidationCode mergeAnd(ValidationCode other) {
-		return other.mergeAnd(this); // visit mergeAnd(Error) of the other validationCode
-	}
-	
-	@Override
-	public ValidationCode mergeAnd(Error other) {
-		messages.addAll(other.messages);
-		return this;
-	}
-	
-	@Override
-	public ValidationCode mergeAnd(Valid other) {
+	public ValidationCode merge(Valid other) {
 		return this;
 	}
 	
