@@ -53,6 +53,9 @@ public class Kit {
 		return code;
 	}
 
+	/**
+	 * Gibt alle Aktoren und Sensoren in Stringdarstellung zurueck.
+	 */
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
