@@ -12,8 +12,7 @@ public abstract class SecurityLevel {
 	 */
 	public abstract ValidationCode visit(SecurityLevel level);
 
-	// Visitor-Pattern Methoden um das SecurityLevel auf Gleichheit
-	// zu ueberpruefen:
+	// Methoden um das SecurityLevel auf Gleichheit zu ueberpruefen:
 
 	public ValidationCode validSecLevel(SecurityLevel1 level) {
 		return new Error("Invalid Security Level");
@@ -35,8 +34,8 @@ public abstract class SecurityLevel {
 		return new Error("Invalid Security Level");
 	}
 
-	// Visitor-Pattern Methoden um die Leistungsklasse zu ueberpruefen
-	// (Einschraenkungen je nach Typ):
+	// Methoden um die Leistungsklasse zu ueberpruefen (Einschraenkungen je nach
+	// Typ):
 
 	public ValidationCode validPowerClass(PowerClass.Unlimited s) {
 		return new Valid();
