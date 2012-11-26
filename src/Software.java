@@ -1,3 +1,8 @@
+/**
+ * Invariante: Software-Objekte sind unveraenderbar.
+ * 
+ * @author Peter Pilgerstorfer
+ */
 public abstract class Software extends Encoded {
 	private SecurityLevel level;
 

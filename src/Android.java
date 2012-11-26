@@ -1,6 +1,11 @@
+/**
+ * Invariante: Ein Android-Objekt ist unveraenderbar.
+ * 
+ * @author Peter Pilgerstorfer
+ */
 public abstract class Android {
 	private int serialNum;
-	private Kit kit;
+	private Kit kit; // Sensoren-Aktoren-Kit
 	private Skin skin;
 	private Software software;
 
@@ -11,8 +16,12 @@ public abstract class Android {
 		this.software = software;
 	}
 
+	/**
+	 * Ueberprueft, ob der Android gueltig ist. Liefert Valid, wenn er gueltig
+	 * ist und Error anderenfalls.
+	 */
 	public ValidationCode validate() {
-		SerialNumber num = new SerialNumber(serialNum);
+		SerialNumberValidator num = new SerialNumberValidator(serialNum);
 		ValidationCode result;
 		ValidationCode code;
 
@@ -34,13 +43,11 @@ public abstract class Android {
 
 		code = software.getLevel().visit(this);
 		result = result.merge(code);
-		
-		// bei den Leistungsklassen muss der Typ des Androiden oder die
-		// Sicherheitsstufe der Software festlegen, welche Leistungsklasse
-		// zulaessig ist.
+
 		code = kit.getPowerClass().visit(this);
 		result = result.merge(code);
-		
+
+		// die Sicherheitsstufe muss die Leistungsklasse ebenfalls akzeptieren
 		code = kit.getPowerClass().visit(software.getLevel());
 		result = result.merge(code);
 
@@ -50,7 +57,7 @@ public abstract class Android {
 	public ValidationCode validate(Android replaced) {
 		ValidationCode result;
 		ValidationCode code;
-		
+
 		result = this.validate();
 
 		// ueberpruefen, ob der Haupttyp nicht veraendert wurde

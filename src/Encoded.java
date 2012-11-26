@@ -14,7 +14,7 @@ public abstract class Encoded {
 	 * Ueberprueft, ob das Objekt mit der uebergebenen Seriennummer codiert ist.
 	 * Liefert Valid, falls es zutrifft und Error anderenfalls.
 	 */
-	public ValidationCode validSerialNum(SerialNumber num) {
+	public ValidationCode validSerialNum(SerialNumberValidator num) {
 		return num.validate(serialNum);
 	}
 }

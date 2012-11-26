@@ -1,4 +1,8 @@
-public abstract class Skin extends Encoded {
+/**
+ * Invariante: Skin-Objekte sind unveraenderbar.
+ * 
+ * @author Peter Pilgerstorfer
+ */public abstract class Skin extends Encoded {
 
 	public Skin(int serialNum) {
 		super(serialNum);

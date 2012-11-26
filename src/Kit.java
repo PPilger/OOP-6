@@ -35,7 +35,7 @@ public class Kit {
 	 * Seriennummer codiert ist. Liefert Valid, falls es zutrifft und Error
 	 * anderenfalls.
 	 */
-	public ValidationCode validSerialNum(SerialNumber num) {
+	public ValidationCode validSerialNum(SerialNumberValidator num) {
 		ValidationCode code = new Valid();
 
 		// Aktoren pruefen
