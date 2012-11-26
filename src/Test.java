@@ -261,23 +261,41 @@ private static void test4() {
 	gKit x = new gKit();
 	AndroidList al = new AndroidList();
 	
+	//Associate
 	Android s1 = new Associate(1234, x._1kw(1234), new TouchSensitiveSkin(1234), new Associate.BaseSoftware(1234, new SecurityLevel1()));
-	System.out.println(al.insert(s1) + "Valid Associate");
+	System.out.println("Valid Associate\t\t\t" + al.insert(s1));
+	s1 = new Associate(1234, x._1kw(1234), new TouchSensitiveSkin(1234), new Associate.BaseSoftware(1234, new SecurityLevel2()));
+	System.out.println("Invalid Associate\t\t" + al.insert(s1));
 	
+	//Assistant
 	Android s2 = new Assistant(1235, x._1kw(1235), new TouchSensitiveSkin(1235), new Assistant.BaseSoftware(1235, new SecurityLevel2()));
-	System.out.println(al.insert(s2) + "Valid Assistant");
+	System.out.println("Valid Assistant\t\t\t" + al.insert(s2));
+	s2 = new Assistant(1235, x._1kw(1235), new ArmoredSkin(1235), new Assistant.BaseSoftware(1235, new SecurityLevel2()));
+	System.out.println("Valid Assistant\t\t\t" + al.insert(s2));
 	
-	Android s3 = new BuildingWorker(1236, x._10kw(1236), new SolidSkin(1236), new BuildingWorker.BaseSoftware(1236, new SecurityLevel3()));
-	System.out.println(al.insert(s3) + "Invalid BuildingWorker");
+	//BuildingWorker
+	Android s3 = new BuildingWorker(1236, x._5kw(1236), new SolidSkin(1236), new BuildingWorker.BaseSoftware(1236, new SecurityLevel3()));
+	System.out.println("Valid BuildingWorker\t\t" + al.insert(s3));
+	s3 = new BuildingWorker(1236, x._10kw(1236), new SolidSkin(1236), new BuildingWorker.BaseSoftware(1236, new SecurityLevel3()));
+	System.out.println("Invalid BuildingWorker\t\t" + al.insert(s3));
 	
+	//ServiceTechnician
 	Android s4 = new ServiceTechnician(1237, x._5kw(1237), new TouchSensitiveSkin(1237), new ServiceTechnician.BaseSoftware(1237, new SecurityLevel4()));
-	System.out.println(al.insert(s4) + "Valid ServiceTechnician");
+	System.out.println("Valid ServiceTechnician\t\t" + al.insert(s4));
+	s4 = new ServiceTechnician(1237, x._5kw(1237), new TouchSensitiveSkin(1237), new ServiceTechnician.BaseSoftware(1237, new SecurityLevel1()));
+	System.out.println("Invalid ServiceTechnician\t" + al.insert(s4));
 	
+	//Fighter
 	Android s5 = new Fighter(666, x._infkw(666), new ArmoredSkin(666), new Fighter.BaseSoftware(666, new SecurityLevel5()));
-	System.out.println(al.insert(s5) + "Valid Fighter");
+	System.out.println("Valid Fighter\t\t\t" + al.insert(s5));
+	s5 = new Fighter(666, x._infkw(666), new TouchSensitiveSkin(666), new Fighter.BaseSoftware(666, new SecurityLevel5()));
+	System.out.println("Valid Fighter\t\t\t" + al.insert(s5));
 	
+	//Bodyguard
 	Android s6 = new Bodyguard(111, x._10kw(111), new ArmoredSkin(111), new Bodyguard.BaseSoftware(111, new SecurityLevel4()));
-	System.out.println(al.insert(s6) + "Valid Bodyguard");
+	System.out.println("Valid Bodyguard\t\t\t" + al.insert(s6));
+	s6 = new Bodyguard(111, x._10kw(111), new ArmoredSkin(111), new Bodyguard.BaseSoftware(111, new SecurityLevel4()));
+	System.out.println("Invalid Bodyguard\t\t" + al.insert(s6));
 	
 }
 
