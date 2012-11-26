@@ -36,13 +36,13 @@ public class Kit extends Encoded {
 		// Aktoren pruefen
 		for (Aktor a : aktorList) {
 			ValidationCode code2 = a.validSerialNum(num);
-			code = code.mergeAnd(code2);
+			code = code.merge(code2);
 		}
 
 		// Sensoren pruefen
 		for (Sensor s : sensorList) {
 			ValidationCode code2 = s.validSerialNum(num);
-			code = code.mergeAnd(code2);
+			code = code.merge(code2);
 		}
 
 		return code;

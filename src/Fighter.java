@@ -25,26 +25,6 @@ public class Fighter extends Guard {
 	}
 
 	@Override
-	public ValidationCode validPowerClass(PowerClass.Unlimited s) {
-		return new Valid();
-	}
-
-	@Override
-	public ValidationCode validPowerClass(PowerClass.LE10 s) {
-		return new Valid();
-	}
-
-	@Override
-	public ValidationCode validPowerClass(PowerClass.LE5 s) {
-		return new Valid();
-	}
-
-	@Override
-	public ValidationCode validPowerClass(PowerClass.LE1 s) {
-		return new Valid();
-	}
-
-	@Override
 	public String getType() {
 		return "Kaempfer";
 	}

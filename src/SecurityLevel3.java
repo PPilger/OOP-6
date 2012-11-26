@@ -8,22 +8,22 @@ public class SecurityLevel3 extends SecurityLevel{
 
 	@Override
 	public ValidationCode visit(SecurityLevel level) {
-		return level.validSecurityLevel(this);
+		return level.validSecLevel(this);
 	}
 
 	@Override
-	public ValidationCode validSecurityLevel(SecurityLevel3 s) {
+	public ValidationCode validSecLevel(SecurityLevel3 s) {
 		return new Valid();
 	}
 	
 	@Override
-	public ValidationCode validPowerClass(PowerClass.LE5 s) {
-		return new Valid();
+	public ValidationCode validPowerClass(PowerClass.Unlimited s) {
+		return new Error("Invalid Power Class");
 	}
 	
 	@Override
-	public ValidationCode validPowerClass(PowerClass.LE1 s) {
-		return new Valid();
+	public ValidationCode validPowerClass(PowerClass.LE10 s) {
+		return new Error("Invalid Power Class");
 	}
 
 	@Override

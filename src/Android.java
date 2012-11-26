@@ -14,35 +14,35 @@ public abstract class Android {
 	public ValidationCode validate() {
 		SerialNumber num = new SerialNumber(serialNum);
 		ValidationCode result;
-		ValidationCode code1;
-		ValidationCode code2;
+		ValidationCode code;
 
 		// ueberpruefe die Seriennummer aller Komponenten
 		result = kit.validSerialNum(num);
 
-		code1 = skin.validSerialNum(num);
-		result = result.mergeAnd(code1);
+		code = skin.validSerialNum(num);
+		result = result.merge(code);
 
-		code1 = software.validSerialNum(num);
-		result = result.mergeAnd(code1);
+		code = software.validSerialNum(num);
+		result = result.merge(code);
 
 		// ueberpruefe die Anforderungen der einzelnen Typen
-		code1 = skin.visit(this);
-		result = result.mergeAnd(code1);
+		code = skin.visit(this);
+		result = result.merge(code);
 
-		code1 = software.visit(this);
-		result = result.mergeAnd(code1);
+		code = software.visit(this);
+		result = result.merge(code);
 
-		code1 = software.getLevel().visit(this);
-		result = result.mergeAnd(code1);
+		code = software.getLevel().visit(this);
+		result = result.merge(code);
 		
 		// bei den Leistungsklassen muss der Typ des Androiden oder die
 		// Sicherheitsstufe der Software festlegen, welche Leistungsklasse
 		// zulaessig ist.
-		code1 = kit.getPowerClass().visit(this);
-		code2 = kit.getPowerClass().visit(software.getLevel());
-		code1 = code1.mergeOr(code2);
-		result = result.mergeAnd(code1);
+		code = kit.getPowerClass().visit(this);
+		result = result.merge(code);
+		
+		code = kit.getPowerClass().visit(software.getLevel());
+		result = result.merge(code);
 
 		return result;
 	}
@@ -55,11 +55,11 @@ public abstract class Android {
 
 		// ueberpruefen, ob der Haupttyp nicht veraendert wurde
 		code = this.visit(replaced);
-		result = result.mergeAnd(code);
+		result = result.merge(code);
 
 		// ueberpruefen, ob die Sicherheitsstufe nicht veraendert wurde
 		code = software.getLevel().visit(replaced.software.getLevel());
-		result = result.mergeAnd(code);
+		result = result.merge(code);
 
 		return result;
 	}
@@ -158,19 +158,19 @@ public abstract class Android {
 	// (Einschraenkungen je nach Typ)
 
 	public ValidationCode validPowerClass(PowerClass.Unlimited s) {
-		return new Error("Invalid Power Class");
+		return new Valid();
 	}
 
 	public ValidationCode validPowerClass(PowerClass.LE10 s) {
-		return new Error("Invalid Power Class");
+		return new Valid();
 	}
 
 	public ValidationCode validPowerClass(PowerClass.LE5 s) {
-		return new Error("Invalid Power Class");
+		return new Valid();
 	}
 
 	public ValidationCode validPowerClass(PowerClass.LE1 s) {
-		return new Error("Invalid Power Class");
+		return new Valid();
 	}
 
 	public int getSerialNum() {

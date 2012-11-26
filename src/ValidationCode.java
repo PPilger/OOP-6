@@ -1,20 +1,37 @@
+/**
+ * Repraesentiert ein Validierungsergebnis.
+ * 
+ * @author Peter Pilgerstorfer
+ */
 public interface ValidationCode {
-	public ValidationCode mergeOr(ValidationCode other);
+	// verwendet das Visitor-Pattern um merge(ValidationCode) auf merge(Error)
+	// und merge(Valid) aufzuteilen.
 
-	public ValidationCode mergeOr(Error other);
+	/**
+	 * Liefert Valid wenn beide gueltig sind und Error anderenfalls.
+	 */
+	public ValidationCode merge(ValidationCode other);
 
-	public ValidationCode mergeOr(Valid other);
+	/**
+	 * Liefert einen Error.
+	 */
+	public ValidationCode merge(Error other);
 
-	public ValidationCode mergeAnd(ValidationCode other);
+	/**
+	 * Liefert Valid wenn beide gueltig sind und Error anderenfalls.
+	 */
+	public ValidationCode merge(Valid other);
 
-	public ValidationCode mergeAnd(Error other);
+	/**
+	 * Fuehrt die Operation op aus, wenn this gueltig ist.
+	 */
+	public void executeIfValid(Operation op);
 
-	public ValidationCode mergeAnd(Valid other);
-
-	public ValidationCode executeIfValid(Operation op);
-
-	public String toString();
-
+	/**
+	 * Stellt eine vom ValidationCode ausfuehrbare Operation dar.
+	 * 
+	 * @author Peter Pilgerstorfer
+	 */
 	public static interface Operation {
 		public void execute();
 	}

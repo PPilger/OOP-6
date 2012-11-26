@@ -1,54 +1,73 @@
 import java.util.HashSet;
 import java.util.Set;
 
-
+/**
+ * Repraesentiert einen gueltigen ValidationCode (das validierte Objekt ist
+ * valide).
+ * 
+ * @author Peter Pilgerstorfer
+ */
 public class Error implements ValidationCode {
+	// Contains error messages
 	private Set<String> messages = new HashSet<String>();
-	
+
+	/**
+	 * Erstellt einen Error mit der angegebenen Fehlermeldung.
+	 */
 	public Error(String message) {
 		messages.add(message);
 	}
-	
-	@Override
-	public ValidationCode mergeOr(ValidationCode other) {
-		return other.mergeOr(this); // visit mergeOr(Error) of the other validationCode
+
+	/**
+	 * Kopierkonstruktor
+	 */
+	public Error(Error error) {
+		messages.addAll(error.messages);
 	}
-	
+
+	/**
+	 * Liefert einen Error. Dieser enthaelt die Fehlermeldungen beider Errors
+	 * (sofern other ein Error ist).
+	 */
 	@Override
-	public ValidationCode mergeOr(Error other) {
-		messages.addAll(other.messages);
+	public ValidationCode merge(ValidationCode other) {
+		// visit merge(Error) of the other validationCode
+		return other.merge(this);
+	}
+
+	/**
+	 * Liefert einen Error, der die Fehlermeldungen beider Errors enthaelt.
+	 */
+	@Override
+	public ValidationCode merge(Error other) {
+		Error result = new Error(this);
+		result.messages.addAll(other.messages);
+
+		return result;
+	}
+
+	/**
+	 * Liefert einen Error
+	 */
+	@Override
+	public ValidationCode merge(Valid other) {
 		return this;
 	}
-	
+
+	/**
+	 * Fuehrt die Operation op nicht aus.
+	 */
 	@Override
-	public ValidationCode mergeOr(Valid other) {
-		return other;
+	public void executeIfValid(Operation op) {
+		// this is not Valid => dont execute
 	}
-	
-	@Override
-	public ValidationCode mergeAnd(ValidationCode other) {
-		return other.mergeAnd(this); // visit mergeAnd(Error) of the other validationCode
-	}
-	
-	@Override
-	public ValidationCode mergeAnd(Error other) {
-		messages.addAll(other.messages);
-		return this;
-	}
-	
-	@Override
-	public ValidationCode mergeAnd(Valid other) {
-		return this;
-	}
-	
+
+	/**
+	 * Liefert einen String der alle Fehlermeldungen enthaelt
+	 */
 	@Override
 	public String toString() {
 		return messages.toString();
-	}
-
-	@Override
-	public ValidationCode executeIfValid(Operation op) {
-		return this;
 	}
 
 }

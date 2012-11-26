@@ -10,5 +10,9 @@ public abstract class Software extends Encoded {
 		return level;
 	}
 
+	/**
+	 * Visitor-Pattern: besucht die passende validSoftware-Methode des
+	 * uebergebenen Androids
+	 */
 	public abstract ValidationCode visit(Android android);
 }
