@@ -1,36 +1,42 @@
-
 public abstract class SecurityLevel {
-	
+
+	/**
+	 * Visitor-Pattern: besucht die passende validSecLevel-Methode des
+	 * uebergebenen Androids
+	 */
 	public abstract ValidationCode visit(Android android);
-	
+
+	/**
+	 * Visitor-Pattern: besucht die passende validSecLevel-Methode des
+	 * uebergebenen SecurityLevels
+	 */
 	public abstract ValidationCode visit(SecurityLevel level);
 
 	// Visitor-Pattern Methoden um das SecurityLevel auf Gleichheit
-	// zu ueberpruefen
+	// zu ueberpruefen:
 
-	public ValidationCode validSecurityLevel(SecurityLevel1 s) {
+	public ValidationCode validSecLevel(SecurityLevel1 level) {
 		return new Error("Invalid Security Level");
 	}
 
-	public ValidationCode validSecurityLevel(SecurityLevel2 s) {
+	public ValidationCode validSecLevel(SecurityLevel2 level) {
 		return new Error("Invalid Security Level");
 	}
 
-	public ValidationCode validSecurityLevel(SecurityLevel3 s) {
+	public ValidationCode validSecLevel(SecurityLevel3 level) {
 		return new Error("Invalid Security Level");
 	}
 
-	public ValidationCode validSecurityLevel(SecurityLevel4 s) {
+	public ValidationCode validSecLevel(SecurityLevel4 level) {
 		return new Error("Invalid Security Level");
 	}
 
-	public ValidationCode validSecurityLevel(SecurityLevel5 s) {
+	public ValidationCode validSecLevel(SecurityLevel5 level) {
 		return new Error("Invalid Security Level");
 	}
-	
+
 	// Visitor-Pattern Methoden um die Leistungsklasse zu ueberpruefen
-	// (Einschraenkungen je nach Typ)
-
+	// (Einschraenkungen je nach Typ):
 
 	public ValidationCode validPowerClass(PowerClass.Unlimited s) {
 		return new Valid();
@@ -47,28 +53,4 @@ public abstract class SecurityLevel {
 	public ValidationCode validPowerClass(PowerClass.LE1 s) {
 		return new Valid();
 	}
-	
-	public ValidationCode validSecLevel(SecurityLevel level) {
-		return new Error("Invalid Security Level");		
-	}
-	
-	public ValidationCode validSecLevel(SecurityLevel1 level) {
-		return new Error("Invalid Security Level");				
-	}
-	
-	public ValidationCode validSecLevel(SecurityLevel2 level) {
-		return new Error("Invalid Security Level");				
-	}
-	
-	public ValidationCode validSecLevel(SecurityLevel3 level) {
-		return new Error("Invalid Security Level");				
-	}
-	
-	public ValidationCode validSecLevel(SecurityLevel4 level) {
-		return new Error("Invalid Security Level");				
-	}
-	
-	public ValidationCode validSecLevel(SecurityLevel5 level) {
-		return new Error("Invalid Security Level");				
-	}	
 }

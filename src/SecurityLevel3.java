@@ -8,11 +8,11 @@ public class SecurityLevel3 extends SecurityLevel{
 
 	@Override
 	public ValidationCode visit(SecurityLevel level) {
-		return level.validSecurityLevel(this);
+		return level.validSecLevel(this);
 	}
 
 	@Override
-	public ValidationCode validSecurityLevel(SecurityLevel3 s) {
+	public ValidationCode validSecLevel(SecurityLevel3 s) {
 		return new Valid();
 	}
 	
