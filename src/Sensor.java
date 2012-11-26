@@ -1,7 +1,7 @@
 /**
+ * Invariante: Ein Sensor ist unveraenderbar.
  * 
  * @author Christian Kletzander
- * 
  */
 public class Sensor extends Encoded {
 

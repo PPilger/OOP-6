@@ -1,7 +1,7 @@
 /**
+ * Invariante: Ein Aktor ist unveraenderbar.
  * 
  * @author Christian Kletzander
- * 
  */
 public class Aktor extends Encoded {
 	private String name;
