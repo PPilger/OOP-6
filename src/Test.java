@@ -394,8 +394,10 @@ private static void test3()
 	
 }
 
-/**Die Software muss dem Einsatzgebiet des Androiden entsprechen. Analog zu den Androide-Typen gibt es Hilfskraft-Software,
- * Gesellschafter-Software, Bauarbeiter-Software und so weiter. */
+/**
+ * Die Software muss dem Einsatzgebiet des Androiden entsprechen. Analog zu den Androide-Typen gibt es Hilfskraft-Software,
+ * Gesellschafter-Software, Bauarbeiter-Software und so weiter. 
+ * */
 private static void test5()
 {
 System.out.print("\n\n\nTeste unzulaessige Software\n");
