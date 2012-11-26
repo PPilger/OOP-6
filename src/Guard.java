@@ -24,4 +24,14 @@ public abstract class Guard extends Android {
 	public ValidationCode validSkin(ArmoredSkin skin) {
 		return new Valid();
 	}
+	
+	@Override
+	public ValidationCode validSkin(TouchSensitiveSkin skin) {
+		return new Valid();
+	}
+	
+	@Override
+	public ValidationCode validSkin(SolidSkin skin) {
+		return new Valid();
+	}
 }
