@@ -47,7 +47,7 @@ private static void test1()
 	ArrayList<Sensor> as = new ArrayList<Sensor>();
 	as.add(new Sensor(12, "Staub"));
 	
-	Android s201 = new Associate(12, new Kit(12, ak, as), new TouchSensitiveSkin(12), new Associate.BaseSoftware(12, new SecurityLevel1()));
+	Android s201 = new Associate(12, new Kit(ak, as), new TouchSensitiveSkin(12), new Associate.BaseSoftware(12, new SecurityLevel1()));
 	System.out.println(al.insert(s201)+ "\tcreate new Associate Android");
 	
 	System.out.println();
@@ -60,36 +60,36 @@ private static void test1()
 	ak.add(new Aktor(12, "Putzen", 0.5));
 	ak.add(new Aktor(12, "Waschen", 0.5));
 	
-	Android s202 = new Assistant(12, new Kit(12, ak, as), new TouchSensitiveSkin(12) , new Assistant.BaseSoftware(12, new SecurityLevel1()));
+	Android s202 = new Assistant(12, new Kit(ak, as), new TouchSensitiveSkin(12) , new Assistant.BaseSoftware(12, new SecurityLevel1()));
 	System.out.println(al.insert(s202) + "\tAndroid will be edited and gets Waschen Aktor");
 	
-	s202 = new Assistant(12, new Kit(12, ak, as), new TouchSensitiveSkin(12) , new Assistant.BaseSoftware(12, new SecurityLevel1()));
+	s202 = new Assistant(12, new Kit(ak, as), new TouchSensitiveSkin(12) , new Assistant.BaseSoftware(12, new SecurityLevel1()));
 	System.out.println(al.insert(s202) + "\tAndroid will be edited and gets SecLev1");
 	
 	//next Android should be invalid (SecLev5 not allowed)
-	Android s210 = new Assistant(21, new Kit(21, ak, as), new TouchSensitiveSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel5()) );
+	Android s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel5()) );
 	System.out.println(al.insert(s210)+ "\tAssistant may not have SecLev5");
 	
-	s210 = new Assistant(21, new Kit(21, ak, as), new TouchSensitiveSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel4()) );
+	s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel4()) );
 	System.out.println(al.insert(s210)+ "\tAssistant may not have SecLev4");
 	
-	s210 = new Assistant(21, new Kit(21, ak, as), new TouchSensitiveSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel3()) );
+	s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel3()) );
 	System.out.println(al.insert(s210)+ "\tAssistant may not have SecLev3");
 	
-	s210 = new Assistant(21, new Kit(21, ak, as), new TouchSensitiveSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel2()) );
+	s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel2()) );
 	System.out.println(al.insert(s210)+ "\tAssistant may not have SecLev2");
 	
-	s210 = new Assistant(21, new Kit(21, ak, as), new TouchSensitiveSkin(21) , new Assistant.BaseSoftware(21, new SecurityLevel2()) );
+	s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Assistant.BaseSoftware(21, new SecurityLevel2()) );
 	System.out.println(al.insert(s210)+ "\twill be edited and gets SecLev1");
 	
-	s210 = new Assistant(21, new Kit(21, ak, as), new ArmoredSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel5()) );
+	s210 = new Assistant(21, new Kit(ak, as), new ArmoredSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel5()) );
 	System.out.println(al.insert(s210)+ "\tAssistant may not have Armored Skin");
 	
-	s210 = new Assistant(21, new Kit(21, ak, as), new TouchSensitiveSkin(21) , new Assistant.BaseSoftware(21, new SecurityLevel2()) );
+	s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Assistant.BaseSoftware(21, new SecurityLevel2()) );
 	System.out.println(al.insert(s210)+ "\tnew Assistant");
 	
 	//next Android should be invalid, Android who was Servant may not become a Fighter
-	s210 = new Fighter(21, new Kit(21, ak, as), new ArmoredSkin(21), new Fighter.BaseSoftware(21, new SecurityLevel5()));
+	s210 = new Fighter(21, new Kit(ak, as), new ArmoredSkin(21), new Fighter.BaseSoftware(21, new SecurityLevel5()));
 	System.out.println(al.insert(s210) + "\tAndroid who was Servant may not become a Fighter");
 	
 	//create new Fighter Android
@@ -97,43 +97,43 @@ private static void test1()
 	ak.add(new Aktor(22, "Explodieren", 50.));
 	ak.add(new Aktor(22, "Giftgasabsorber", 5.));
 	as = new ArrayList<Sensor>(); as.add(new Sensor(22, "Gas-Sensor"));as.add(new Sensor(22, "Notfallassistenz"));
-	Android s220 = new Fighter(22, new Kit(22, ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel5()));
+	Android s220 = new Fighter(22, new Kit(ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel5()));
 	System.out.println(al.insert(s220) + "\tcreate new Fighter Android");
 	
-	s220 = new Fighter(22, new Kit(22, ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel4()));
+	s220 = new Fighter(22, new Kit(ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel4()));
 	System.out.println(al.insert(s220) + "\tFighter may not have SecLev4");
 	
-	s220 = new Fighter(22, new Kit(22, ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel3()));
+	s220 = new Fighter(22, new Kit(ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel3()));
 	System.out.println(al.insert(s220) + "\tFighter may not have SecLev3");
 	
-	s220 = new Fighter(22, new Kit(22, ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel2()));
+	s220 = new Fighter(22, new Kit(ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel2()));
 	System.out.println(al.insert(s220) + "\tFighter may not have SecLev2");
 	
-	s220 = new Fighter(22, new Kit(22, ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel1()));
+	s220 = new Fighter(22, new Kit(ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel1()));
 	System.out.println(al.insert(s220) + "\tFighter may not have SecLev1");
 	
 	//Fighter may become Bodyguard
 	ak = new ArrayList<Aktor>(); ak.add(new Aktor(22, "Augen ausstechen", 1.));
 	ak.add(new Aktor(22, "Panzerkorb", 1.));
-	s220 = new Bodyguard(22, new Kit(22, ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel4()));
+	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel4()));
 	System.out.println(al.insert(s220) + "\tFighter may become Bodyguard");
 	
 	ak = new ArrayList<Aktor>(); ak.add(new Aktor(22, "Augen ausstechen", 1.));
 	ak.add(new Aktor(22, "Explodieren", 50.));
 	ak.add(new Aktor(22, "Giftgasabsorber", 5.));
-	s220 = new Bodyguard(22, new Kit(22, ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel4()));
+	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel4()));
 	System.out.println(al.insert(s220) + "\tBodyguard may not have 56kW Aktors");
 	
-	s220 = new Bodyguard(22, new Kit(22, ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel2()));
+	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel2()));
 	System.out.println(al.insert(s220) + "\tBodyguard may not have SecLev 2");
 	
-	s220 = new Bodyguard(22, new Kit(22, ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel3()));
+	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel3()));
 	System.out.println(al.insert(s220) + "\tBodyguard may not have SecLev 3");
 	
-	s220 = new Bodyguard(22, new Kit(22, ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel5()));
+	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel5()));
 	System.out.println(al.insert(s220) + "\tBodyguard may not have SecLev 5");
 	
-	s220 = new Bodyguard(22, new Kit(22, ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel1()));
+	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel1()));
 	System.out.println(al.insert(s220) + "\tBodyguard may not have SecLev 1");
 	
 	System.out.println();
@@ -161,7 +161,7 @@ public static class gKit{
 		a1kw.add(new Aktor(id, "minimal", 1.));
 		ArrayList<Sensor> sl = new ArrayList<Sensor>();
 		sl.add(new Sensor(id, "sample sensor"));
-		return new Kit(id, a1kw, sl);
+		return new Kit(a1kw, sl);
 	}
 	
 	public Kit _5kw(int id)
@@ -170,7 +170,7 @@ public static class gKit{
 		a5kw.add(new Aktor(id, "mittel", 5.));
 		ArrayList<Sensor> sl = new ArrayList<Sensor>();
 		sl.add(new Sensor(id, "sample sensor"));
-		return new Kit(id, a5kw, sl);
+		return new Kit(a5kw, sl);
 	}
 	
 	public Kit _10kw(int id)
@@ -179,7 +179,7 @@ public static class gKit{
 		a10kw.add(new Aktor(id, "hoch", 10.));
 		ArrayList<Sensor> sl = new ArrayList<Sensor>();
 		sl.add(new Sensor(id, "sample sensor"));
-		return new Kit(id, a10kw, sl);
+		return new Kit(a10kw, sl);
 	}
 	
 	public Kit _infkw(int id)
@@ -188,7 +188,7 @@ public static class gKit{
 		ainfkw.add(new Aktor(id, "unendlich", 5000.));
 		ArrayList<Sensor> sl = new ArrayList<Sensor>();
 		sl.add(new Sensor(id, "sample sensor"));
-		return new Kit(id, ainfkw, sl);
+		return new Kit(ainfkw, sl);
 	}
 }
 
