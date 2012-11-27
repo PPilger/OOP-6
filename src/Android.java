@@ -67,6 +67,11 @@ public abstract class Android {
 		ValidationCode code;
 
 		result = this.validate();
+		
+		// ueberpruefen, ob die Seriennummer nicht veraendert wurde
+		SerialNumberValidator snVal = new SerialNumberValidator(serialNum);
+		code = snVal.validate(replaced.serialNum);
+		result = result.merge(code);
 
 		// ueberpruefen, ob der Haupttyp nicht veraendert wurde
 		code = this.visit(replaced);

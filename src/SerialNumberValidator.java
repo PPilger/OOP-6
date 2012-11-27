@@ -19,7 +19,7 @@ public class SerialNumberValidator {
 
 		if (code == null) {
 			// die Seriennummer war nicht enthalten
-			return new Error("not a valid Serial Number");
+			return new Error("Invalid Serialnumber");
 		}
 
 		return code;

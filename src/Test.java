@@ -2,13 +2,13 @@ import java.util.*;
 
 public class Test {
 	public static void main(String[] args) {
-
 		testAndroidList();
 		testUpdate();
 		testPowerClass();
 		testSkin();
 		testSoftware();
 		testSecurityLevel();
+		testSerialNumber();
 	}
 
 /**
@@ -251,38 +251,75 @@ private static void testAndroidList()
 	}
 
 	/**
-	 * Error test: change main Android Type From To
+	 * Testet die Vorraussetzungen die bei einer Aenderung eines Androiden erfuellt sein muessen.
 	 * 
-	 * 
-	 * Valid test: change main Android Type From To
-	 * 
-	 * 
-	 * Error: Wrong Skin Assistant ArmoredSkin, SolidSkin
-	 * 
-	 * Valid: Right Skin Assistant TouchSensitive
-	 * 
-	 * 
-	 * Error: Wrong Security Level Assistant Level 3,4,5
-	 * 
-	 * 
-	 * Valid: Right Security Level Associate Level 1 Assistant Level 1,2
-	 * 
-	 * 
+	 * Nachträgliche Änderungen der Androiden sind nur auf eingeschränkte Weise erlaubt:
+	 * Die Seriennummer, der Haupttyp (Bediener, Schwerarbeiter oder Beschützer)
+	 * sowie die Sicherheitsstufe der Software dürfen nicht geändert werden.
 	 */
 	private static void testUpdate() {
 		System.out.println("\n\nTeste Einschraenkungen beim Aendern eines Androiden\n");
 		
 		AndroidList list = new AndroidList();
-		Android servant1;
-		Android heavyworker2;
+		Android associate1;
+		Android assistant1;
+		Android transportWorker2;
+		Android buildingWorker2;
+		Android bodyguard2;
+		Android objectguard1;
 
-		servant1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
-				new Assistant.BaseSoftware(1, new SecurityLevel1()));
-		heavyworker2 = new TransportWorker(2, kit5kw(2), new SolidSkin(2),
-				new TransportWorker.BaseSoftware(2, new SecurityLevel3()));
+		associate1 = new Associate(1, kit1kw(1), new TouchSensitiveSkin(1),
+				new Associate.BaseSoftware(1, new SecurityLevel1()));
+		transportWorker2 = new TransportWorker(2, kit5kw(2), new SolidSkin(2),
+				new TransportWorker.BaseSoftware(2, new SecurityLevel4()));
 		
-		list.insert(servant1);
-		list.insert(heavyworker2);
+		list.insert(associate1);
+		list.insert(transportWorker2);
+		
+		System.out.println("Anfangsbelegung: ");
+		showAndroids("#", list.iterator());
+
+		
+		System.out.println("Aenderungsversuche mittels \"AndroidList.insert\":");
+		
+		//Anderer Haupttyp
+		bodyguard2 = new Bodyguard(2, kit1kw(2), new SolidSkin(2),
+				new Bodyguard.BaseSoftware(2, new SecurityLevel4()));
+		System.out.println("Transportarbeiter (Level 4) -> Leibwaechter (Level 4): " + list.insert(bodyguard2));
+		
+		//Anderer Haupttyp, andere Sicherheitsstufe
+		objectguard1 = new ObjectGuard(1, kit1kw(1), new SolidSkin(1),
+				new ObjectGuard.BaseSoftware(1, new SecurityLevel4()));
+		System.out.println("Gesellschafter (Level 1) -> Objektbewacher (Level 4): " + list.insert(objectguard1));
+		
+		//Andere Sicherheitsstufe
+		assistant1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
+				new Assistant.BaseSoftware(1, new SecurityLevel2()));
+		System.out.println("Gesellschafter (Level 1) -> Hilfskraft (Level 2): " + list.insert(assistant1));
+
+		System.out.println("\nBelegung nach ungueltigen Operationen unveraendert: ");
+		showAndroids("#", list.iterator());
+		
+		//Gueltige Aenderung
+		assistant1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
+				new Assistant.BaseSoftware(1, new SecurityLevel1()));
+		System.out.println("Gesellschafter (Level 1) -> Hilfskraft (Level 1): " + list.insert(assistant1));
+
+		buildingWorker2 = new BuildingWorker(2, kit5kw(2), new TouchSensitiveSkin(2),
+				new BuildingWorker.BaseSoftware(2, new SecurityLevel4()));
+		System.out.println("Transportarbeiter (Level 4) -> Bauarbeiter (Level 4): " + list.insert(buildingWorker2));
+
+		System.out.println("\nBelegung nach gueltigen Operationen: ");
+		showAndroids("#", list.iterator());
+		
+		
+		System.out.println("\nUeberpruefe Aenderbarkeit der Seriennummer mittels \"Android.validate(Android other)\":");
+		
+		//Aendere Seriennummer (nicht ueber insert moeglich)
+		System.out.println("Objektbewacher #1 (Level 4) -> Leibwaechter #2 (Level 4): " + objectguard1.validate(bodyguard2));
+		System.out.println("Leibwaechter #2 (Level 4) -> Hilfskraft #1 (Level 2): " + bodyguard2.validate(assistant1));
+		
+		
 		
 //		AndroidList al = new AndroidList();
 //
@@ -759,277 +796,278 @@ private static void testAndroidList()
 		cnt++;
 		Android s201 = new Associate(cnt, kit1kw(cnt), new TouchSensitiveSkin(
 				cnt), new Associate.BaseSoftware(cnt, new SecurityLevel1()));
-		System.out.println("Valid Associate" + al.insert(s201));
+		System.out.println("Valid Associate " + al.insert(s201));
 
 		cnt++;
 		s201 = new Associate(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Associate.BaseSoftware(cnt, new SecurityLevel2()));
-		System.out.println("Invalid Associate" + al.insert(s201));
+		System.out.println("Invalid Associate " + al.insert(s201));
 
 		cnt++;
 		s201 = new Associate(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Associate.BaseSoftware(cnt, new SecurityLevel3()));
-		System.out.println("Invalid Associate" + al.insert(s201));
+		System.out.println("Invalid Associate " + al.insert(s201));
 
 		cnt++;
 		s201 = new Associate(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Associate.BaseSoftware(cnt, new SecurityLevel4()));
-		System.out.println("Invalid Associate" + al.insert(s201));
+		System.out.println("Invalid Associate " + al.insert(s201));
 
 		cnt++;
 		s201 = new Associate(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Associate.BaseSoftware(cnt, new SecurityLevel5()));
-		System.out.println("Invalid Associate" + al.insert(s201));
+		System.out.println("Invalid Associate " + al.insert(s201));
 
-		System.out.println("\n\n");
+		System.out.println();
 
 		// Assistant
 		cnt++;
 		s201 = new Assistant(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Assistant.BaseSoftware(cnt, new SecurityLevel1()));
-		System.out.println("Valid Assistant" + al.insert(s201));
+		System.out.println("Valid Assistant " + al.insert(s201));
 
 		// cnt++;
 		s201 = new Assistant(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Assistant.BaseSoftware(cnt, new SecurityLevel2()));
-		System.out.println("Invalid Assistant" + al.insert(s201));
+		System.out.println("Invalid Assistant " + al.insert(s201));
 
 		cnt++;
 		s201 = new Assistant(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Assistant.BaseSoftware(cnt, new SecurityLevel2()));
-		System.out.println("Valid Assistant" + al.insert(s201));
+		System.out.println("Valid Assistant " + al.insert(s201));
 
 		cnt++;
 		s201 = new Assistant(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Assistant.BaseSoftware(cnt, new SecurityLevel3()));
-		System.out.println("Invalid Assistant" + al.insert(s201));
+		System.out.println("Invalid Assistant " + al.insert(s201));
 
 		cnt++;
 		s201 = new Assistant(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Assistant.BaseSoftware(cnt, new SecurityLevel4()));
-		System.out.println("Invalid Assistant" + al.insert(s201));
+		System.out.println("Invalid Assistant " + al.insert(s201));
 
 		cnt++;
 		s201 = new Assistant(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Assistant.BaseSoftware(cnt, new SecurityLevel5()));
-		System.out.println("Invalid Assistant" + al.insert(s201));
+		System.out.println("Invalid Assistant " + al.insert(s201));
 
-		System.out.println("\n\n");
+		System.out.println();
 
 		// TransportWorker
 		cnt++;
 		s201 = new TransportWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new TransportWorker.BaseSoftware(
 						cnt, new SecurityLevel1()));
-		System.out.println("Invalid TransportWorker" + al.insert(s201));
+		System.out.println("Invalid TransportWorker " + al.insert(s201));
 
 		cnt++;
 		s201 = new TransportWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new TransportWorker.BaseSoftware(
 						cnt, new SecurityLevel2()));
-		System.out.println("Invalid TransportWorker" + al.insert(s201));
+		System.out.println("Invalid TransportWorker " + al.insert(s201));
 
 		cnt++;
 		s201 = new TransportWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new TransportWorker.BaseSoftware(
 						cnt, new SecurityLevel3()));
-		System.out.println("Valid TransportWorker" + al.insert(s201));
+		System.out.println("Valid TransportWorker " + al.insert(s201));
 
 		// cnt++;
 		s201 = new TransportWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new TransportWorker.BaseSoftware(
 						cnt, new SecurityLevel4()));
-		System.out.println("Invalid TransportWorker" + al.insert(s201));
+		System.out.println("Invalid TransportWorker " + al.insert(s201));
 
 		cnt++;
 		s201 = new TransportWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new TransportWorker.BaseSoftware(
 						cnt, new SecurityLevel4()));
-		System.out.println("Valid TransportWorker" + al.insert(s201));
+		System.out.println("Valid TransportWorker " + al.insert(s201));
 
 		cnt++;
 		s201 = new TransportWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new TransportWorker.BaseSoftware(
 						cnt, new SecurityLevel5()));
-		System.out.println("Invalid TransportWorker" + al.insert(s201));
+		System.out.println("Invalid TransportWorker " + al.insert(s201));
 
-		System.out.println("\n\n");
+		System.out.println();
 
 		// BuildingWorker
 		cnt++;
 		s201 = new BuildingWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new BuildingWorker.BaseSoftware(
 						cnt, new SecurityLevel1()));
-		System.out.println("Invalid BuildingWorker" + al.insert(s201));
+		System.out.println("Invalid BuildingWorker " + al.insert(s201));
 
 		cnt++;
 		s201 = new BuildingWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new BuildingWorker.BaseSoftware(
 						cnt, new SecurityLevel2()));
-		System.out.println("Invalid BuildingWorker" + al.insert(s201));
+		System.out.println("Invalid BuildingWorker " + al.insert(s201));
 
 		cnt++;
 		s201 = new BuildingWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new BuildingWorker.BaseSoftware(
 						cnt, new SecurityLevel3()));
-		System.out.println("Valid BuildingWorker" + al.insert(s201));
+		System.out.println("Valid BuildingWorker " + al.insert(s201));
 
 		// cnt++;
 		s201 = new BuildingWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new BuildingWorker.BaseSoftware(
 						cnt, new SecurityLevel4()));
-		System.out.println("Invalid BuildingWorker" + al.insert(s201));
+		System.out.println("Invalid BuildingWorker " + al.insert(s201));
 
 		cnt++;
 		s201 = new BuildingWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new BuildingWorker.BaseSoftware(
 						cnt, new SecurityLevel4()));
-		System.out.println("Valid BuildingWorker" + al.insert(s201));
+		System.out.println("Valid BuildingWorker " + al.insert(s201));
 
 		cnt++;
 		s201 = new BuildingWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new BuildingWorker.BaseSoftware(
 						cnt, new SecurityLevel5()));
-		System.out.println("Invalid BuildingWorker" + al.insert(s201));
+		System.out.println("Invalid BuildingWorker " + al.insert(s201));
 
-		System.out.println("\n\n");
+		System.out.println();
 
 		// ServiceTechnician
 		cnt++;
 		s201 = new ServiceTechnician(cnt, kit1kw(cnt), new TouchSensitiveSkin(
 				cnt), new ServiceTechnician.BaseSoftware(cnt,
 				new SecurityLevel1()));
-		System.out.println("Invalid ServiceTecnician" + al.insert(s201));
+		System.out.println("Invalid ServiceTecnician " + al.insert(s201));
 
 		cnt++;
 		s201 = new ServiceTechnician(cnt, kit1kw(cnt), new TouchSensitiveSkin(
 				cnt), new ServiceTechnician.BaseSoftware(cnt,
 				new SecurityLevel2()));
-		System.out.println("Invalid ServiceTecnician" + al.insert(s201));
+		System.out.println("Invalid ServiceTecnician " + al.insert(s201));
 
 		cnt++;
 		s201 = new ServiceTechnician(cnt, kit1kw(cnt), new TouchSensitiveSkin(
 				cnt), new ServiceTechnician.BaseSoftware(cnt,
 				new SecurityLevel3()));
-		System.out.println("Valid ServiceTecnician" + al.insert(s201));
+		System.out.println("Valid ServiceTecnician " + al.insert(s201));
 
 		// cnt++;
 		s201 = new ServiceTechnician(cnt, kit1kw(cnt), new TouchSensitiveSkin(
 				cnt), new ServiceTechnician.BaseSoftware(cnt,
 				new SecurityLevel4()));
-		System.out.println("Invalid ServiceTecnician" + al.insert(s201));
+		System.out.println("Invalid ServiceTecnician " + al.insert(s201));
 
 		cnt++;
 		s201 = new ServiceTechnician(cnt, kit1kw(cnt), new TouchSensitiveSkin(
 				cnt), new ServiceTechnician.BaseSoftware(cnt,
 				new SecurityLevel4()));
-		System.out.println("Valid ServiceTecnician" + al.insert(s201));
+		System.out.println("Valid ServiceTecnician " + al.insert(s201));
 
 		cnt++;
 		s201 = new ServiceTechnician(cnt, kit1kw(cnt), new TouchSensitiveSkin(
 				cnt), new ServiceTechnician.BaseSoftware(cnt,
 				new SecurityLevel5()));
-		System.out.println("Invalid ServiceTecnician" + al.insert(s201));
+		System.out.println("Invalid ServiceTecnician " + al.insert(s201));
 
-		System.out.println("\n\n");
+		System.out.println();
 
 		// ObjectGuard
 		cnt++;
 		s201 = new ObjectGuard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new ObjectGuard.BaseSoftware(cnt, new SecurityLevel1()));
-		System.out.println("Invalid ObjectGuard" + al.insert(s201));
+		System.out.println("Invalid ObjectGuard " + al.insert(s201));
 
 		cnt++;
 		s201 = new ObjectGuard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new ObjectGuard.BaseSoftware(cnt, new SecurityLevel2()));
-		System.out.println("Invalid ObjectGuard" + al.insert(s201));
+		System.out.println("Invalid ObjectGuard " + al.insert(s201));
 
 		cnt++;
 		s201 = new ObjectGuard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new ObjectGuard.BaseSoftware(cnt, new SecurityLevel3()));
-		System.out.println("Invalid ObjectGuard" + al.insert(s201));
+		System.out.println("Invalid ObjectGuard " + al.insert(s201));
 
 		cnt++;
 		s201 = new ObjectGuard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new ObjectGuard.BaseSoftware(cnt, new SecurityLevel4()));
-		System.out.println("Valid ObjectGuard" + al.insert(s201));
+		System.out.println("Valid ObjectGuard " + al.insert(s201));
 
 		// cnt++;
 		s201 = new ObjectGuard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new ObjectGuard.BaseSoftware(cnt, new SecurityLevel5()));
-		System.out.println("Invalid ObjectGuard" + al.insert(s201));
+		System.out.println("Invalid ObjectGuard " + al.insert(s201));
 
 		cnt++;
 		s201 = new ObjectGuard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new ObjectGuard.BaseSoftware(cnt, new SecurityLevel5()));
-		System.out.println("Invalid ObjectGuard" + al.insert(s201));
+		System.out.println("Invalid ObjectGuard " + al.insert(s201));
 
-		System.out.println("\n\n");
+		System.out.println();
 
 		// Bodyguard
 		cnt++;
 		s201 = new Bodyguard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Bodyguard.BaseSoftware(cnt, new SecurityLevel1()));
-		System.out.println("Invalid Bodyguard" + al.insert(s201));
+		System.out.println("Invalid Bodyguard " + al.insert(s201));
 
 		cnt++;
 		s201 = new Bodyguard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Bodyguard.BaseSoftware(cnt, new SecurityLevel2()));
-		System.out.println("Invalid Bodyguard" + al.insert(s201));
+		System.out.println("Invalid Bodyguard " + al.insert(s201));
 
 		cnt++;
 		s201 = new Bodyguard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Bodyguard.BaseSoftware(cnt, new SecurityLevel3()));
-		System.out.println("Invalid Bodyguard" + al.insert(s201));
+		System.out.println("Invalid Bodyguard " + al.insert(s201));
 
 		cnt++;
 		s201 = new Bodyguard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Bodyguard.BaseSoftware(cnt, new SecurityLevel4()));
-		System.out.println("Valid Bodyguard" + al.insert(s201));
+		System.out.println("Valid Bodyguard " + al.insert(s201));
 
 		// cnt++;
 		s201 = new Bodyguard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Bodyguard.BaseSoftware(cnt, new SecurityLevel5()));
-		System.out.println("Invalid Bodyguard" + al.insert(s201));
+		System.out.println("Invalid Bodyguard " + al.insert(s201));
 
 		cnt++;
 		s201 = new Bodyguard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Bodyguard.BaseSoftware(cnt, new SecurityLevel5()));
-		System.out.println("Invalid Bodyguard" + al.insert(s201));
+		System.out.println("Invalid Bodyguard " + al.insert(s201));
 
-		System.out.println("\n\n");
+		System.out.println();
 
 		// Fighter
 		cnt++;
 		s201 = new Fighter(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Fighter.BaseSoftware(cnt, new SecurityLevel1()));
-		System.out.println("Invalid Fighter" + al.insert(s201));
+		System.out.println("Invalid Fighter " + al.insert(s201));
 
 		cnt++;
 		s201 = new Fighter(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Fighter.BaseSoftware(cnt, new SecurityLevel2()));
-		System.out.println("Invalid Fighter" + al.insert(s201));
+		System.out.println("Invalid Fighter " + al.insert(s201));
 
 		cnt++;
 		s201 = new Fighter(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Fighter.BaseSoftware(cnt, new SecurityLevel3()));
-		System.out.println("Invalid Fighter" + al.insert(s201));
+		System.out.println("Invalid Fighter " + al.insert(s201));
 
 		cnt++;
 		s201 = new Fighter(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Fighter.BaseSoftware(cnt, new SecurityLevel4()));
-		System.out.println("Invalid Fighter" + al.insert(s201));
+		System.out.println("Invalid Fighter " + al.insert(s201));
 
 		cnt++;
 		s201 = new Fighter(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Fighter.BaseSoftware(cnt, new SecurityLevel5()));
-		System.out.println("Valid Fighter" + al.insert(s201));
-
-		System.out.println("\n\n");
+		System.out.println("Valid Fighter " + al.insert(s201));
 	}
 	
+	/**
+	 * Testet Androiden mit falsch codierten Bauteilen
+	 */
 	public static void testSerialNumber() {
-		System.out.println("test changing serial number");
+		System.out.println("teste komponenten mit vom androiden abweichender seriennummer");
 	}
 	
 	/**
