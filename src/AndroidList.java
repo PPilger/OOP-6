@@ -2,20 +2,35 @@ import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 
+/**
+ * Stellt eine Liste von Androiden dar.
+ * 
+ * @author Peter Pilgerstorfer
+ */
 public class AndroidList {
+	// eine Map mit der Seriennummer als Schluessel
 	private LinkedHashMap<Integer, Entry> map = new LinkedHashMap<Integer, Entry>();
 
+	/**
+	 * Fuegt den neuen Android in die Liste ein (sofern er gueltig ist).
+	 * 
+	 * Falls ein Android mit der selben id bereits enthalten ist, wird dieser
+	 * durch den neuen ersetzt (sofern der neue gueltig ist und den alten
+	 * ueberscheiben darf). Der alte Android bleibt jedoch in der Historie
+	 * gespeichert.
+	 */
 	public ValidationCode insert(final Android newAndroid) {
- 		final int serialNum = newAndroid.getSerialNum();
+		final int serialNum = newAndroid.getSerialNum();
 		final Entry entry = map.get(serialNum);
-		ValidationCode code;
+		ValidationCode result;
 
-		// is the given Android currently in the map?
 		if (entry == null) {
-			code = newAndroid.validate();
+			// es ist kein Android mit der Seriennummer in map enthalten
 
-			code.executeIfValid(new ValidationCode.Operation() {
+			result = newAndroid.validate();
 
+			// fuege den Android ein, wenn er gueltig ist
+			result.executeIfValid(new ValidationCode.Operation() {
 				@Override
 				public void execute() {
 					Entry newEntry = new Entry(newAndroid);
@@ -23,11 +38,14 @@ public class AndroidList {
 				}
 			});
 		} else {
+			// es ist bereits ein Android mit der Seriennummer in map enthalten
+
 			Android oldAndroid = entry.history.getFirst();
-			code = newAndroid.validate(oldAndroid);
+			result = newAndroid.validate(oldAndroid);
 
-			code.executeIfValid(new ValidationCode.Operation() {
-
+			// ersetze den alten Android, wenn der neue gueltig ist und den
+			// alten ersetzen darf
+			result.executeIfValid(new ValidationCode.Operation() {
 				@Override
 				public void execute() {
 					entry.update(newAndroid);
@@ -35,9 +53,14 @@ public class AndroidList {
 			});
 		}
 
-		return code;
+		return result;
 	}
 
+	/**
+	 * Liefert die toString-Darstellung des Androids mit der gegebenen
+	 * Seriennummer oder null, falls der Android nicht in der Liste enthalten
+	 * ist.
+	 */
 	public String find(int serialNum) {
 		Entry entry = map.get(serialNum);
 
@@ -48,33 +71,29 @@ public class AndroidList {
 		return entry.getNewest().toString();
 	}
 
-	//returns an Iterator over the configurations durring an Android's life
-	public Iterator<Android> history(int Id)
-	{
+	/**
+	 * Liefert einen Iterator ueber den Aenderungsverlauf des ueber die
+	 * Seriennummer bestimmten Androids. Der Iterator startet bei der
+	 * urspruenglichen Version und endet bei der aktuellen.
+	 * 
+	 * Wenn der Android nicht existiert, wird ein Iterator zurueckgegeben der
+	 * kein Element enthaelt.
+	 */
+	public Iterator<Android> history(int Id) {
 		Entry en = map.get(Id);
-		if (en == null)
-			return new Iterator<Android>() {
-								
-				@Override
-				public boolean hasNext() {
-					return false;
-				}
 
-				@Override
-				public Android next() {
-					// TODO Auto-generated method stub
-					return null;
-				}
+		if (en == null) {
+			return new LinkedList<Android>().iterator();
+		}
 
-				@Override
-				public void remove() {
-					// TODO Auto-generated method stub
-					
-				}
-			};
 		return en.iterator();
 	}
 
+	/**
+	 * Liefert einen Iterator ueber alle aktuell in der Liste enthaltenen
+	 * Androiden. Die Androiden werden in der Reihenfolge des ersten Einfuegens
+	 * durchiteriert.
+	 */
 	public Iterator<Android> iterator() {
 		return new Iterator<Android>() {
 			Iterator<Entry> iter = map.values().iterator();
@@ -97,7 +116,13 @@ public class AndroidList {
 		};
 	}
 
+	/**
+	 * Speichert einen Android, sowie alle frueheren Versionen des Androiden.
+	 * 
+	 * @author Peter Pilgerstorfer
+	 */
 	private class Entry {
+		// enthaelt den aktuellsten Android an erster Stelle
 		private LinkedList<Android> history = new LinkedList<Android>();
 
 		private Entry(Android newAndroid) {
@@ -112,9 +137,11 @@ public class AndroidList {
 			return history.getFirst();
 		}
 
-		//returns an Iterator over all configurations, starting with the last used
-		public Iterator<Android> iterator() {
-
+		/**
+		 * Liefert einen Iterator von dem urspruenglichen Androiden bis zum
+		 * aktuellen.
+		 */
+		private Iterator<Android> iterator() {
 			return history.descendingIterator();
 		}
 	}
