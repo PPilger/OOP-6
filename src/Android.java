@@ -16,6 +16,10 @@ public abstract class Android {
 		this.software = software;
 	}
 
+	public int getSerialNum() {
+		return this.serialNum;
+	}
+
 	/**
 	 * Ueberprueft, ob der Android gueltig ist. Liefert Valid, wenn er gueltig
 	 * ist und Error anderenfalls.
@@ -54,6 +58,10 @@ public abstract class Android {
 		return result;
 	}
 
+	/**
+	 * Ueberprueft, ob der Android gueltig ist und ob er den uebergebenen
+	 * ersetzen kann. Liefert Valid, wenn es zutrifft und Error anderenfalls.
+	 */
 	public ValidationCode validate(Android replaced) {
 		ValidationCode result;
 		ValidationCode code;
@@ -71,10 +79,14 @@ public abstract class Android {
 		return result;
 	}
 
+	/**
+	 * Visitor-Pattern: besucht die passende validMainType-Methode von
+	 * replacing.
+	 */
 	public abstract ValidationCode visit(Android replacing);
 
 	// Visitor-Pattern Methoden um den Haupttyp zu ueberpruefen (dieser muss
-	// gleich sein wie der eigene)
+	// gleich sein wie der eigene):
 
 	public ValidationCode validMainType(Servant other) {
 		return new Error("Invalid Type");
@@ -89,7 +101,7 @@ public abstract class Android {
 	}
 
 	// Visitor-Pattern Methoden um den Skin zu ueberpruefen (Einschraenkungen je
-	// nach Haupttyp)
+	// nach Haupttyp):
 
 	public ValidationCode validSkin(TouchSensitiveSkin skin) {
 		return new Error("Invalid Skin");
@@ -104,7 +116,7 @@ public abstract class Android {
 	}
 
 	// Visitor-Pattern Methoden um die Software zu ueberpruefen (diese muss mit
-	// der Klasse des Androiden zusammenpassen)
+	// der Klasse des Androiden zusammenpassen):
 
 	public ValidationCode validSoftware(Assistant.BaseSoftware s) {
 		return new Error("Invalid Software");
@@ -139,7 +151,7 @@ public abstract class Android {
 	}
 
 	// Visitor-Pattern Methoden um das Sicherheitslevel zu ueberpruefen
-	// (Einschraenkungen je nach Typ)
+	// (Einschraenkungen je nach Typ):
 
 	public ValidationCode validSecLevel(SecurityLevel1 s) {
 		return new Error("Invalid Security Level");
@@ -162,7 +174,7 @@ public abstract class Android {
 	}
 
 	// Visitor-Pattern Methoden um die Leistungsklasse zu ueberpruefen
-	// (Einschraenkungen je nach Typ)
+	// (Einschraenkungen je nach Typ):
 
 	public ValidationCode validPowerClass(PowerClass.Unlimited s) {
 		return new Valid();
@@ -180,24 +192,15 @@ public abstract class Android {
 		return new Valid();
 	}
 
-	public int getSerialNum() {
-		return this.serialNum;
-	}
-
-	public Kit getKit() {
-		return kit;
-	}
-
-	public Skin getSkin() {
-		return skin;
-	}
-
-	public Software getSoftware() {
-		return software;
-	}
-
+	/**
+	 * Liefert den Namen des Typs des Androids.
+	 */
 	public abstract String getType();
 
+	/**
+	 * Gibt den Typ des Android, das Sensor-Aktor-Kit, den Skin und die Software
+	 * in Stringdarstellung zurueck.
+	 */
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();

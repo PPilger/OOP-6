@@ -52,7 +52,11 @@ private static void test1()
 	as.add(new Sensor(12, "Staub"));
 	
 	Android s201 = new Associate(12, new Kit(ak, as), new TouchSensitiveSkin(12), new Associate.BaseSoftware(12, new SecurityLevel1()));
+<<<<<<< HEAD
 	System.out.println("Valid Associate" + al.insert(s201));
+=======
+	System.out.println(al.insert(s201)+ "\tcreate new Associate Android");
+>>>>>>> branch 'master' of ssh://git@github.com/PPilger/OOP-6
 	
 	System.out.println();
 	System.out.println("Zeige bisher ausgelieferte Androiden");
@@ -63,11 +67,47 @@ private static void test1()
 	ak.add(new Aktor(12, "Waschen", 0.5));
 	
 	Android s202 = new Assistant(12, new Kit(ak, as), new TouchSensitiveSkin(12) , new Assistant.BaseSoftware(12, new SecurityLevel1()));
+<<<<<<< HEAD
 	System.out.println("Associate becomes Assistant" + al.insert(s202));
+=======
+	System.out.println(al.insert(s202) + "\tAndroid will be edited and gets Waschen Aktor");
+>>>>>>> branch 'master' of ssh://git@github.com/PPilger/OOP-6
 	
+<<<<<<< HEAD
 	s202 = new Assistant(12, new Kit( ak, as), new TouchSensitiveSkin(12) , new Assistant.BaseSoftware(12, new SecurityLevel2()));
 	System.out.println("Invalid Security Level must not change" + al.insert(s202));
 		
+=======
+	s202 = new Assistant(12, new Kit(ak, as), new TouchSensitiveSkin(12) , new Assistant.BaseSoftware(12, new SecurityLevel1()));
+	System.out.println(al.insert(s202) + "\tAndroid will be edited and gets SecLev1");
+	
+	//next Android should be invalid (SecLev5 not allowed)
+	Android s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel5()) );
+	System.out.println(al.insert(s210)+ "\tAssistant may not have SecLev5");
+	
+	s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel4()) );
+	System.out.println(al.insert(s210)+ "\tAssistant may not have SecLev4");
+	
+	s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel3()) );
+	System.out.println(al.insert(s210)+ "\tAssistant may not have SecLev3");
+	
+	s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel2()) );
+	System.out.println(al.insert(s210)+ "\tAssistant may not have SecLev2");
+	
+	s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Assistant.BaseSoftware(21, new SecurityLevel2()) );
+	System.out.println(al.insert(s210)+ "\twill be edited and gets SecLev1");
+	
+	s210 = new Assistant(21, new Kit(ak, as), new ArmoredSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel5()) );
+	System.out.println(al.insert(s210)+ "\tAssistant may not have Armored Skin");
+	
+	s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Assistant.BaseSoftware(21, new SecurityLevel2()) );
+	System.out.println(al.insert(s210)+ "\tnew Assistant");
+	
+	//next Android should be invalid, Android who was Servant may not become a Fighter
+	s210 = new Fighter(21, new Kit(ak, as), new ArmoredSkin(21), new Fighter.BaseSoftware(21, new SecurityLevel5()));
+	System.out.println(al.insert(s210) + "\tAndroid who was Servant may not become a Fighter");
+	
+>>>>>>> branch 'master' of ssh://git@github.com/PPilger/OOP-6
 	//create new Fighter Android
 	ak = new ArrayList<Aktor>(); ak.add(new Aktor(22, "Augen ausstechen", 1.));
 	ak.add(new Aktor(22, "Explodieren", 50.));
@@ -75,14 +115,50 @@ private static void test1()
 	as = new ArrayList<Sensor>(); as.add(new Sensor(22, "Gas-Sensor"));as.add(new Sensor(22, "Notfallassistenz"));
 	Android s220 = new Fighter(22, new Kit(ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel5()));
 	System.out.println(al.insert(s220) + "\tcreate new Fighter Android");
+<<<<<<< HEAD
+=======
+	
+	s220 = new Fighter(22, new Kit(ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel4()));
+	System.out.println(al.insert(s220) + "\tFighter may not have SecLev4");
+	
+	s220 = new Fighter(22, new Kit(ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel3()));
+	System.out.println(al.insert(s220) + "\tFighter may not have SecLev3");
+	
+	s220 = new Fighter(22, new Kit(ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel2()));
+	System.out.println(al.insert(s220) + "\tFighter may not have SecLev2");
+	
+	s220 = new Fighter(22, new Kit(ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel1()));
+	System.out.println(al.insert(s220) + "\tFighter may not have SecLev1");
+>>>>>>> branch 'master' of ssh://git@github.com/PPilger/OOP-6
 	
 	//Fighter may become Bodyguard
 	ak = new ArrayList<Aktor>(); ak.add(new Aktor(22, "Augen ausstechen", 1.));
 	ak.add(new Aktor(22, "Panzerkorb", 1.));
 	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel4()));
 	System.out.println(al.insert(s220) + "\tFighter may become Bodyguard");
+<<<<<<< HEAD
 
 	//Show list of all delivered Androids
+=======
+	
+	ak = new ArrayList<Aktor>(); ak.add(new Aktor(22, "Augen ausstechen", 1.));
+	ak.add(new Aktor(22, "Explodieren", 50.));
+	ak.add(new Aktor(22, "Giftgasabsorber", 5.));
+	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel4()));
+	System.out.println(al.insert(s220) + "\tBodyguard may not have 56kW Aktors");
+	
+	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel2()));
+	System.out.println(al.insert(s220) + "\tBodyguard may not have SecLev 2");
+	
+	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel3()));
+	System.out.println(al.insert(s220) + "\tBodyguard may not have SecLev 3");
+	
+	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel5()));
+	System.out.println(al.insert(s220) + "\tBodyguard may not have SecLev 5");
+	
+	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel1()));
+	System.out.println(al.insert(s220) + "\tBodyguard may not have SecLev 1");
+>>>>>>> branch 'master' of ssh://git@github.com/PPilger/OOP-6
 	
 	System.out.println();
 	System.out.println("Zeige bisher ausgelieferte Androiden");
@@ -129,7 +205,11 @@ public static class gKit{
 		a10kw.add(new Aktor(id, "hoch", 10.));
 		ArrayList<Sensor> sl = new ArrayList<Sensor>();
 		sl.add(new Sensor(id, "sample sensor"));
+<<<<<<< HEAD
 		return new Kit( a10kw, sl);
+=======
+		return new Kit(a10kw, sl);
+>>>>>>> branch 'master' of ssh://git@github.com/PPilger/OOP-6
 	}
 	
 	public Kit _infkw(int id)
