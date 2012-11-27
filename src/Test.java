@@ -1067,7 +1067,56 @@ private static void testAndroidList()
 	 * Testet Androiden mit falsch codierten Bauteilen
 	 */
 	public static void testSerialNumber() {
-		System.out.println("teste komponenten mit vom androiden abweichender seriennummer");
+		AndroidList list = new AndroidList();
+		Android android;
+		List<Aktor> actors;
+		List<Sensor> sensors;
+		
+		System.out.println("\n\nTeste Androiden mit falsch codierten Bauteilen\n");
+
+		actors = new ArrayList<Aktor>();
+		actors.add(new Aktor(2, "invalid Aktor", 1.5));
+		sensors = new ArrayList<Sensor>();
+		sensors.add(new Sensor(1, "valid Sensor"));
+		android = new Fighter(1, new Kit(actors, sensors), new SolidSkin(1),
+				new Fighter.BaseSoftware(1, new SecurityLevel5()));
+		System.out.println("Falsch codierter Aktor (#2 statt #1): " + list.insert(android));
+
+		actors = new ArrayList<Aktor>();
+		actors.add(new Aktor(1, "valid Aktor", 2.4));
+		sensors = new ArrayList<Sensor>();
+		sensors.add(new Sensor(8, "invalid Sensor"));
+		android = new Fighter(1, new Kit(actors, sensors), new SolidSkin(1),
+				new Fighter.BaseSoftware(1, new SecurityLevel5()));
+		System.out.println("Falsch codierter Sensor (#8 statt #1): " + list.insert(android));
+
+		actors = new ArrayList<Aktor>();
+		actors.add(new Aktor(1, "valid Aktor", 2.4));
+		sensors = new ArrayList<Sensor>();
+		sensors.add(new Sensor(1, "valid Sensor"));
+		android = new ObjectGuard(1, new Kit(actors, sensors), new TouchSensitiveSkin(54),
+				new ObjectGuard.BaseSoftware(1, new SecurityLevel4()));
+		System.out.println("Falsch codierter Skin (#54 statt #1): " + list.insert(android));
+
+		android = new TransportWorker(1, new Kit(actors, sensors), new TouchSensitiveSkin(1),
+				new TransportWorker.BaseSoftware(23, new SecurityLevel3()));
+		System.out.println("Falsch codierte Software (#23 statt #1): " + list.insert(android));
+
+		actors = new ArrayList<Aktor>();
+		actors.add(new Aktor(11, "invalid Aktor", 1.5));
+		sensors = new ArrayList<Sensor>();
+		sensors.add(new Sensor(19, "invalid Sensor"));
+		android = new TransportWorker(1, new Kit(actors, sensors), new TouchSensitiveSkin(41),
+				new TransportWorker.BaseSoftware(23, new SecurityLevel3()));
+		System.out.println("Jedes Bauteil mit falscher Codierung: " + list.insert(android));
+		
+		actors = new ArrayList<Aktor>();
+		actors.add(new Aktor(11, "invalid Aktor", 1.5));
+		sensors = new ArrayList<Sensor>();
+		sensors.add(new Sensor(11, "invalid Sensor"));
+		android = new TransportWorker(11, new Kit(actors, sensors), new TouchSensitiveSkin(11),
+				new TransportWorker.BaseSoftware(11, new SecurityLevel3()));
+		System.out.println("Jedes Bauteil mit gueltiger Codierung: " + list.insert(android));
 	}
 	
 	/**

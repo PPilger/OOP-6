@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Invariante: Ein Kit ist unveraenderbar.
@@ -6,15 +7,15 @@ import java.util.ArrayList;
  * @author Peter Pilgerstorfer
  */
 public class Kit {
-	private ArrayList<Aktor> aktorList;
-	private ArrayList<Sensor> sensorList;
+	private List<Aktor> aktorList;
+	private List<Sensor> sensorList;
 
-	public Kit(ArrayList<Aktor> aktorList, ArrayList<Sensor> sensorList) {
+	public Kit(List<Aktor> actors, List<Sensor> sensors) {
 		// Erstellt (flache) Kopien der uebergebenen Listen, um nachtraegliche
 		// Aenderungen zu unterbinden.
 		// Da Aktor und Sensor unveraenderbar sind, reicht eine flache Kopie
-		this.aktorList = new ArrayList<Aktor>(aktorList);
-		this.sensorList = new ArrayList<Sensor>(sensorList);
+		this.aktorList = new ArrayList<Aktor>(actors);
+		this.sensorList = new ArrayList<Sensor>(sensors);
 	}
 
 	/**
