@@ -10,87 +10,94 @@ public class Test {
 	}
 
 /**
- * Error test: change main Android Type
- * From					To
- * Assistant			Fighter
- * 
- * Valid test: change main Android Type
- * From					To
- * Associate			Assistant
- * Fighter				Bodyguard
- * 
- * Error: Wrong Skin
- * Assistant	ArmoredSkin
- * 
- * Valid: Right Skin
- * Assistant	TouchSensitive
- * 
- * 
- * Error: Wrong Security Level
- * Assistant	Level 3,4,5
- * Bodyguard	Level 1,2,3,5
- * Fighter		Level 1,2,3,4
- * 
- * Valid: Right Security Level
- * Associate	Level 1
- * Assistant	Level 1,2
- * Fighter		Level 5
- * Bodyguard	Level 4
- * 
+ * Testet die Funktionalitaet von AndroidList.
  */
 private static void test1()
 {
-	//Test history logging function of AndroidList
-	AndroidList al = new AndroidList();
-	ArrayList<Aktor> ak = new ArrayList<Aktor>();
-	ak.add(new Aktor(12, "Putzen", 0.5));
-	ArrayList<Sensor> as = new ArrayList<Sensor>();
-	as.add(new Sensor(12, "Staub"));
+	AndroidList list = new AndroidList();
+	Iterator<Android> iter;
+	Android android12;
+	ArrayList<Aktor> aktoren12 = new ArrayList<Aktor>();
+	ArrayList<Sensor> sensoren12 = new ArrayList<Sensor>();
+	Android android22;
+	ArrayList<Aktor> aktoren22 = new ArrayList<Aktor>();
+	ArrayList<Sensor> sensoren22 = new ArrayList<Sensor>();
+
+	//Erstelle neuen Gesellschafter
+	aktoren12.add(new Aktor(12, "Putzen", 0.5));
+	sensoren12.add(new Sensor(12, "Staub"));
+	android12 = new Associate(12, new Kit(aktoren12, sensoren12), new TouchSensitiveSkin(12), new Associate.BaseSoftware(12, new SecurityLevel1()));
+	System.out.println("Erstelle neuen Gesellschafter: " + list.insert(android12));
 	
-	Android s201 = new Associate(12, new Kit(ak, as), new TouchSensitiveSkin(12), new Associate.BaseSoftware(12, new SecurityLevel1()));
-	System.out.println(al.insert(s201)+ "\tcreate new Associate Android");
-	
+	//Erstelle neuen Kaempfer
+	aktoren22.add(new Aktor(22, "Augen ausstechen", 1.));
+	aktoren22.add(new Aktor(22, "Explodieren", 50.));
+	aktoren22.add(new Aktor(22, "Giftgasabsorber", 5.));
+	sensoren22.add(new Sensor(22, "Gas-Sensor"));
+	sensoren22.add(new Sensor(22, "Notfallassistenz"));
+	android22 = new Fighter(22, new Kit(aktoren22, sensoren22), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel5()));
+	System.out.println("Erstelle neuen Kaempfer: " + list.insert(android22));
+
+	//Ausgabe aller Androiden in Einfuegereihenfolge
 	System.out.println();
 	System.out.println("Zeige bisher ausgelieferte Androiden");
-	showAndroids("Ausgelieferter Android Nr.: ", al);
+	showAndroids("Ausgelieferter Android Nr.: ", list);
+
+	
+	//Ueberschreibe Android 12
+	aktoren12.add(new Aktor(12, "Waschen", 0.5));
+	android12 = new Assistant(12, new Kit(aktoren12, sensoren12), new TouchSensitiveSkin(12) , new Assistant.BaseSoftware(12, new SecurityLevel1()));
+	System.out.println("Aendere den Gesellschafter: " + list.insert(android12));
+	
+	//Keine Ueberschreibung von Android 22, da dieser ungueltig ist
+	android22 = new Fighter(22, new Kit(aktoren22, sensoren22), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel2()));
+	System.out.println("Aendere Sicherheitslevel des Kaempfers (ungueltige Aenderung): "+list.insert(android22));
+
+	//Ausgabe aller Androiden in Einfuegereihenfolge
+	System.out.println();
+	System.out.println("Zeige bisher ausgelieferte Androiden");
+	showAndroids("Ausgelieferter Android Nr.: ", list);
+	
+	
+	//Aendere die Hilfskraft abermals
+	android12 = new Associate(12, new Kit(aktoren12, sensoren12), new TouchSensitiveSkin(12) , new Associate.BaseSoftware(12, new SecurityLevel1()));
+	System.out.println("Aendere die Hilfskraft: " + list.insert(android12));
+
+	//Ausgabe aller Androiden in Einfuegereihenfolge
+	System.out.println();
+	System.out.println("Zeige bisher ausgelieferte Androiden");
+	showAndroids("Ausgelieferter Android Nr.: ", list);
+	
+	
+	//Zeige den Aenderungsverlauf von Android 12
+	System.out.println("Zeige den Aenderungsverlauf von Android 12");
+	iter = list.history(12);
+	for(int i = 0; iter.hasNext(); i++) {
+		System.out.println("Nummer "+i);
+		System.out.println(iter.next());
+		System.out.println();
+	}
+	
+	
+	//Gib Android 12 und 22 ueber find aus
+	System.out.println("Ausgabe der Androiden mit find:");
+	System.out.println("Android 12");
+	System.out.println(list.find(12));
+	System.out.println();
+	System.out.println("Android 22");
+	System.out.println(list.find(22));
 	System.out.println();
 	
-	//same Android will be edited and gets Waschen Aktor
-	ak = new ArrayList<Aktor>();
-	ak.add(new Aktor(12, "Putzen", 0.5));
-	ak.add(new Aktor(12, "Waschen", 0.5));
+	/*
+	android = new Assistant(21, new Kit(ak, as), new ArmoredSkin(21) , new Assistant.BaseSoftware(21, new SecurityLevel5()) );
+	System.out.println(list.insert(android)+ "\tAssistant may not have Armored Skin");
 	
-	Android s202 = new Assistant(12, new Kit(ak, as), new TouchSensitiveSkin(12) , new Assistant.BaseSoftware(12, new SecurityLevel1()));
-	System.out.println(al.insert(s202) + "\tAndroid will be edited and gets Waschen Aktor");
-	
-	s202 = new Assistant(12, new Kit(ak, as), new TouchSensitiveSkin(12) , new Assistant.BaseSoftware(12, new SecurityLevel1()));
-	System.out.println(al.insert(s202) + "\tAndroid will be edited and gets SecLev1");
-	
-	//next Android should be invalid (SecLev5 not allowed)
-	Android s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel5()) );
-	System.out.println(al.insert(s210)+ "\tAssistant may not have SecLev5");
-	
-	s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel4()) );
-	System.out.println(al.insert(s210)+ "\tAssistant may not have SecLev4");
-	
-	s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel3()) );
-	System.out.println(al.insert(s210)+ "\tAssistant may not have SecLev3");
-	
-	s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel2()) );
-	System.out.println(al.insert(s210)+ "\tAssistant may not have SecLev2");
-	
-	s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Assistant.BaseSoftware(21, new SecurityLevel2()) );
-	System.out.println(al.insert(s210)+ "\twill be edited and gets SecLev1");
-	
-	s210 = new Assistant(21, new Kit(ak, as), new ArmoredSkin(21) , new Associate.BaseSoftware(21, new SecurityLevel5()) );
-	System.out.println(al.insert(s210)+ "\tAssistant may not have Armored Skin");
-	
-	s210 = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Assistant.BaseSoftware(21, new SecurityLevel2()) );
-	System.out.println(al.insert(s210)+ "\tnew Assistant");
+	android = new Assistant(21, new Kit(ak, as), new TouchSensitiveSkin(21) , new Assistant.BaseSoftware(21, new SecurityLevel2()) );
+	System.out.println(list.insert(android)+ "\tnew Assistant");
 	
 	//next Android should be invalid, Android who was Servant may not become a Fighter
-	s210 = new Fighter(21, new Kit(ak, as), new ArmoredSkin(21), new Fighter.BaseSoftware(21, new SecurityLevel5()));
-	System.out.println(al.insert(s210) + "\tAndroid who was Servant may not become a Fighter");
+	android = new Fighter(21, new Kit(ak, as), new ArmoredSkin(21), new Fighter.BaseSoftware(21, new SecurityLevel5()));
+	System.out.println(list.insert(android) + "\tAndroid who was Servant may not become a Fighter");
 	
 	//create new Fighter Android
 	ak = new ArrayList<Aktor>(); ak.add(new Aktor(22, "Augen ausstechen", 1.));
@@ -98,57 +105,57 @@ private static void test1()
 	ak.add(new Aktor(22, "Giftgasabsorber", 5.));
 	as = new ArrayList<Sensor>(); as.add(new Sensor(22, "Gas-Sensor"));as.add(new Sensor(22, "Notfallassistenz"));
 	Android s220 = new Fighter(22, new Kit(ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel5()));
-	System.out.println(al.insert(s220) + "\tcreate new Fighter Android");
+	System.out.println(list.insert(s220) + "\tcreate new Fighter Android");
 	
 	s220 = new Fighter(22, new Kit(ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel4()));
-	System.out.println(al.insert(s220) + "\tFighter may not have SecLev4");
+	System.out.println(list.insert(s220) + "\tFighter may not have SecLev4");
 	
 	s220 = new Fighter(22, new Kit(ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel3()));
-	System.out.println(al.insert(s220) + "\tFighter may not have SecLev3");
+	System.out.println(list.insert(s220) + "\tFighter may not have SecLev3");
 	
 	s220 = new Fighter(22, new Kit(ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel2()));
-	System.out.println(al.insert(s220) + "\tFighter may not have SecLev2");
+	System.out.println(list.insert(s220) + "\tFighter may not have SecLev2");
 	
 	s220 = new Fighter(22, new Kit(ak, as), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel1()));
-	System.out.println(al.insert(s220) + "\tFighter may not have SecLev1");
+	System.out.println(list.insert(s220) + "\tFighter may not have SecLev1");
 	
 	//Fighter may become Bodyguard
 	ak = new ArrayList<Aktor>(); ak.add(new Aktor(22, "Augen ausstechen", 1.));
 	ak.add(new Aktor(22, "Panzerkorb", 1.));
 	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel4()));
-	System.out.println(al.insert(s220) + "\tFighter may become Bodyguard");
+	System.out.println(list.insert(s220) + "\tFighter may become Bodyguard");
 	
 	ak = new ArrayList<Aktor>(); ak.add(new Aktor(22, "Augen ausstechen", 1.));
 	ak.add(new Aktor(22, "Explodieren", 50.));
 	ak.add(new Aktor(22, "Giftgasabsorber", 5.));
 	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel4()));
-	System.out.println(al.insert(s220) + "\tBodyguard may not have 56kW Aktors");
+	System.out.println(list.insert(s220) + "\tBodyguard may not have 56kW Aktors");
 	
 	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel2()));
-	System.out.println(al.insert(s220) + "\tBodyguard may not have SecLev 2");
+	System.out.println(list.insert(s220) + "\tBodyguard may not have SecLev 2");
 	
 	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel3()));
-	System.out.println(al.insert(s220) + "\tBodyguard may not have SecLev 3");
+	System.out.println(list.insert(s220) + "\tBodyguard may not have SecLev 3");
 	
 	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel5()));
-	System.out.println(al.insert(s220) + "\tBodyguard may not have SecLev 5");
+	System.out.println(list.insert(s220) + "\tBodyguard may not have SecLev 5");
 	
 	s220 = new Bodyguard(22, new Kit(ak, as), new ArmoredSkin(22), new Bodyguard.BaseSoftware(22, new SecurityLevel1()));
-	System.out.println(al.insert(s220) + "\tBodyguard may not have SecLev 1");
+	System.out.println(list.insert(s220) + "\tBodyguard may not have SecLev 1");
 	
 	System.out.println();
 	System.out.println("Zeige bisher ausgelieferte Androiden");
-	showAndroids("Ausgelieferter Android Nr.: ", al);
+	showAndroids("Ausgelieferter Android Nr.: ", list);
 	
 	System.out.println();
 	System.out.println("Zeige bisherige Konfigurationen des Androiden mit ID 12");
 	System.out.println("Gesellschafter -> Hilfskraft mit Waschfunktion :O");
-	showLog(12, al);
+	showLog(12, list);
 	
 	System.out.println();
 	System.out.println("Zeige bisherige Konfigurationen des Androiden mit ID 22");
 	System.out.println("Kaempfer -> Beschuetzer");
-	showLog(22, al);
+	showLog(22, list);*/
 }
 
 /**returns Kits of 1kW, 5kW, 10kW, 5000kW with given id*/
