@@ -3,18 +3,18 @@ import java.util.*;
 public class Test {
 	public static void main(String[] args) {
 
-		test1();
+		testAndroidList();
 		test2();
-		test3();
-		test4();
-		test5();
-		test6();
+		testPowerClass();
+		testSkin();
+		testSoftware();
+		testSecurityLevel();
 	}
 
 /**
  * Testet die Funktionalitaet von AndroidList.
  */
-private static void test1()
+private static void testAndroidList()
 {
 	AndroidList list = new AndroidList();
 	Android android12;
@@ -333,7 +333,7 @@ private static void test1()
 	 * Grenze von 5 kW nicht überschritten werden, bei Androiden mit Software
 	 * der Stufe 4 die Grenze von 10 kW.
 	 */
-	private static void test3() {
+	private static void testPowerClass() {
 		System.out.print("\n\n\nTeste Aktoren zulaessige Leistung\n");
 
 		AndroidList al = new AndroidList();
@@ -394,7 +394,7 @@ private static void test1()
 	 * berührungssensitive Skin, und nur Beschützer dürfen eine gepanzerte Skin
 	 * haben.
 	 * */
-	private static void test4() {
+	private static void testSkin() {
 
 		AndroidList al = new AndroidList();
 
@@ -474,7 +474,7 @@ private static void test1()
 	 * den Androide-Typen gibt es Hilfskraft-Software, Gesellschafter-Software,
 	 * Bauarbeiter-Software und so weiter.
 	 * */
-	private static void test5() {
+	private static void testSoftware() {
 		System.out.print("\n\n\nTeste unzulaessige Software\n");
 
 		AndroidList al = new AndroidList();
@@ -740,7 +740,7 @@ private static void test1()
 	 * der Stufen 3 und 4 ausgestattet sein. Kämpfer müssen Software der Stufe 5
 	 * haben, alle anderen Beschützer Software der Stufe 4.
 	 */
-	private static void test6() {
+	private static void testSecurityLevel() {
 		// Test Security Levels, if cnt is a comment this means it is tested to
 		// change an androids SecLev which must be invalid
 
