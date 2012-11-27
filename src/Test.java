@@ -17,13 +17,16 @@ public class Test {
 private static void test1()
 {
 	AndroidList list = new AndroidList();
-	Iterator<Android> iter;
 	Android android12;
 	ArrayList<Aktor> aktoren12 = new ArrayList<Aktor>();
 	ArrayList<Sensor> sensoren12 = new ArrayList<Sensor>();
 	Android android22;
 	ArrayList<Aktor> aktoren22 = new ArrayList<Aktor>();
 	ArrayList<Sensor> sensoren22 = new ArrayList<Sensor>();
+
+	System.out.println();
+	System.out.println("Testfall 1: Teste die Klasse AndroidList");
+	System.out.println();
 
 	//Erstelle neuen Gesellschafter
 	aktoren12.add(new Aktor(12, "Putzen", 0.5));
@@ -43,7 +46,7 @@ private static void test1()
 	//Ausgabe aller Androiden in Einfuegereihenfolge
 	System.out.println();
 	System.out.println("Zeige bisher ausgelieferte Androiden");
-	showAndroids("Ausgelieferter Android Nr.: ", list);
+	showAndroids("Ausgelieferter Android Nr.: ", list.iterator());
 
 	
 	//Ueberschreibe Android 12
@@ -58,7 +61,7 @@ private static void test1()
 	//Ausgabe aller Androiden in Einfuegereihenfolge
 	System.out.println();
 	System.out.println("Zeige bisher ausgelieferte Androiden");
-	showAndroids("Ausgelieferter Android Nr.: ", list);
+	showAndroids("Ausgelieferter Android Nr.: ", list.iterator());
 	
 	
 	//Aendere die Hilfskraft abermals
@@ -68,17 +71,13 @@ private static void test1()
 	//Ausgabe aller Androiden in Einfuegereihenfolge
 	System.out.println();
 	System.out.println("Zeige bisher ausgelieferte Androiden");
-	showAndroids("Ausgelieferter Android Nr.: ", list);
+	showAndroids("Ausgelieferter Android Nr.: ", list.iterator());
 	
 	
 	//Zeige den Aenderungsverlauf von Android 12
+	System.out.println();
 	System.out.println("Zeige den Aenderungsverlauf von Android 12");
-	iter = list.history(12);
-	for(int i = 0; iter.hasNext(); i++) {
-		System.out.println("Nummer "+i);
-		System.out.println(iter.next());
-		System.out.println();
-	}
+	showAndroids("Konfiguration Nr.:", list.history(12));
 	
 	
 	//Gib Android 12 und 22 ueber find aus
@@ -312,6 +311,11 @@ private static void test1()
 	 * 
 	 */
 	private static void test2() {
+
+		System.out.println();
+		System.out.println("Testfall 2: ???");
+		System.out.println();
+		
 		gKit x = new gKit();
 		AndroidList al = new AndroidList();
 
@@ -440,30 +444,6 @@ private static void test1()
 				new Bodyguard.BaseSoftware(111, new SecurityLevel4()));
 		System.out.println("Valid Bodyguard\t\t" + al.insert(s6));
 
-	}
-
-	private static void showAndroids(String text, AndroidList al) {
-		int cnt = 0;
-		Iterator<Android> iti = al.iterator();
-		while (iti.hasNext()) {
-			cnt++;
-			System.out.println(text + cnt);
-			System.out.println(iti.next());
-			System.out.println();
-		}
-		System.out.println();
-	}
-
-	private static void showLog(int id, AndroidList al) {
-		int cnt = 0;
-		Iterator<Android> iti = al.history(id);
-		while (iti.hasNext()) {
-			cnt++;
-			System.out.println("Konfiguration Nr.:" + cnt);
-			System.out.println(iti.next());
-			System.out.println();
-		}
-		System.out.println();
 	}
 
 	/*
@@ -1082,6 +1062,19 @@ private static void test1()
 		System.out.println("Valid Fighter" + al.insert(s201));
 
 		System.out.println("\n\n");
+	}
+	
+
+
+	private static void showAndroids(String text, Iterator<Android> iti) {
+		int cnt = 0;
+		while (iti.hasNext()) {
+			cnt++;
+			System.out.println(text + cnt);
+			System.out.println(iti.next());
+			System.out.println();
+		}
+		System.out.println();
 	}
 
 }
