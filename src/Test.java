@@ -253,9 +253,9 @@ private static void testAndroidList()
 	/**
 	 * Testet die Vorraussetzungen die bei einer Aenderung eines Androiden erfuellt sein muessen.
 	 * 
-	 * Nachträgliche Änderungen der Androiden sind nur auf eingeschränkte Weise erlaubt:
-	 * Die Seriennummer, der Haupttyp (Bediener, Schwerarbeiter oder Beschützer)
-	 * sowie die Sicherheitsstufe der Software dürfen nicht geändert werden.
+	 * Nachtraegliche aenderungen der Androiden sind nur auf eingeschraenkte Weise erlaubt:
+	 * Die Seriennummer, der Haupttyp (Bediener, Schwerarbeiter oder Beschuetzer)
+	 * sowie die Sicherheitsstufe der Software duerfen nicht geaendert werden.
 	 */
 	private static void testUpdate() {
 		System.out.println("\n\nTeste Einschraenkungen beim Aendern eines Androiden\n");
@@ -370,9 +370,9 @@ private static void testAndroidList()
 
 	/*
 	 * Die Leistung aller Aktoren eines Bedieners darf zusammen die Grenze von 1
-	 * kW nicht überschreiten. Für Kämpfer ist die Leistung nicht begrenzt. Bei
+	 * kW nicht ueberschreiten. Fuer Kaempfer ist die Leistung nicht begrenzt. Bei
 	 * allen Androiden, die mit Software der Stufe 3 ausgestattet sind, darf die
-	 * Grenze von 5 kW nicht überschritten werden, bei Androiden mit Software
+	 * Grenze von 5 kW nicht ueberschritten werden, bei Androiden mit Software
 	 * der Stufe 4 die Grenze von 10 kW.
 	 */
 	private static void testPowerClass() {
@@ -432,8 +432,8 @@ private static void testAndroidList()
 
 	/**
 	 * Jeder Androide muss mit einer beruehrungssensitiven, hochfesten oder
-	 * gepanzerten Skin ausgestattet sein. Bediener benötigen unbedingt eine
-	 * berührungssensitive Skin, und nur Beschützer dürfen eine gepanzerte Skin
+	 * gepanzerten Skin ausgestattet sein. Bediener benoetigen unbedingt eine
+	 * beruehrungssensitive Skin, und nur Beschuetzer duerfen eine gepanzerte Skin
 	 * haben.
 	 * */
 	private static void testSkin() {
@@ -778,10 +778,10 @@ private static void testAndroidList()
 
 	/*
 	 * Die Software muss entsprechend der Sicherheitsstufen 1 bis 5 zertifiziert
-	 * sein. Gesellschafter benötigen Software der Stufe 1, alle anderen
-	 * Bediener Software der Stufen 1 oder 2. Schwerarbeiter können mit Software
-	 * der Stufen 3 und 4 ausgestattet sein. Kämpfer müssen Software der Stufe 5
-	 * haben, alle anderen Beschützer Software der Stufe 4.
+	 * sein. Gesellschafter benoetigen Software der Stufe 1, alle anderen
+	 * Bediener Software der Stufen 1 oder 2. Schwerarbeiter koennen mit Software
+	 * der Stufen 3 und 4 ausgestattet sein. Kaempfer muessen Software der Stufe 5
+	 * haben, alle anderen Beschuetzer Software der Stufe 4.
 	 */
 	private static void testSecurityLevel() {
 		// Test Security Levels, if cnt is a comment this means it is tested to
