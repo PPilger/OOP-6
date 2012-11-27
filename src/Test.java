@@ -4,7 +4,7 @@ public class Test {
 	public static void main(String[] args) {
 
 		testAndroidList();
-		test2();
+		testUpdate();
 		testPowerClass();
 		testSkin();
 		testSoftware();
@@ -24,9 +24,7 @@ private static void testAndroidList()
 	ArrayList<Aktor> aktoren22 = new ArrayList<Aktor>();
 	ArrayList<Sensor> sensoren22 = new ArrayList<Sensor>();
 
-	System.out.println();
-	System.out.println("Testfall 1: Teste die Klasse AndroidList");
-	System.out.println();
+	System.out.println("\n\nTeste die Klasse AndroidList\n");
 
 	//Erstelle neuen Gesellschafter
 	aktoren12.add(new Aktor(12, "Putzen", 0.5));
@@ -42,11 +40,11 @@ private static void testAndroidList()
 	sensoren22.add(new Sensor(22, "Notfallassistenz"));
 	android22 = new Fighter(22, new Kit(aktoren22, sensoren22), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel5()));
 	System.out.println("Erstelle neuen Kaempfer: " + list.insert(android22));
+	System.out.println();
 
 	//Ausgabe aller Androiden in Einfuegereihenfolge
-	System.out.println();
 	System.out.println("Zeige bisher ausgelieferte Androiden");
-	showAndroids("Ausgelieferter Android Nr.: ", list.iterator());
+	showAndroids("- Ausgelieferter Android Nr.: ", list.iterator());
 
 	
 	//Ueberschreibe Android 12
@@ -57,37 +55,35 @@ private static void testAndroidList()
 	//Keine Ueberschreibung von Android 22, da dieser ungueltig ist
 	android22 = new Fighter(22, new Kit(aktoren22, sensoren22), new ArmoredSkin(22), new Fighter.BaseSoftware(22, new SecurityLevel2()));
 	System.out.println("Aendere Sicherheitslevel des Kaempfers (ungueltige Aenderung): "+list.insert(android22));
+	System.out.println();
 
 	//Ausgabe aller Androiden in Einfuegereihenfolge
-	System.out.println();
 	System.out.println("Zeige bisher ausgelieferte Androiden");
-	showAndroids("Ausgelieferter Android Nr.: ", list.iterator());
+	showAndroids("- Ausgelieferter Android Nr.: ", list.iterator());
 	
 	
 	//Aendere die Hilfskraft abermals
 	android12 = new Associate(12, new Kit(aktoren12, sensoren12), new TouchSensitiveSkin(12) , new Associate.BaseSoftware(12, new SecurityLevel1()));
 	System.out.println("Aendere die Hilfskraft: " + list.insert(android12));
+	System.out.println();
 
 	//Ausgabe aller Androiden in Einfuegereihenfolge
-	System.out.println();
 	System.out.println("Zeige bisher ausgelieferte Androiden");
-	showAndroids("Ausgelieferter Android Nr.: ", list.iterator());
+	showAndroids("- Ausgelieferter Android Nr.: ", list.iterator());
 	
 	
 	//Zeige den Aenderungsverlauf von Android 12
-	System.out.println();
 	System.out.println("Zeige den Aenderungsverlauf von Android 12");
-	showAndroids("Konfiguration Nr.:", list.history(12));
+	showAndroids("- Konfiguration Nr.:", list.history(12));
 	
 	
 	//Gib Android 12 und 22 ueber find aus
 	System.out.println("Ausgabe der Androiden mit find:");
-	System.out.println("Android 12");
+	System.out.println(" - Android 12");
 	System.out.println(list.find(12));
 	System.out.println();
-	System.out.println("Android 22");
+	System.out.println(" - Android 22");
 	System.out.println(list.find(22));
-	System.out.println();
 
 //		AndroidList al = new AndroidList();
 //
@@ -273,57 +269,66 @@ private static void testAndroidList()
 	 * 
 	 * 
 	 */
-	private static void test2() {
-
-		System.out.println();
-		System.out.println("Testfall 2: ???");
-		System.out.println();
+	private static void testUpdate() {
+		System.out.println("\n\nTeste Einschraenkungen beim Aendern eines Androiden\n");
 		
-		AndroidList al = new AndroidList();
+		AndroidList list = new AndroidList();
+		Android servant1;
+		Android heavyworker2;
 
-		Android s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
+		servant1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel1()));
-		System.out.println(al.insert(s1) + "Vailid Assistant");
-
-		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
-				new Assistant.BaseSoftware(1, new SecurityLevel2()));
-		System.out.println("Invalid SecLev2\t" + al.insert(s1));
-		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
-				new Assistant.BaseSoftware(1, new SecurityLevel3()));
-		System.out.println("Invalid SecLev3\t" + al.insert(s1));
-		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
-				new Assistant.BaseSoftware(1, new SecurityLevel4()));
-		System.out.println("Invalid SecLev4\t" + al.insert(s1));
-		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
-				new Assistant.BaseSoftware(1, new SecurityLevel5()));
-		System.out.println("Invalid SecLev5\t" + al.insert(s1));
-
-		s1 = new Assistant(1, kit5kw(1), new TouchSensitiveSkin(1),
-				new Assistant.BaseSoftware(1, new SecurityLevel1()));
-		System.out.println("Invalid 5kW\t" + al.insert(s1));
-		s1 = new Assistant(1, kit10kw(1), new TouchSensitiveSkin(1),
-				new Assistant.BaseSoftware(1, new SecurityLevel1()));
-		System.out.println("Invalid 10kW\t" + al.insert(s1));
-		s1 = new Assistant(1, kitinfkw(1), new TouchSensitiveSkin(1),
-				new Assistant.BaseSoftware(1, new SecurityLevel1()));
-		System.out.println("Invalid infkW\t" + al.insert(s1));
-
-		s1 = new Assistant(1, kit1kw(1), new ArmoredSkin(1),
-				new Assistant.BaseSoftware(1, new SecurityLevel1()));
-		System.out.println("Invalid ArmoredSkin\t" + al.insert(s1));
-		s1 = new Assistant(1, kit1kw(1), new SolidSkin(1),
-				new Assistant.BaseSoftware(1, new SecurityLevel1()));
-		System.out.println("Invalid SolidSkin\t" + al.insert(s1));
-
-		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
-				new Associate.BaseSoftware(1, new SecurityLevel1()));
-		System.out.println("Invalid ?\t" + al.insert(s1));
-		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
-				new Associate.BaseSoftware(1, new SecurityLevel2()));
-		System.out.println("Invalid ?\t" + al.insert(s1));
-		s1 = new Associate(1, kit1kw(1), new TouchSensitiveSkin(1),
-				new Associate.BaseSoftware(1, new SecurityLevel2()));
-		System.out.println("Invalid ?\t" + al.insert(s1));
+		heavyworker2 = new TransportWorker(2, kit5kw(2), new SolidSkin(2),
+				new TransportWorker.BaseSoftware(2, new SecurityLevel3()));
+		
+		list.insert(servant1);
+		list.insert(heavyworker2);
+		
+//		AndroidList al = new AndroidList();
+//
+//		Android s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
+//				new Assistant.BaseSoftware(1, new SecurityLevel1()));
+//		System.out.println(al.insert(s1) + "Vailid Assistant");
+//
+//		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
+//				new Assistant.BaseSoftware(1, new SecurityLevel2()));
+//		System.out.println("Invalid SecLev2\t" + al.insert(s1));
+//		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
+//				new Assistant.BaseSoftware(1, new SecurityLevel3()));
+//		System.out.println("Invalid SecLev3\t" + al.insert(s1));
+//		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
+//				new Assistant.BaseSoftware(1, new SecurityLevel4()));
+//		System.out.println("Invalid SecLev4\t" + al.insert(s1));
+//		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
+//				new Assistant.BaseSoftware(1, new SecurityLevel5()));
+//		System.out.println("Invalid SecLev5\t" + al.insert(s1));
+//
+//		s1 = new Assistant(1, kit5kw(1), new TouchSensitiveSkin(1),
+//				new Assistant.BaseSoftware(1, new SecurityLevel1()));
+//		System.out.println("Invalid 5kW\t" + al.insert(s1));
+//		s1 = new Assistant(1, kit10kw(1), new TouchSensitiveSkin(1),
+//				new Assistant.BaseSoftware(1, new SecurityLevel1()));
+//		System.out.println("Invalid 10kW\t" + al.insert(s1));
+//		s1 = new Assistant(1, kitinfkw(1), new TouchSensitiveSkin(1),
+//				new Assistant.BaseSoftware(1, new SecurityLevel1()));
+//		System.out.println("Invalid infkW\t" + al.insert(s1));
+//
+//		s1 = new Assistant(1, kit1kw(1), new ArmoredSkin(1),
+//				new Assistant.BaseSoftware(1, new SecurityLevel1()));
+//		System.out.println("Invalid ArmoredSkin\t" + al.insert(s1));
+//		s1 = new Assistant(1, kit1kw(1), new SolidSkin(1),
+//				new Assistant.BaseSoftware(1, new SecurityLevel1()));
+//		System.out.println("Invalid SolidSkin\t" + al.insert(s1));
+//
+//		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
+//				new Associate.BaseSoftware(1, new SecurityLevel1()));
+//		System.out.println("Invalid ?\t" + al.insert(s1));
+//		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
+//				new Associate.BaseSoftware(1, new SecurityLevel2()));
+//		System.out.println("Invalid ?\t" + al.insert(s1));
+//		s1 = new Associate(1, kit1kw(1), new TouchSensitiveSkin(1),
+//				new Associate.BaseSoftware(1, new SecurityLevel2()));
+//		System.out.println("Invalid ?\t" + al.insert(s1));
 	}
 
 	/*
@@ -334,7 +339,7 @@ private static void testAndroidList()
 	 * der Stufe 4 die Grenze von 10 kW.
 	 */
 	private static void testPowerClass() {
-		System.out.print("\n\n\nTeste Aktoren zulaessige Leistung\n");
+		System.out.println("\n\nTeste Leistungsklassen\n");
 
 		AndroidList al = new AndroidList();
 
@@ -395,6 +400,7 @@ private static void testAndroidList()
 	 * haben.
 	 * */
 	private static void testSkin() {
+		System.out.println("\n\nTeste Skins\n");
 
 		AndroidList al = new AndroidList();
 
@@ -475,7 +481,7 @@ private static void testAndroidList()
 	 * Bauarbeiter-Software und so weiter.
 	 * */
 	private static void testSoftware() {
-		System.out.print("\n\n\nTeste unzulaessige Software\n");
+		System.out.println("\n\nTeste Software\n");
 
 		AndroidList al = new AndroidList();
 
@@ -743,6 +749,7 @@ private static void testAndroidList()
 	private static void testSecurityLevel() {
 		// Test Security Levels, if cnt is a comment this means it is tested to
 		// change an androids SecLev which must be invalid
+		System.out.println("\n\nTeste Sicherheitsstufen\n");
 
 		AndroidList al = new AndroidList();
 
@@ -1021,6 +1028,10 @@ private static void testAndroidList()
 		System.out.println("\n\n");
 	}
 	
+	public static void testSerialNumber() {
+		System.out.println("test changing serial number");
+	}
+	
 	/**
 	 * Gibt alle Androiden die der Iterator liefert aus.
 	 */
@@ -1032,7 +1043,6 @@ private static void testAndroidList()
 			System.out.println(iti.next());
 			System.out.println();
 		}
-		System.out.println();
 	}
 
 	/**
