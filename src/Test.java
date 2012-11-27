@@ -254,43 +254,6 @@ private static void test1()
 //		showLog(22, al);
 	}
 
-	/** returns Kits of 1kW, 5kW, 10kW, 5000kW with given id */
-	public static class gKit {
-
-		public Kit _1kw(int id) {
-			ArrayList<Aktor> a1kw = new ArrayList<Aktor>();
-			a1kw.add(new Aktor(id, "minimal", 1.));
-			ArrayList<Sensor> sl = new ArrayList<Sensor>();
-			sl.add(new Sensor(id, "sample sensor"));
-			return new Kit(a1kw, sl);
-		}
-
-		public Kit _5kw(int id) {
-			ArrayList<Aktor> a5kw = new ArrayList<Aktor>();
-			a5kw.add(new Aktor(id, "mittel", 5.));
-			ArrayList<Sensor> sl = new ArrayList<Sensor>();
-			sl.add(new Sensor(id, "sample sensor"));
-			return new Kit(a5kw, sl);
-		}
-
-		public Kit _10kw(int id) {
-			ArrayList<Aktor> a10kw = new ArrayList<Aktor>();
-			a10kw.add(new Aktor(id, "hoch", 10.));
-			ArrayList<Sensor> sl = new ArrayList<Sensor>();
-			sl.add(new Sensor(id, "sample sensor"));
-
-			return new Kit(a10kw, sl);
-		}
-
-		public Kit _infkw(int id) {
-			ArrayList<Aktor> ainfkw = new ArrayList<Aktor>();
-			ainfkw.add(new Aktor(id, "unendlich", 5000.));
-			ArrayList<Sensor> sl = new ArrayList<Sensor>();
-			sl.add(new Sensor(id, "sample sensor"));
-			return new Kit(ainfkw, sl);
-		}
-	}
-
 	/**
 	 * Error test: change main Android Type From To
 	 * 
@@ -316,134 +279,51 @@ private static void test1()
 		System.out.println("Testfall 2: ???");
 		System.out.println();
 		
-		gKit x = new gKit();
 		AndroidList al = new AndroidList();
 
-		Android s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1),
+		Android s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel1()));
 		System.out.println(al.insert(s1) + "Vailid Assistant");
 
-		s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel2()));
 		System.out.println("Invalid SecLev2\t" + al.insert(s1));
-		s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel3()));
 		System.out.println("Invalid SecLev3\t" + al.insert(s1));
-		s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid SecLev4\t" + al.insert(s1));
-		s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel5()));
 		System.out.println("Invalid SecLev5\t" + al.insert(s1));
 
-		s1 = new Assistant(1, x._5kw(1), new TouchSensitiveSkin(1),
+		s1 = new Assistant(1, kit5kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel1()));
 		System.out.println("Invalid 5kW\t" + al.insert(s1));
-		s1 = new Assistant(1, x._10kw(1), new TouchSensitiveSkin(1),
+		s1 = new Assistant(1, kit10kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel1()));
 		System.out.println("Invalid 10kW\t" + al.insert(s1));
-		s1 = new Assistant(1, x._infkw(1), new TouchSensitiveSkin(1),
+		s1 = new Assistant(1, kitinfkw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel1()));
 		System.out.println("Invalid infkW\t" + al.insert(s1));
 
-		s1 = new Assistant(1, x._1kw(1), new ArmoredSkin(1),
+		s1 = new Assistant(1, kit1kw(1), new ArmoredSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel1()));
 		System.out.println("Invalid ArmoredSkin\t" + al.insert(s1));
-		s1 = new Assistant(1, x._1kw(1), new SolidSkin(1),
+		s1 = new Assistant(1, kit1kw(1), new SolidSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel1()));
 		System.out.println("Invalid SolidSkin\t" + al.insert(s1));
 
-		s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Associate.BaseSoftware(1, new SecurityLevel1()));
 		System.out.println("Invalid ?\t" + al.insert(s1));
-		s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Associate.BaseSoftware(1, new SecurityLevel2()));
 		System.out.println("Invalid ?\t" + al.insert(s1));
-		s1 = new Associate(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Associate(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Associate.BaseSoftware(1, new SecurityLevel2()));
 		System.out.println("Invalid ?\t" + al.insert(s1));
-	}
-
-	/**
-	 * Jeder Androide muss mit einer beruehrungssensitiven, hochfesten oder
-	 * gepanzerten Skin ausgestattet sein. Bediener benötigen unbedingt eine
-	 * berührungssensitive Skin, und nur Beschützer dürfen eine gepanzerte Skin
-	 * haben.
-	 * */
-	private static void test4() {
-
-		gKit x = new gKit();
-		AndroidList al = new AndroidList();
-
-		// Associate
-		Android s1 = new Associate(1234, x._1kw(1234), new TouchSensitiveSkin(
-				1234), new Associate.BaseSoftware(1234, new SecurityLevel1()));
-		System.out.println("Valid Associate\t\t\t" + al.insert(s1));
-		s1 = new Associate(1234, x._1kw(1234), new SolidSkin(1234),
-				new Associate.BaseSoftware(1234, new SecurityLevel1()));
-		System.out.println("Invalid Associate\t\t" + al.insert(s1));
-		s1 = new Associate(1234, x._1kw(1234), new ArmoredSkin(1234),
-				new Associate.BaseSoftware(1234, new SecurityLevel1()));
-		System.out.println("Invalid Associate\t\t" + al.insert(s1));
-
-		// Assistant
-		Android s2 = new Assistant(1235, x._1kw(1235), new TouchSensitiveSkin(
-				1235), new Assistant.BaseSoftware(1235, new SecurityLevel2()));
-		System.out.println("Valid Assistant\t\t\t" + al.insert(s2));
-		s2 = new Assistant(1235, x._1kw(1235), new SolidSkin(1235),
-				new Assistant.BaseSoftware(1235, new SecurityLevel2()));
-		System.out.println("Valid Assistant\t\t\t" + al.insert(s2));
-		s2 = new Assistant(1235, x._1kw(1235), new ArmoredSkin(1235),
-				new Assistant.BaseSoftware(1235, new SecurityLevel2()));
-		System.out.println("Invalid Assistant\t\t\t" + al.insert(s2));
-
-		// BuildingWorker
-		Android s3 = new BuildingWorker(1236, x._5kw(1236),
-				new SolidSkin(1236), new BuildingWorker.BaseSoftware(1236,
-						new SecurityLevel3()));
-		System.out.println("Valid BuildingWorker\t\t" + al.insert(s3));
-		s3 = new BuildingWorker(1236, x._5kw(1236),
-				new TouchSensitiveSkin(1236), new BuildingWorker.BaseSoftware(
-						1236, new SecurityLevel3()));
-		System.out.println("Valid BuildingWorker\t\t" + al.insert(s3));
-		s3 = new BuildingWorker(1236, x._5kw(1236), new ArmoredSkin(1236),
-				new BuildingWorker.BaseSoftware(1236, new SecurityLevel3()));
-		System.out.println("Invalid BuildingWorker\t\t" + al.insert(s3));
-
-		// ServiceTechnician
-		Android s4 = new ServiceTechnician(1237, x._5kw(1237),
-				new TouchSensitiveSkin(1237),
-				new ServiceTechnician.BaseSoftware(1237, new SecurityLevel3()));
-		System.out.println("Valid ServiceTechnician\t\t" + al.insert(s4));
-		s4 = new ServiceTechnician(1237, x._5kw(1237), new SolidSkin(1237),
-				new ServiceTechnician.BaseSoftware(1237, new SecurityLevel3()));
-		System.out.println("Valid ServiceTechnician\t" + al.insert(s4));
-		s4 = new ServiceTechnician(1237, x._5kw(1237), new ArmoredSkin(1237),
-				new ServiceTechnician.BaseSoftware(1237, new SecurityLevel3()));
-		System.out.println("Invalid ServiceTechnician\t" + al.insert(s4));
-
-		// Fighter
-		Android s5 = new Fighter(666, x._infkw(666), new ArmoredSkin(666),
-				new Fighter.BaseSoftware(666, new SecurityLevel5()));
-		System.out.println("Valid Fighter\t\t\t" + al.insert(s5));
-		s5 = new Fighter(666, x._infkw(666), new TouchSensitiveSkin(666),
-				new Fighter.BaseSoftware(666, new SecurityLevel5()));
-		System.out.println("Valid Fighter\t\t\t" + al.insert(s5));
-		s5 = new Fighter(666, x._infkw(666), new SolidSkin(666),
-				new Fighter.BaseSoftware(666, new SecurityLevel5()));
-		System.out.println("Valid Fighter\t\t\t" + al.insert(s5));
-
-		// Bodyguard
-		Android s6 = new Bodyguard(111, x._10kw(111), new ArmoredSkin(111),
-				new Bodyguard.BaseSoftware(111, new SecurityLevel4()));
-		System.out.println("Valid Bodyguard\t\t\t" + al.insert(s6));
-		s6 = new Bodyguard(111, x._10kw(111), new SolidSkin(111),
-				new Bodyguard.BaseSoftware(111, new SecurityLevel4()));
-		System.out.println("Valid Bodyguard\t\t" + al.insert(s6));
-		s6 = new Bodyguard(111, x._10kw(111), new TouchSensitiveSkin(111),
-				new Bodyguard.BaseSoftware(111, new SecurityLevel4()));
-		System.out.println("Valid Bodyguard\t\t" + al.insert(s6));
-
 	}
 
 	/*
@@ -456,59 +336,139 @@ private static void test1()
 	private static void test3() {
 		System.out.print("\n\n\nTeste Aktoren zulaessige Leistung\n");
 
-		gKit x = new gKit();
 		AndroidList al = new AndroidList();
 
-		Android s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1),
+		Android s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel2()));
 		System.out.println("Valid Assistant max 1kW " + al.insert(s1));
 
-		s1 = new Assistant(1, x._5kw(1), new TouchSensitiveSkin(1),
+		s1 = new Assistant(1, kit5kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel2()));
 		System.out.println("Invalid Assistant 5kW " + al.insert(s1));
 
-		Android s2 = new Associate(2, x._1kw(2), new TouchSensitiveSkin(2),
+		Android s2 = new Associate(2, kit1kw(2), new TouchSensitiveSkin(2),
 				new Associate.BaseSoftware(2, new SecurityLevel1()));
 		System.out.println("Valid Associate max 1kW " + al.insert(s2));
 
-		s2 = new Associate(2, x._5kw(2), new TouchSensitiveSkin(2),
+		s2 = new Associate(2, kit5kw(2), new TouchSensitiveSkin(2),
 				new Associate.BaseSoftware(2, new SecurityLevel1()));
 		System.out.println("Invalid Associate 5kW " + al.insert(s2));
 
-		Android w1 = new ServiceTechnician(3, x._1kw(3), new SolidSkin(3),
+		Android w1 = new ServiceTechnician(3, kit1kw(3), new SolidSkin(3),
 				new ServiceTechnician.BaseSoftware(3, new SecurityLevel3()));
 		System.out.println("Valid ServiceTechnician 1kW " + al.insert(w1));
 
-		w1 = new ServiceTechnician(3, x._5kw(3), new SolidSkin(3),
+		w1 = new ServiceTechnician(3, kit5kw(3), new SolidSkin(3),
 				new ServiceTechnician.BaseSoftware(3, new SecurityLevel3()));
 		System.out.println("Valid ServiceTechnician max 5kW " + al.insert(w1));
 
-		w1 = new ServiceTechnician(3, x._10kw(3), new SolidSkin(3),
+		w1 = new ServiceTechnician(3, kit10kw(3), new SolidSkin(3),
 				new ServiceTechnician.BaseSoftware(3, new SecurityLevel3()));
 		System.out.println("Invalid ServiceTechnician 10kW " + al.insert(w1));
 
-		Android o1 = new ObjectGuard(4, x._5kw(4), new SolidSkin(4),
+		Android o1 = new ObjectGuard(4, kit5kw(4), new SolidSkin(4),
 				new ObjectGuard.BaseSoftware(4, new SecurityLevel4()));
 		System.out.println("Valid ObjectGuard 5kW " + al.insert(o1));
 
-		o1 = new ObjectGuard(4, x._10kw(4), new SolidSkin(4),
+		o1 = new ObjectGuard(4, kit10kw(4), new SolidSkin(4),
 				new ObjectGuard.BaseSoftware(4, new SecurityLevel4()));
 		System.out.println("Valid ObjectGuard max 10kW " + al.insert(o1));
 
-		o1 = new ObjectGuard(4, x._infkw(4), new SolidSkin(4),
+		o1 = new ObjectGuard(4, kitinfkw(4), new SolidSkin(4),
 				new ObjectGuard.BaseSoftware(4, new SecurityLevel4()));
 		System.out.println("Invalid ObjectGuard 5000kW " + al.insert(o1));
 
-		Android f1 = new Fighter(5, x._5kw(5), new SolidSkin(5),
+		Android f1 = new Fighter(5, kit5kw(5), new SolidSkin(5),
 				new Fighter.BaseSoftware(5, new SecurityLevel5()));
 		System.out.println("Valid Fighter 5kW " + al.insert(f1));
 
-		f1 = new Fighter(5, x._infkw(5), new SolidSkin(5),
+		f1 = new Fighter(5, kitinfkw(5), new SolidSkin(5),
 				new Fighter.BaseSoftware(5, new SecurityLevel5()));
 		System.out.println("Valid Fighter 5000kW " + al.insert(f1));
 
 	}
 
+	/**
+	 * Jeder Androide muss mit einer beruehrungssensitiven, hochfesten oder
+	 * gepanzerten Skin ausgestattet sein. Bediener benötigen unbedingt eine
+	 * berührungssensitive Skin, und nur Beschützer dürfen eine gepanzerte Skin
+	 * haben.
+	 * */
+	private static void test4() {
+
+		AndroidList al = new AndroidList();
+
+		// Associate
+		Android s1 = new Associate(1234, kit1kw(1234), new TouchSensitiveSkin(
+				1234), new Associate.BaseSoftware(1234, new SecurityLevel1()));
+		System.out.println("Valid Associate\t\t\t" + al.insert(s1));
+		s1 = new Associate(1234, kit1kw(1234), new SolidSkin(1234),
+				new Associate.BaseSoftware(1234, new SecurityLevel1()));
+		System.out.println("Invalid Associate\t\t" + al.insert(s1));
+		s1 = new Associate(1234, kit1kw(1234), new ArmoredSkin(1234),
+				new Associate.BaseSoftware(1234, new SecurityLevel1()));
+		System.out.println("Invalid Associate\t\t" + al.insert(s1));
+
+		// Assistant
+		Android s2 = new Assistant(1235, kit1kw(1235), new TouchSensitiveSkin(
+				1235), new Assistant.BaseSoftware(1235, new SecurityLevel2()));
+		System.out.println("Valid Assistant\t\t\t" + al.insert(s2));
+		s2 = new Assistant(1235, kit1kw(1235), new SolidSkin(1235),
+				new Assistant.BaseSoftware(1235, new SecurityLevel2()));
+		System.out.println("Valid Assistant\t\t\t" + al.insert(s2));
+		s2 = new Assistant(1235, kit1kw(1235), new ArmoredSkin(1235),
+				new Assistant.BaseSoftware(1235, new SecurityLevel2()));
+		System.out.println("Invalid Assistant\t\t\t" + al.insert(s2));
+
+		// BuildingWorker
+		Android s3 = new BuildingWorker(1236, kit5kw(1236),
+				new SolidSkin(1236), new BuildingWorker.BaseSoftware(1236,
+						new SecurityLevel3()));
+		System.out.println("Valid BuildingWorker\t\t" + al.insert(s3));
+		s3 = new BuildingWorker(1236, kit5kw(1236),
+				new TouchSensitiveSkin(1236), new BuildingWorker.BaseSoftware(
+						1236, new SecurityLevel3()));
+		System.out.println("Valid BuildingWorker\t\t" + al.insert(s3));
+		s3 = new BuildingWorker(1236, kit5kw(1236), new ArmoredSkin(1236),
+				new BuildingWorker.BaseSoftware(1236, new SecurityLevel3()));
+		System.out.println("Invalid BuildingWorker\t\t" + al.insert(s3));
+
+		// ServiceTechnician
+		Android s4 = new ServiceTechnician(1237, kit5kw(1237),
+				new TouchSensitiveSkin(1237),
+				new ServiceTechnician.BaseSoftware(1237, new SecurityLevel3()));
+		System.out.println("Valid ServiceTechnician\t\t" + al.insert(s4));
+		s4 = new ServiceTechnician(1237, kit5kw(1237), new SolidSkin(1237),
+				new ServiceTechnician.BaseSoftware(1237, new SecurityLevel3()));
+		System.out.println("Valid ServiceTechnician\t" + al.insert(s4));
+		s4 = new ServiceTechnician(1237, kit5kw(1237), new ArmoredSkin(1237),
+				new ServiceTechnician.BaseSoftware(1237, new SecurityLevel3()));
+		System.out.println("Invalid ServiceTechnician\t" + al.insert(s4));
+
+		// Fighter
+		Android s5 = new Fighter(666, kitinfkw(666), new ArmoredSkin(666),
+				new Fighter.BaseSoftware(666, new SecurityLevel5()));
+		System.out.println("Valid Fighter\t\t\t" + al.insert(s5));
+		s5 = new Fighter(666, kitinfkw(666), new TouchSensitiveSkin(666),
+				new Fighter.BaseSoftware(666, new SecurityLevel5()));
+		System.out.println("Valid Fighter\t\t\t" + al.insert(s5));
+		s5 = new Fighter(666, kitinfkw(666), new SolidSkin(666),
+				new Fighter.BaseSoftware(666, new SecurityLevel5()));
+		System.out.println("Valid Fighter\t\t\t" + al.insert(s5));
+
+		// Bodyguard
+		Android s6 = new Bodyguard(111, kit10kw(111), new ArmoredSkin(111),
+				new Bodyguard.BaseSoftware(111, new SecurityLevel4()));
+		System.out.println("Valid Bodyguard\t\t\t" + al.insert(s6));
+		s6 = new Bodyguard(111, kit10kw(111), new SolidSkin(111),
+				new Bodyguard.BaseSoftware(111, new SecurityLevel4()));
+		System.out.println("Valid Bodyguard\t\t" + al.insert(s6));
+		s6 = new Bodyguard(111, kit10kw(111), new TouchSensitiveSkin(111),
+				new Bodyguard.BaseSoftware(111, new SecurityLevel4()));
+		System.out.println("Valid Bodyguard\t\t" + al.insert(s6));
+
+	}
+	
 	/**
 	 * Die Software muss dem Einsatzgebiet des Androiden entsprechen. Analog zu
 	 * den Androide-Typen gibt es Hilfskraft-Software, Gesellschafter-Software,
@@ -517,258 +477,257 @@ private static void test1()
 	private static void test5() {
 		System.out.print("\n\n\nTeste unzulaessige Software\n");
 
-		gKit x = new gKit();
 		AndroidList al = new AndroidList();
 
 		// Assistant
-		Android s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1),
+		Android s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Associate.BaseSoftware(1, new SecurityLevel2()));
 		System.out.println("Invalid Software for Assistant " + al.insert(s1));
 
-		s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Bodyguard.BaseSoftware(1, new SecurityLevel2()));
 		System.out.println("Invalid Software for Assistant " + al.insert(s1));
 
-		s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Fighter.BaseSoftware(1, new SecurityLevel2()));
 		System.out.println("Invalid Software for Assistant " + al.insert(s1));
 
-		s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new ObjectGuard.BaseSoftware(1, new SecurityLevel2()));
 		System.out.println("Invalid Software for Assistant " + al.insert(s1));
 
-		s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new ServiceTechnician.BaseSoftware(1, new SecurityLevel2()));
 		System.out.println("Invalid Software for Assistant " + al.insert(s1));
 
-		s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new TransportWorker.BaseSoftware(1, new SecurityLevel2()));
 		System.out.println("Invalid Software for Assistant " + al.insert(s1));
 
-		s1 = new Assistant(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Assistant(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new BuildingWorker.BaseSoftware(1, new SecurityLevel2()));
 		System.out.println("Invalid Software for Assistant " + al.insert(s1));
 
 		// Associate
-		s1 = new Associate(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Associate(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel1()));
 		System.out.println("Invalid Software for Associate " + al.insert(s1));
 
-		s1 = new Associate(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Associate(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Bodyguard.BaseSoftware(1, new SecurityLevel1()));
 		System.out.println("Invalid Software for Associate " + al.insert(s1));
 
-		s1 = new Associate(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Associate(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Fighter.BaseSoftware(1, new SecurityLevel1()));
 		System.out.println("Invalid Software for Associate " + al.insert(s1));
 
-		s1 = new Associate(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Associate(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new ObjectGuard.BaseSoftware(1, new SecurityLevel1()));
 		System.out.println("Invalid Software for Associate " + al.insert(s1));
 
-		s1 = new Associate(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Associate(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new ServiceTechnician.BaseSoftware(1, new SecurityLevel1()));
 		System.out.println("Invalid Software for Associate " + al.insert(s1));
 
-		s1 = new Associate(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Associate(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new TransportWorker.BaseSoftware(1, new SecurityLevel1()));
 		System.out.println("Invalid Software for Associate " + al.insert(s1));
 
-		s1 = new Associate(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Associate(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new BuildingWorker.BaseSoftware(1, new SecurityLevel1()));
 		System.out.println("Invalid Software for Associate " + al.insert(s1));
 
 		// BodyGuard
-		s1 = new Bodyguard(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Bodyguard(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for BodyGuard " + al.insert(s1));
 
-		s1 = new Bodyguard(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Bodyguard(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Associate.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for BodyGuard " + al.insert(s1));
 
-		s1 = new Bodyguard(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Bodyguard(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Fighter.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for BodyGuard " + al.insert(s1));
 
-		s1 = new Bodyguard(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Bodyguard(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new ObjectGuard.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for BodyGuard " + al.insert(s1));
 
-		s1 = new Bodyguard(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Bodyguard(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new ServiceTechnician.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for BodyGuard " + al.insert(s1));
 
-		s1 = new Bodyguard(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Bodyguard(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new TransportWorker.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for BodyGuard " + al.insert(s1));
 
-		s1 = new Bodyguard(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Bodyguard(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new BuildingWorker.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for BodyGuard " + al.insert(s1));
 
 		// Fighter
-		s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Fighter(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel5()));
 		System.out.println("Invalid Software for Fighter " + al.insert(s1));
 
-		s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Fighter(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Associate.BaseSoftware(1, new SecurityLevel5()));
 		System.out.println("Invalid Software for Fighter " + al.insert(s1));
 
-		s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Fighter(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Bodyguard.BaseSoftware(1, new SecurityLevel5()));
 		System.out.println("Invalid Software for Fighter " + al.insert(s1));
 
-		s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Fighter(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new ObjectGuard.BaseSoftware(1, new SecurityLevel5()));
 		System.out.println("Invalid Software for Fighter " + al.insert(s1));
 
-		s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Fighter(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new ServiceTechnician.BaseSoftware(1, new SecurityLevel5()));
 		System.out.println("Invalid Software for Fighter " + al.insert(s1));
 
-		s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Fighter(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new TransportWorker.BaseSoftware(1, new SecurityLevel5()));
 		System.out.println("Invalid Software for Fighter " + al.insert(s1));
 
-		s1 = new Fighter(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new Fighter(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new BuildingWorker.BaseSoftware(1, new SecurityLevel5()));
 		System.out.println("Invalid Software for Fighter " + al.insert(s1));
 
 		// ObjectGuard
-		s1 = new ObjectGuard(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new ObjectGuard(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for ObjectGuard " + al.insert(s1));
 
-		s1 = new ObjectGuard(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new ObjectGuard(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Associate.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for ObjectGuard " + al.insert(s1));
 
-		s1 = new ObjectGuard(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new ObjectGuard(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Fighter.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for ObjectGuard " + al.insert(s1));
 
-		s1 = new ObjectGuard(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new ObjectGuard(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Bodyguard.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for ObjectGuard " + al.insert(s1));
 
-		s1 = new ObjectGuard(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new ObjectGuard(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new ServiceTechnician.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for ObjectGuard " + al.insert(s1));
 
-		s1 = new ObjectGuard(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new ObjectGuard(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new TransportWorker.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for ObjectGuard " + al.insert(s1));
 
-		s1 = new ObjectGuard(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new ObjectGuard(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new BuildingWorker.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for ObjectGuard " + al.insert(s1));
 
 		// ServiceTechnician
-		s1 = new ServiceTechnician(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new ServiceTechnician(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel3()));
 		System.out.println("Invalid Software for ServiceTechnician "
 				+ al.insert(s1));
 
-		s1 = new ServiceTechnician(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new ServiceTechnician(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Associate.BaseSoftware(1, new SecurityLevel3()));
 		System.out.println("Invalid Software for ServiceTechnician "
 				+ al.insert(s1));
 
-		s1 = new ServiceTechnician(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new ServiceTechnician(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Fighter.BaseSoftware(1, new SecurityLevel3()));
 		System.out.println("Invalid Software for ServiceTechnician "
 				+ al.insert(s1));
 
-		s1 = new ServiceTechnician(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new ServiceTechnician(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Bodyguard.BaseSoftware(1, new SecurityLevel3()));
 		System.out.println("Invalid Software for ServiceTechnician "
 				+ al.insert(s1));
 
-		s1 = new ServiceTechnician(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new ServiceTechnician(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new ObjectGuard.BaseSoftware(1, new SecurityLevel3()));
 		System.out.println("Invalid Software for ServiceTechnician "
 				+ al.insert(s1));
 
-		s1 = new ServiceTechnician(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new ServiceTechnician(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new TransportWorker.BaseSoftware(1, new SecurityLevel3()));
 		System.out.println("Invalid Software for ServiceTechnician "
 				+ al.insert(s1));
 
-		s1 = new ServiceTechnician(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new ServiceTechnician(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new BuildingWorker.BaseSoftware(1, new SecurityLevel3()));
 		System.out.println("Invalid Software for ServiceTechnician "
 				+ al.insert(s1));
 
 		// TransportWorker
-		s1 = new TransportWorker(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new TransportWorker(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for TransportWorker "
 				+ al.insert(s1));
 
-		s1 = new TransportWorker(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new TransportWorker(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Associate.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for TransportWorker "
 				+ al.insert(s1));
 
-		s1 = new TransportWorker(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new TransportWorker(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Fighter.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for TransportWorker "
 				+ al.insert(s1));
 
-		s1 = new TransportWorker(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new TransportWorker(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Bodyguard.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for TransportWorker "
 				+ al.insert(s1));
 
-		s1 = new TransportWorker(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new TransportWorker(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new ObjectGuard.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for TransportWorker "
 				+ al.insert(s1));
 
-		s1 = new TransportWorker(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new TransportWorker(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new ServiceTechnician.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for TransportWorker "
 				+ al.insert(s1));
 
-		s1 = new TransportWorker(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new TransportWorker(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new BuildingWorker.BaseSoftware(1, new SecurityLevel4()));
 		System.out.println("Invalid Software for TransportWorker "
 				+ al.insert(s1));
 
 		// BuildingWorker
-		s1 = new BuildingWorker(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new BuildingWorker(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Assistant.BaseSoftware(1, new SecurityLevel3()));
 		System.out.println("Invalid Software for BuildingWorker "
 				+ al.insert(s1));
 
-		s1 = new BuildingWorker(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new BuildingWorker(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Associate.BaseSoftware(1, new SecurityLevel3()));
 		System.out.println("Invalid Software for BuildingWorker "
 				+ al.insert(s1));
 
-		s1 = new BuildingWorker(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new BuildingWorker(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Fighter.BaseSoftware(1, new SecurityLevel3()));
 		System.out.println("Invalid Software for BuildingWorker "
 				+ al.insert(s1));
 
-		s1 = new BuildingWorker(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new BuildingWorker(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new Bodyguard.BaseSoftware(1, new SecurityLevel3()));
 		System.out.println("Invalid Software for BuildingWorker "
 				+ al.insert(s1));
 
-		s1 = new BuildingWorker(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new BuildingWorker(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new ObjectGuard.BaseSoftware(1, new SecurityLevel3()));
 		System.out.println("Invalid Software for BuildingWorker "
 				+ al.insert(s1));
 
-		s1 = new BuildingWorker(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new BuildingWorker(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new ServiceTechnician.BaseSoftware(1, new SecurityLevel3()));
 		System.out.println("Invalid Software for BuildingWorker "
 				+ al.insert(s1));
 
-		s1 = new BuildingWorker(1, x._1kw(1), new TouchSensitiveSkin(1),
+		s1 = new BuildingWorker(1, kit1kw(1), new TouchSensitiveSkin(1),
 				new TransportWorker.BaseSoftware(1, new SecurityLevel3()));
 		System.out.println("Invalid Software for BuildingWorker "
 				+ al.insert(s1));
@@ -787,33 +746,31 @@ private static void test1()
 
 		AndroidList al = new AndroidList();
 
-		gKit x = new gKit();
-
 		int cnt = 0;
 
 		// Associate
 		cnt++;
-		Android s201 = new Associate(cnt, x._1kw(cnt), new TouchSensitiveSkin(
+		Android s201 = new Associate(cnt, kit1kw(cnt), new TouchSensitiveSkin(
 				cnt), new Associate.BaseSoftware(cnt, new SecurityLevel1()));
 		System.out.println("Valid Associate" + al.insert(s201));
 
 		cnt++;
-		s201 = new Associate(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Associate(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Associate.BaseSoftware(cnt, new SecurityLevel2()));
 		System.out.println("Invalid Associate" + al.insert(s201));
 
 		cnt++;
-		s201 = new Associate(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Associate(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Associate.BaseSoftware(cnt, new SecurityLevel3()));
 		System.out.println("Invalid Associate" + al.insert(s201));
 
 		cnt++;
-		s201 = new Associate(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Associate(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Associate.BaseSoftware(cnt, new SecurityLevel4()));
 		System.out.println("Invalid Associate" + al.insert(s201));
 
 		cnt++;
-		s201 = new Associate(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Associate(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Associate.BaseSoftware(cnt, new SecurityLevel5()));
 		System.out.println("Invalid Associate" + al.insert(s201));
 
@@ -821,32 +778,32 @@ private static void test1()
 
 		// Assistant
 		cnt++;
-		s201 = new Assistant(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Assistant(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Assistant.BaseSoftware(cnt, new SecurityLevel1()));
 		System.out.println("Valid Assistant" + al.insert(s201));
 
 		// cnt++;
-		s201 = new Assistant(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Assistant(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Assistant.BaseSoftware(cnt, new SecurityLevel2()));
 		System.out.println("Invalid Assistant" + al.insert(s201));
 
 		cnt++;
-		s201 = new Assistant(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Assistant(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Assistant.BaseSoftware(cnt, new SecurityLevel2()));
 		System.out.println("Valid Assistant" + al.insert(s201));
 
 		cnt++;
-		s201 = new Assistant(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Assistant(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Assistant.BaseSoftware(cnt, new SecurityLevel3()));
 		System.out.println("Invalid Assistant" + al.insert(s201));
 
 		cnt++;
-		s201 = new Assistant(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Assistant(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Assistant.BaseSoftware(cnt, new SecurityLevel4()));
 		System.out.println("Invalid Assistant" + al.insert(s201));
 
 		cnt++;
-		s201 = new Assistant(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Assistant(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Assistant.BaseSoftware(cnt, new SecurityLevel5()));
 		System.out.println("Invalid Assistant" + al.insert(s201));
 
@@ -854,37 +811,37 @@ private static void test1()
 
 		// TransportWorker
 		cnt++;
-		s201 = new TransportWorker(cnt, x._1kw(cnt),
+		s201 = new TransportWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new TransportWorker.BaseSoftware(
 						cnt, new SecurityLevel1()));
 		System.out.println("Invalid TransportWorker" + al.insert(s201));
 
 		cnt++;
-		s201 = new TransportWorker(cnt, x._1kw(cnt),
+		s201 = new TransportWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new TransportWorker.BaseSoftware(
 						cnt, new SecurityLevel2()));
 		System.out.println("Invalid TransportWorker" + al.insert(s201));
 
 		cnt++;
-		s201 = new TransportWorker(cnt, x._1kw(cnt),
+		s201 = new TransportWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new TransportWorker.BaseSoftware(
 						cnt, new SecurityLevel3()));
 		System.out.println("Valid TransportWorker" + al.insert(s201));
 
 		// cnt++;
-		s201 = new TransportWorker(cnt, x._1kw(cnt),
+		s201 = new TransportWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new TransportWorker.BaseSoftware(
 						cnt, new SecurityLevel4()));
 		System.out.println("Invalid TransportWorker" + al.insert(s201));
 
 		cnt++;
-		s201 = new TransportWorker(cnt, x._1kw(cnt),
+		s201 = new TransportWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new TransportWorker.BaseSoftware(
 						cnt, new SecurityLevel4()));
 		System.out.println("Valid TransportWorker" + al.insert(s201));
 
 		cnt++;
-		s201 = new TransportWorker(cnt, x._1kw(cnt),
+		s201 = new TransportWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new TransportWorker.BaseSoftware(
 						cnt, new SecurityLevel5()));
 		System.out.println("Invalid TransportWorker" + al.insert(s201));
@@ -893,37 +850,37 @@ private static void test1()
 
 		// BuildingWorker
 		cnt++;
-		s201 = new BuildingWorker(cnt, x._1kw(cnt),
+		s201 = new BuildingWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new BuildingWorker.BaseSoftware(
 						cnt, new SecurityLevel1()));
 		System.out.println("Invalid BuildingWorker" + al.insert(s201));
 
 		cnt++;
-		s201 = new BuildingWorker(cnt, x._1kw(cnt),
+		s201 = new BuildingWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new BuildingWorker.BaseSoftware(
 						cnt, new SecurityLevel2()));
 		System.out.println("Invalid BuildingWorker" + al.insert(s201));
 
 		cnt++;
-		s201 = new BuildingWorker(cnt, x._1kw(cnt),
+		s201 = new BuildingWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new BuildingWorker.BaseSoftware(
 						cnt, new SecurityLevel3()));
 		System.out.println("Valid BuildingWorker" + al.insert(s201));
 
 		// cnt++;
-		s201 = new BuildingWorker(cnt, x._1kw(cnt),
+		s201 = new BuildingWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new BuildingWorker.BaseSoftware(
 						cnt, new SecurityLevel4()));
 		System.out.println("Invalid BuildingWorker" + al.insert(s201));
 
 		cnt++;
-		s201 = new BuildingWorker(cnt, x._1kw(cnt),
+		s201 = new BuildingWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new BuildingWorker.BaseSoftware(
 						cnt, new SecurityLevel4()));
 		System.out.println("Valid BuildingWorker" + al.insert(s201));
 
 		cnt++;
-		s201 = new BuildingWorker(cnt, x._1kw(cnt),
+		s201 = new BuildingWorker(cnt, kit1kw(cnt),
 				new TouchSensitiveSkin(cnt), new BuildingWorker.BaseSoftware(
 						cnt, new SecurityLevel5()));
 		System.out.println("Invalid BuildingWorker" + al.insert(s201));
@@ -932,37 +889,37 @@ private static void test1()
 
 		// ServiceTechnician
 		cnt++;
-		s201 = new ServiceTechnician(cnt, x._1kw(cnt), new TouchSensitiveSkin(
+		s201 = new ServiceTechnician(cnt, kit1kw(cnt), new TouchSensitiveSkin(
 				cnt), new ServiceTechnician.BaseSoftware(cnt,
 				new SecurityLevel1()));
 		System.out.println("Invalid ServiceTecnician" + al.insert(s201));
 
 		cnt++;
-		s201 = new ServiceTechnician(cnt, x._1kw(cnt), new TouchSensitiveSkin(
+		s201 = new ServiceTechnician(cnt, kit1kw(cnt), new TouchSensitiveSkin(
 				cnt), new ServiceTechnician.BaseSoftware(cnt,
 				new SecurityLevel2()));
 		System.out.println("Invalid ServiceTecnician" + al.insert(s201));
 
 		cnt++;
-		s201 = new ServiceTechnician(cnt, x._1kw(cnt), new TouchSensitiveSkin(
+		s201 = new ServiceTechnician(cnt, kit1kw(cnt), new TouchSensitiveSkin(
 				cnt), new ServiceTechnician.BaseSoftware(cnt,
 				new SecurityLevel3()));
 		System.out.println("Valid ServiceTecnician" + al.insert(s201));
 
 		// cnt++;
-		s201 = new ServiceTechnician(cnt, x._1kw(cnt), new TouchSensitiveSkin(
+		s201 = new ServiceTechnician(cnt, kit1kw(cnt), new TouchSensitiveSkin(
 				cnt), new ServiceTechnician.BaseSoftware(cnt,
 				new SecurityLevel4()));
 		System.out.println("Invalid ServiceTecnician" + al.insert(s201));
 
 		cnt++;
-		s201 = new ServiceTechnician(cnt, x._1kw(cnt), new TouchSensitiveSkin(
+		s201 = new ServiceTechnician(cnt, kit1kw(cnt), new TouchSensitiveSkin(
 				cnt), new ServiceTechnician.BaseSoftware(cnt,
 				new SecurityLevel4()));
 		System.out.println("Valid ServiceTecnician" + al.insert(s201));
 
 		cnt++;
-		s201 = new ServiceTechnician(cnt, x._1kw(cnt), new TouchSensitiveSkin(
+		s201 = new ServiceTechnician(cnt, kit1kw(cnt), new TouchSensitiveSkin(
 				cnt), new ServiceTechnician.BaseSoftware(cnt,
 				new SecurityLevel5()));
 		System.out.println("Invalid ServiceTecnician" + al.insert(s201));
@@ -971,32 +928,32 @@ private static void test1()
 
 		// ObjectGuard
 		cnt++;
-		s201 = new ObjectGuard(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new ObjectGuard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new ObjectGuard.BaseSoftware(cnt, new SecurityLevel1()));
 		System.out.println("Invalid ObjectGuard" + al.insert(s201));
 
 		cnt++;
-		s201 = new ObjectGuard(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new ObjectGuard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new ObjectGuard.BaseSoftware(cnt, new SecurityLevel2()));
 		System.out.println("Invalid ObjectGuard" + al.insert(s201));
 
 		cnt++;
-		s201 = new ObjectGuard(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new ObjectGuard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new ObjectGuard.BaseSoftware(cnt, new SecurityLevel3()));
 		System.out.println("Invalid ObjectGuard" + al.insert(s201));
 
 		cnt++;
-		s201 = new ObjectGuard(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new ObjectGuard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new ObjectGuard.BaseSoftware(cnt, new SecurityLevel4()));
 		System.out.println("Valid ObjectGuard" + al.insert(s201));
 
 		// cnt++;
-		s201 = new ObjectGuard(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new ObjectGuard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new ObjectGuard.BaseSoftware(cnt, new SecurityLevel5()));
 		System.out.println("Invalid ObjectGuard" + al.insert(s201));
 
 		cnt++;
-		s201 = new ObjectGuard(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new ObjectGuard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new ObjectGuard.BaseSoftware(cnt, new SecurityLevel5()));
 		System.out.println("Invalid ObjectGuard" + al.insert(s201));
 
@@ -1004,32 +961,32 @@ private static void test1()
 
 		// Bodyguard
 		cnt++;
-		s201 = new Bodyguard(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Bodyguard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Bodyguard.BaseSoftware(cnt, new SecurityLevel1()));
 		System.out.println("Invalid Bodyguard" + al.insert(s201));
 
 		cnt++;
-		s201 = new Bodyguard(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Bodyguard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Bodyguard.BaseSoftware(cnt, new SecurityLevel2()));
 		System.out.println("Invalid Bodyguard" + al.insert(s201));
 
 		cnt++;
-		s201 = new Bodyguard(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Bodyguard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Bodyguard.BaseSoftware(cnt, new SecurityLevel3()));
 		System.out.println("Invalid Bodyguard" + al.insert(s201));
 
 		cnt++;
-		s201 = new Bodyguard(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Bodyguard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Bodyguard.BaseSoftware(cnt, new SecurityLevel4()));
 		System.out.println("Valid Bodyguard" + al.insert(s201));
 
 		// cnt++;
-		s201 = new Bodyguard(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Bodyguard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Bodyguard.BaseSoftware(cnt, new SecurityLevel5()));
 		System.out.println("Invalid Bodyguard" + al.insert(s201));
 
 		cnt++;
-		s201 = new Bodyguard(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Bodyguard(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Bodyguard.BaseSoftware(cnt, new SecurityLevel5()));
 		System.out.println("Invalid Bodyguard" + al.insert(s201));
 
@@ -1037,35 +994,36 @@ private static void test1()
 
 		// Fighter
 		cnt++;
-		s201 = new Fighter(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Fighter(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Fighter.BaseSoftware(cnt, new SecurityLevel1()));
 		System.out.println("Invalid Fighter" + al.insert(s201));
 
 		cnt++;
-		s201 = new Fighter(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Fighter(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Fighter.BaseSoftware(cnt, new SecurityLevel2()));
 		System.out.println("Invalid Fighter" + al.insert(s201));
 
 		cnt++;
-		s201 = new Fighter(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Fighter(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Fighter.BaseSoftware(cnt, new SecurityLevel3()));
 		System.out.println("Invalid Fighter" + al.insert(s201));
 
 		cnt++;
-		s201 = new Fighter(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Fighter(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Fighter.BaseSoftware(cnt, new SecurityLevel4()));
 		System.out.println("Invalid Fighter" + al.insert(s201));
 
 		cnt++;
-		s201 = new Fighter(cnt, x._1kw(cnt), new TouchSensitiveSkin(cnt),
+		s201 = new Fighter(cnt, kit1kw(cnt), new TouchSensitiveSkin(cnt),
 				new Fighter.BaseSoftware(cnt, new SecurityLevel5()));
 		System.out.println("Valid Fighter" + al.insert(s201));
 
 		System.out.println("\n\n");
 	}
 	
-
-
+	/**
+	 * Gibt alle Androiden die der Iterator liefert aus.
+	 */
 	private static void showAndroids(String text, Iterator<Android> iti) {
 		int cnt = 0;
 		while (iti.hasNext()) {
@@ -1077,4 +1035,55 @@ private static void test1()
 		System.out.println();
 	}
 
+	/**
+	 * Liefert ein Kit mit Leistungsklasse "<=1kW"
+	 */
+	public static Kit kit1kw(int id) {
+		ArrayList<Aktor> actors = new ArrayList<Aktor>();
+		actors.add(new Aktor(id, "minimal", 1.));
+		
+		ArrayList<Sensor> sensors = new ArrayList<Sensor>();
+		sensors.add(new Sensor(id, "sample sensor"));
+		
+		return new Kit(actors, sensors);
+	}
+
+	/**
+	 * Liefert ein Kit mit Leistungsklasse "<=5kW"
+	 */
+	public static Kit kit5kw(int id) {
+		ArrayList<Aktor> actors = new ArrayList<Aktor>();
+		actors.add(new Aktor(id, "mittel", 5.));
+		
+		ArrayList<Sensor> sensors = new ArrayList<Sensor>();
+		sensors.add(new Sensor(id, "sample sensor"));
+		
+		return new Kit(actors, sensors);
+	}
+
+	/**
+	 * Liefert ein Kit mit Leistungsklasse "<=10kW"
+	 */
+	public static Kit kit10kw(int id) {
+		ArrayList<Aktor> actors = new ArrayList<Aktor>();
+		actors.add(new Aktor(id, "hoch", 10.));
+		
+		ArrayList<Sensor> sensors = new ArrayList<Sensor>();
+		sensors.add(new Sensor(id, "sample sensor"));
+
+		return new Kit(actors, sensors);
+	}
+
+	/**
+	 * Liefert ein Kit mit Leistungsklasse "unbegrenzt"
+	 */
+	public static Kit kitinfkw(int id) {
+		ArrayList<Aktor> actors = new ArrayList<Aktor>();
+		actors.add(new Aktor(id, "unendlich", 5000.));
+		
+		ArrayList<Sensor> sensors = new ArrayList<Sensor>();
+		sensors.add(new Sensor(id, "sample sensor"));
+		
+		return new Kit(actors, sensors);
+	}
 }
